@@ -1,0 +1,13 @@
+﻿using ApiBibliotecaSimples.Domain.Entities;
+
+namespace ApiBlibliotecaSimples.Interfaces;
+
+public interface ICategoriaRepository
+{
+    Task<IEnumerable<Categoria>> GetAllAsync();
+    Task<Categoria> GetCategoriaComLivrosAsync(long id);
+    Task<Categoria> GetByIdAsync(long id);
+    void Create(Categoria categoria);
+    Task SaveAsync();
+    void Remove(Categoria categoria);
+}

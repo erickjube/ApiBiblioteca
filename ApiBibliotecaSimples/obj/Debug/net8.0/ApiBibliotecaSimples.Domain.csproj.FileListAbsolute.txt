@@ -1,0 +1,5 @@
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBibliotecaSimples\obj\Debug\net8.0\ApiBibliotecaSimples.Domain.csproj.AssemblyReference.cache
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBibliotecaSimples\obj\Debug\net8.0\ApiBibliotecaSimples.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBibliotecaSimples\obj\Debug\net8.0\ApiBibliotecaSimples.Domain.AssemblyInfoInputs.cache
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBibliotecaSimples\obj\Debug\net8.0\ApiBibliotecaSimples.Domain.AssemblyInfo.cs
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBibliotecaSimples\obj\Debug\net8.0\ApiBibliotecaSimples.Domain.csproj.CoreCompileInputs.cache
