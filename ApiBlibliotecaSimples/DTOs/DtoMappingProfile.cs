@@ -11,11 +11,20 @@ public class DtoMappingProfile : Profile
         CreateMap<Livro, DtoAtualizarLivro>().ReverseMap();
         CreateMap<Livro, DtoCriarLivro>().ReverseMap();
         CreateMap<Livro, DtoLivroResumo>().ReverseMap();
+        CreateMap<Livro, DtoLivroComExemplares>().ReverseMap();
+
         CreateMap<Categoria, DtoCategoria>().ReverseMap();
         CreateMap<Categoria, DtoCategoriaComLivros>().ReverseMap();
         CreateMap<Categoria, DtoResponseCategoria>().ReverseMap();
+
         CreateMap<Autor, DtoAutor>().ReverseMap();
         CreateMap<Autor, DtoResponseAutor>().ReverseMap();
         CreateMap<Autor, DtoAutorComLivros>().ReverseMap();
+
+        CreateMap<ExemplarLivro, DtoAtualizarExemplar>().ReverseMap();
+        CreateMap<ExemplarLivro, DtoCriarExemplar>().ReverseMap();
+        CreateMap<ExemplarLivro, DtoResponseExemplar>().ReverseMap();
+        CreateMap<ExemplarLivro, DtoExemplarResumo>().ReverseMap();
+
     }
 }

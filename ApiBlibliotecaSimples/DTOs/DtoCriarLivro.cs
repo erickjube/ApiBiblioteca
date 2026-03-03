@@ -24,6 +24,6 @@ public class DtoCriarLivro
     public long CategoriaId { get; set; }
 
     [Required(ErrorMessage = "O Autor Id é obrigatório.")]
-    [Range(1, long.MaxValue, ErrorMessage = "A Autor Id deve ser um valor positivo.")]
+    [Range(1, long.MaxValue, ErrorMessage = "O Autor Id deve ser um valor positivo.")]
     public long AutorId { get; set; }
 }

@@ -38,6 +38,13 @@ public class LivroController : ControllerBase
         return Ok(dtos);
     }
 
+    [HttpGet("{id}/Exemplares")]
+    public async Task<ActionResult<DtoLivroComExemplares>> GetLivroComExemplares(long id)
+    {
+        var dto = await _livroService.GetLivroComExemplares(id);
+        return Ok(dto);
+    }
+
     [HttpPost]
     public async Task<ActionResult<DtoResponseLivro>> Create(DtoCriarLivro dto)
     {

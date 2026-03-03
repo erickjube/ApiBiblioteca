@@ -10,7 +10,7 @@ public class MeuDbContext : DbContext
     public DbSet<Autor> Autor { get; set; }
     public DbSet<Categoria> Categoria { get; set; }
     public DbSet<Livro> Livro { get; set; }
-    public DbSet<ExemplarLivro> ExemplarLivro { get; set; }
+    public DbSet<ExemplarLivro> Exemplar { get; set; }
     public DbSet<Emprestimo> Emprestimo { get; set; }
     public DbSet<Venda> Venda { get; set; }
     public DbSet<Cliente> Cliente { get; set; }

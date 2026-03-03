@@ -151,3 +151,4 @@ C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBi
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.pdb
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.genruntimeconfig.cache
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ref\ApiBlibliotecaSimples.dll
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.sourcelink.json

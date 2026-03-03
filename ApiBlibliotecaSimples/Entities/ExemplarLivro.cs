@@ -1,24 +1,102 @@
-﻿using ApiBibliotecaSimples.Domain.Entities;
+﻿using ApiBlibliotecaSimples.ENUMs;
+using ApiBlibliotecaSimples.Exceptions;
+using System.Text.RegularExpressions;
 
 namespace ApiBibliotecaSimples.Domain.Entities;
 
 public class ExemplarLivro
 {
-    public long Id { get; private set; }
-    public string CodigoBarras { get; private set; }
-    public bool Disponivel { get; private set; }
+    // mudei o id para int por que não tem necessidade de ser long
+    public int Id { get; private set; }
+    public string Nome { get; private set; }
+    public string CodigoDeBarras { get; private set; }
+    public StatusExemplar Status { get; private set; } = StatusExemplar.Disponivel;
     public decimal Preco { get; private set; }
-
     public long LivroId { get; private set; }
     public Livro Livro { get; private set; }
 
     public ExemplarLivro() { }
 
-    public ExemplarLivro(string codigoBarras, bool disponivel, decimal preco, long livroId)
+    public ExemplarLivro(string nome, string codigoBarras, decimal preco, long livroId)
     {
-        CodigoBarras = codigoBarras;
-        Disponivel = disponivel;
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new BadRequestException("Nome é obrigatório");
+
+        if (!ValidarCodigoBarras.IsValid(codigoBarras))
+            throw new BadRequestException("Código de barras inválido");
+
+        if (preco < 0)
+            throw new BadRequestException("Preço deve ser um valor positivo");
+
+        if (livroId <= 0)
+            throw new BadRequestException("Livro Id deve ser um valor positivo");
+
+        Nome = nome;
+        CodigoDeBarras = codigoBarras;
         Preco = preco;
         LivroId = livroId;
+        Status = StatusExemplar.Disponivel;
+    }
+
+    public void AtualizarInformacoes(string nome, decimal preco)
+    {
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new BadRequestException("Nome é obrigatório");
+
+        if (preco < 0)
+            throw new BadRequestException("Preço deve ser um valor positivo");
+
+        Nome = nome;
+        Preco = preco;
+    }
+
+    public static class ValidarCodigoBarras
+    {
+        public static bool IsValid(string codigo)
+        {
+            if (!Regex.IsMatch(codigo, @"^\d{13}$"))
+                throw new BadRequestException("Código de barras inválido.");
+            return true;
+        }
+    }
+
+    public void Emprestar()
+    {
+        if (Status != StatusExemplar.Disponivel)
+            throw new BadRequestException("Exemplar não está disponível para empréstimo.");
+
+        Status = StatusExemplar.Emprestado;
+    }
+
+    public void Vender()
+    {
+        if (Status != StatusExemplar.Disponivel)
+            throw new BadRequestException("Exemplar não pode ser vendido.");
+
+        Status = StatusExemplar.Vendido;
+    }
+
+    public void Devolver()
+    {
+        if (Status != StatusExemplar.Emprestado)
+            throw new BadRequestException("Exemplar não está emprestado.");
+
+        Status = StatusExemplar.Disponivel;
+    }
+
+    public void Reservar()
+    {
+        if (Status != StatusExemplar.Disponivel)
+            throw new BadRequestException("Exemplar não está disponível para reserva.");
+        Status = StatusExemplar.Reservado;
+    }
+
+    public void Danificar()
+    {
+        if (Status == StatusExemplar.Vendido)
+            throw new BadRequestException("Exemplar vendido não pode ser danificado.");
+        if (Status == StatusExemplar.Danificado)
+            throw new BadRequestException("Exemplar já está danificado.");
+        Status = StatusExemplar.Danificado;
     }
 }

@@ -30,6 +30,9 @@ builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<IAutorRepository, AutorRepository>();
 builder.Services.AddScoped<IAutorService, AutorService>();
 
+builder.Services.AddScoped<IExemplarRepository, ExemplarRepository>();
+builder.Services.AddScoped<IExemplarService, ExemplarService>();
+
 builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
 
 

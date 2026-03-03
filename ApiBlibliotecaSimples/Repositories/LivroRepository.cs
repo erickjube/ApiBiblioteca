@@ -29,6 +29,11 @@ public class LivroRepository : ILivroRepository
         return await _context.Livro.Where(x => x.Titulo.Contains(titulo)).ToListAsync();
     }
 
+    public async Task<Livro?> GetLivroComExemplaresAsync(long id)
+    {
+        return await _context.Livro.Include(l => l.Exemplares).FirstOrDefaultAsync(x => x.Id == id);
+    }
+
     public async Task<bool> ExistsByIsbn(string isbn)
     {
         return await _context.Livro.AnyAsync(x => x.Isbn == isbn);
