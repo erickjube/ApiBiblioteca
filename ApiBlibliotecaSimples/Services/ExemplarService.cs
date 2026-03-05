@@ -34,11 +34,13 @@ public class ExemplarService : IExemplarService
     {
         if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
         var exemplar = await _exemplarRepository.GetByNameAsync(nome) ?? throw new NotFoundException("Exemplar não encontrado!");
+        if (!exemplar.Any()) throw new NotFoundException("Exemplar não encontrado!");
         return _mapper.Map<IEnumerable<DtoResponseExemplar>>(exemplar);
     }
 
     public async Task<DtoResponseExemplar> Create(DtoCriarExemplar dto)
     {
+        if (dto is null) throw new BadRequestException("Exemplar inválido!");
         var exemplar = _mapper.Map<ExemplarLivro>(dto);
         if (await _exemplarRepository.ExisteCodigoBarras(exemplar.CodigoDeBarras))
             throw new BadRequestException("Código de barras já existe!");

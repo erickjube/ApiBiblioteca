@@ -33,7 +33,9 @@ public class LivroService : ILivroService
 
     public async Task<IEnumerable<DtoResponseLivro>> GetByName(string titulo)
     {
+        if (string.IsNullOrWhiteSpace(titulo)) throw new BadRequestException("Titulo inválido!");
         var livro = await _livroRepository.GetByNameAsync(titulo) ?? throw new NotFoundException("Livro não encontrado!");
+        if (!livro.Any()) throw new NotFoundException("Livro não encontrado!");
         return _mapper.Map<IEnumerable<DtoResponseLivro>>(livro);
     }
 

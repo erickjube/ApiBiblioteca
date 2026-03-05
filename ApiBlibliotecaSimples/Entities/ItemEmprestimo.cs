@@ -1,20 +1,29 @@
-﻿namespace ApiBibliotecaSimples.Domain.Entities;
+﻿using ApiBlibliotecaSimples.ENUMs;
+
+namespace ApiBibliotecaSimples.Domain.Entities;
 
 public class ItemEmprestimo
 {
-    public long Id { get; private set; }
-    public DateOnly PrevisaoDevolucao { get; private set; }
-    public DateOnly DataDevolucao { get; private set; }
-    public string Status { get; private set; }
+    public int Id { get; private set; }
+    public DateOnly? DataDevolucao { get; private set; }
+    public StatusItemEmprestimo Status { get; private set; }
+    
+    public int EmprestimoId { get; private set; }
+    public Emprestimo Emprestimo { get; private set; }
 
     public long ExemplarId { get; private set; }
     public ExemplarLivro Exemplar { get; private set; }
-    public ItemEmprestimo() { }
-    public ItemEmprestimo(DateOnly previsaoDevolucao, DateOnly dataDevolucao, string status, long exemplarId)
+
+    public ItemEmprestimo(int id, long exemplarId)
     {
-        PrevisaoDevolucao = previsaoDevolucao;
+        Id = id;
+        ExemplarId = exemplarId;
+    }
+
+    public ItemEmprestimo(DateOnly? dataDevolucao, int emprestimoId,long exemplarId)
+    {
         DataDevolucao = dataDevolucao;
-        Status = status;
+        EmprestimoId = emprestimoId;
         ExemplarId = exemplarId;
     }
 }

@@ -31,7 +31,7 @@ public class LivroController : ControllerBase
         return Ok(dto);
     }
 
-    [HttpGet("{titulo}")]
+    [HttpGet("titulo")]
     public async Task<ActionResult<IEnumerable<DtoResponseLivro>>> GetByName(string titulo)
     {
         var dtos = await _livroService.GetByName(titulo);

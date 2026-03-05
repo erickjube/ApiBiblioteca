@@ -33,6 +33,9 @@ builder.Services.AddScoped<IAutorService, AutorService>();
 builder.Services.AddScoped<IExemplarRepository, ExemplarRepository>();
 builder.Services.AddScoped<IExemplarService, ExemplarService>();
 
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
+
 builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
 
 

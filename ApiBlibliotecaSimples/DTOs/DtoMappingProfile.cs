@@ -26,5 +26,15 @@ public class DtoMappingProfile : Profile
         CreateMap<ExemplarLivro, DtoResponseExemplar>().ReverseMap();
         CreateMap<ExemplarLivro, DtoExemplarResumo>().ReverseMap();
 
+
+        CreateMap<Emprestimo, DtoEmprestimoResumo>().ReverseMap();
+
+        CreateMap<Venda, DtoVendaResumo>().ReverseMap();
+
+        CreateMap<Cliente, DtoCriarCliente>().ReverseMap();
+        CreateMap<Cliente, DtoAtualizarCliente>().ReverseMap();
+        CreateMap<Cliente, DtoResponseCliente>().ReverseMap();
+        CreateMap<Cliente, DtoClienteComEmprestimos>().ReverseMap();
+        CreateMap<Cliente, DtoClienteComVendas>().ReverseMap();
     }
 }
