@@ -148,7 +148,7 @@
   {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.AutorController",
     "Method": "GetByNameComLivros",
-    "RelativePath": "api/Autor/nome/Livros",
+    "RelativePath": "api/Autor/buscar",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -318,6 +318,32 @@
     ]
   },
   {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.CategoriaController",
+    "Method": "GetByNameComLivros",
+    "RelativePath": "api/Categoria/buscar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nome",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoCategoriaComLivros, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.ClienteController",
     "Method": "Get",
     "RelativePath": "api/Cliente",
@@ -448,6 +474,32 @@
   },
   {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.ClienteController",
+    "Method": "GetByName",
+    "RelativePath": "api/Cliente/buscar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nome",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoResponseCliente, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.ClienteController",
     "Method": "GetId",
     "RelativePath": "api/Cliente/id",
     "HttpMethod": "GET",
@@ -488,32 +540,6 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ApiBlibliotecaSimples.Controllers.ClienteController",
-    "Method": "GetByName",
-    "RelativePath": "api/Cliente/nome",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "nome",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoResponseCliente, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   },
   {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.ExemplarController",
@@ -626,6 +652,32 @@
   },
   {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.ExemplarController",
+    "Method": "GetByName",
+    "RelativePath": "api/Exemplar/buscar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nome",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoResponseExemplar, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.ExemplarController",
     "Method": "GetId",
     "RelativePath": "api/Exemplar/id",
     "HttpMethod": "GET",
@@ -650,32 +702,6 @@
       }
     ],
     "EndpointName": "ObterExemplar"
-  },
-  {
-    "ContainingType": "ApiBlibliotecaSimples.Controllers.ExemplarController",
-    "Method": "GetByName",
-    "RelativePath": "api/Exemplar/nome",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "nome",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoResponseExemplar, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   },
   {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.LivroController",
@@ -825,8 +851,8 @@
   },
   {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.LivroController",
-    "Method": "GetByName",
-    "RelativePath": "api/Livro/titulo",
+    "Method": "GetByNameComExemplares",
+    "RelativePath": "api/Livro/buscar",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -839,7 +865,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoResponseLivro, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoLivroComExemplares, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

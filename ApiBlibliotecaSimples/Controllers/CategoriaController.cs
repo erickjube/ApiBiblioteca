@@ -31,6 +31,13 @@ public class CategoriaController : ControllerBase
         return Ok(dto);
     }
 
+    [HttpGet("buscar")]
+    public async Task<ActionResult<IEnumerable<DtoCategoriaComLivros>>> GetByNameComLivros([FromQuery] string nome)
+    {
+        var dtoCategorias = await _categoriaService.GetByNameComLivros(nome);
+        return Ok(dtoCategorias);
+    }
+
     [HttpGet("{id}", Name = "ObterCategoria")]
     public async Task<ActionResult<DtoResponseCategoria>> GetById(long id)
     {

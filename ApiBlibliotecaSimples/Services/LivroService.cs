@@ -31,19 +31,19 @@ public class LivroService : ILivroService
         return _mapper.Map<DtoResponseLivro>(livro);
     }
 
-    public async Task<IEnumerable<DtoResponseLivro>> GetByName(string titulo)
-    {
-        if (string.IsNullOrWhiteSpace(titulo)) throw new BadRequestException("Titulo inválido!");
-        var livro = await _livroRepository.GetByNameAsync(titulo) ?? throw new NotFoundException("Livro não encontrado!");
-        if (!livro.Any()) throw new NotFoundException("Livro não encontrado!");
-        return _mapper.Map<IEnumerable<DtoResponseLivro>>(livro);
-    }
-
     public async Task<DtoLivroComExemplares> GetLivroComExemplares(long id)
     {
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var livro = await _livroRepository.GetLivroComExemplaresAsync(id) ?? throw new NotFoundException("Livro não encontrado!");
         return _mapper.Map<DtoLivroComExemplares>(livro);
+    }
+
+    public async Task<IEnumerable<DtoLivroComExemplares>> GetByNameComExemplares(string titulo)
+    {
+        if (string.IsNullOrWhiteSpace(titulo)) throw new BadRequestException("Titulo inválido!");
+        var livros = await _livroRepository.GetByNameComExemplaresAsync(titulo) ?? throw new NotFoundException("Livro não encontrado!");
+        if (!livros.Any()) throw new NotFoundException("Livro não encontrado!");
+        return _mapper.Map<IEnumerable<DtoLivroComExemplares>>(livros);
     }
 
     public async Task<DtoResponseLivro> Create(DtoCriarLivro dto)

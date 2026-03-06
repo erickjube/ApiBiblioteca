@@ -24,14 +24,14 @@ public class LivroRepository : ILivroRepository
         return await _context.Livro.FirstOrDefaultAsync(x => x.Id == id); 
     }
 
-    public async Task<IEnumerable<Livro>> GetByNameAsync(string titulo)
-    {
-        return await _context.Livro.Where(x => x.Titulo.Contains(titulo)).ToListAsync();
-    }
-
     public async Task<Livro?> GetLivroComExemplaresAsync(long id)
     {
         return await _context.Livro.Include(l => l.Exemplares).FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<IEnumerable<Livro>> GetByNameComExemplaresAsync(string titulo)
+    {
+        return await _context.Livro.Include(l => l.Exemplares).Where(x => x.Titulo.Contains(titulo)).ToListAsync();
     }
 
     public async Task<bool> ExistsByIsbn(string isbn)

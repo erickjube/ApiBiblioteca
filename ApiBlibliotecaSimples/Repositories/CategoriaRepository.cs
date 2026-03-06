@@ -24,6 +24,11 @@ public class CategoriaRepository : ICategoriaRepository
         return await _context.Categoria.Include(c => c.Livros).FirstOrDefaultAsync(c => c.Id == id);
     }
 
+    public async Task<IEnumerable<Categoria>> GetByNameComLivrosAsync(string nome)
+    {
+        return await _context.Categoria.Include(c => c.Livros).Where(c => c.Nome.Contains(nome)).ToListAsync();
+    }
+
     public async Task<Categoria?> GetByIdAsync(long id)
     {
         return await _context.Categoria.FirstOrDefaultAsync(c => c.Id == id);

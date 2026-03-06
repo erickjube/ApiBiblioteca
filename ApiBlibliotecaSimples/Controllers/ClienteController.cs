@@ -31,8 +31,8 @@ public class ClienteController : ControllerBase
         return Ok(dtoCliente);
     }
 
-    [HttpGet("nome")]
-    public async Task<ActionResult<IEnumerable<DtoResponseCliente>>> GetByName(string nome)
+    [HttpGet("buscar")]
+    public async Task<ActionResult<IEnumerable<DtoResponseCliente>>> GetByName([FromQuery] string nome)
     {
         var dtoCliente = await _clienteService.GetByName(nome);
         return Ok(dtoCliente);

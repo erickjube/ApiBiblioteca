@@ -31,18 +31,18 @@ public class LivroController : ControllerBase
         return Ok(dto);
     }
 
-    [HttpGet("titulo")]
-    public async Task<ActionResult<IEnumerable<DtoResponseLivro>>> GetByName(string titulo)
-    {
-        var dtos = await _livroService.GetByName(titulo);
-        return Ok(dtos);
-    }
-
     [HttpGet("{id}/Exemplares")]
     public async Task<ActionResult<DtoLivroComExemplares>> GetLivroComExemplares(long id)
     {
         var dto = await _livroService.GetLivroComExemplares(id);
         return Ok(dto);
+    }
+
+    [HttpGet("buscar")]
+    public async Task<IEnumerable<DtoLivroComExemplares>> GetByNameComExemplares([FromQuery] string titulo)
+    {
+        var dtos = await _livroService.GetByNameComExemplares(titulo);
+        return dtos;
     }
 
     [HttpPost]

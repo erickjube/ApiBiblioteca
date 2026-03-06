@@ -3,6 +3,7 @@ using ApiBlibliotecaSimples.DTOs;
 using ApiBlibliotecaSimples.Exceptions;
 using ApiBlibliotecaSimples.Interfaces;
 using AutoMapper;
+using System.Globalization;
 
 namespace ApiBlibliotecaSimples.Services;
 
@@ -28,6 +29,14 @@ public class CategoriaService : ICategoriaService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var categorias = await _categoriaRepository.GetCategoriaComLivrosAsync(id) ?? throw new NotFoundException("Categoria não encontrada!");
         return _mapper.Map<DtoCategoriaComLivros>(categorias);
+    }
+
+    public async Task<IEnumerable<DtoCategoriaComLivros>> GetByNameComLivros(string nome)
+    {
+        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
+        var categorias = await _categoriaRepository.GetByNameComLivrosAsync(nome) ?? throw new NotFoundException("Categoria não encontrada!");
+        if (!categorias.Any()) throw new NotFoundException("Categoria não encontrada!");
+        return _mapper.Map<IEnumerable<DtoCategoriaComLivros>>(categorias);
     }
 
     public async Task<DtoResponseCategoria> GetId(long id)

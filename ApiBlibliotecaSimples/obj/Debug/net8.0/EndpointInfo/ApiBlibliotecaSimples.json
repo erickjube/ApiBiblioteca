@@ -248,7 +248,7 @@
         }
       }
     },
-    "/api/Autor/nome/Livros": {
+    "/api/Autor/buscar": {
       "get": {
         "tags": [
           "Autor"
@@ -412,6 +412,53 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DtoCategoriaComLivros"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Categoria/buscar": {
+      "get": {
+        "tags": [
+          "Categoria"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DtoCategoriaComLivros"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DtoCategoriaComLivros"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DtoCategoriaComLivros"
+                  }
                 }
               }
             }
@@ -738,7 +785,7 @@
         }
       }
     },
-    "/api/Cliente/nome": {
+    "/api/Cliente/buscar": {
       "get": {
         "tags": [
           "Cliente"
@@ -989,7 +1036,7 @@
         }
       }
     },
-    "/api/Exemplar/nome": {
+    "/api/Exemplar/buscar": {
       "get": {
         "tags": [
           "Exemplar"
@@ -1342,53 +1389,6 @@
         }
       }
     },
-    "/api/Livro/titulo": {
-      "get": {
-        "tags": [
-          "Livro"
-        ],
-        "parameters": [
-          {
-            "name": "titulo",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DtoResponseLivro"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DtoResponseLivro"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DtoResponseLivro"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Livro/{id}/Exemplares": {
       "get": {
         "tags": [
@@ -1422,6 +1422,53 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DtoLivroComExemplares"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Livro/buscar": {
+      "get": {
+        "tags": [
+          "Livro"
+        ],
+        "parameters": [
+          {
+            "name": "titulo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DtoLivroComExemplares"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DtoLivroComExemplares"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DtoLivroComExemplares"
+                  }
                 }
               }
             }

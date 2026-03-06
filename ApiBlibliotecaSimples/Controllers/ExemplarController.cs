@@ -31,8 +31,8 @@ public class ExemplarController : ControllerBase
         return Ok(exemplar);
     }
 
-    [HttpGet("nome")]
-    public async Task<ActionResult<IEnumerable<DtoResponseExemplar>>> GetByName(string nome)
+    [HttpGet("buscar")]
+    public async Task<ActionResult<IEnumerable<DtoResponseExemplar>>> GetByName([FromQuery] string nome)
     {
         var exemplar = await _exemplarService.GetByName(nome);
         return Ok(exemplar);

@@ -6,8 +6,8 @@ public interface ILivroRepository
 {
     Task<IEnumerable<Livro>> GetAllAsync();
     Task<Livro> GetByIdAsync(long id);
-    Task<IEnumerable<Livro>> GetByNameAsync(string titulo);
     Task<Livro> GetLivroComExemplaresAsync(long id);
+    Task<IEnumerable<Livro>> GetByNameComExemplaresAsync(string titulo);
     Task<bool> ExistsByIsbn(string isbn);
     void Create(Livro livro);
     Task SaveAsync();
