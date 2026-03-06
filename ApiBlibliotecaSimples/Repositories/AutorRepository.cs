@@ -29,9 +29,9 @@ public class AutorRepository : IAutorRepository
         return await _context.Autor.FirstOrDefaultAsync(a => a.Id == id);
     }
 
-    public async Task<IEnumerable<Autor?>> GetByNameAsync(string nome)
+    public async Task<IEnumerable<Autor?>> GetByNameComLivrosAsync(string nome)
     {
-        return await _context.Autor.Where(c => c.Nome.Contains(nome)).ToListAsync();
+        return await _context.Autor.Include(a => a.Livros).Where(c => c.Nome.Contains(nome)).ToListAsync();
     }
 
     public void Create(Autor autor)

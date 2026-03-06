@@ -38,10 +38,10 @@ public class AutorController : ControllerBase
         return Ok(dto);
     }
 
-    [HttpGet("nome")]
-    public async Task<ActionResult<IEnumerable<DtoResponseAutor>>> GetByName(string nome)
+    [HttpGet("nome/Livros")]
+    public async Task<ActionResult<IEnumerable<DtoAutorComLivros>>> GetByNameComLivros(string nome)
     {
-        var dtoAutores = await _autorService.GetByName(nome);
+        var dtoAutores = await _autorService.GetByNameComLivros(nome);
         return Ok(dtoAutores);
     }
 

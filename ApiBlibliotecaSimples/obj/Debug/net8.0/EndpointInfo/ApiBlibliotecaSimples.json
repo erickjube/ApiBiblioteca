@@ -248,7 +248,7 @@
         }
       }
     },
-    "/api/Autor/nome": {
+    "/api/Autor/nome/Livros": {
       "get": {
         "tags": [
           "Autor"
@@ -270,7 +270,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DtoResponseAutor"
+                    "$ref": "#/components/schemas/DtoAutorComLivros"
                   }
                 }
               },
@@ -278,7 +278,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DtoResponseAutor"
+                    "$ref": "#/components/schemas/DtoAutorComLivros"
                   }
                 }
               },
@@ -286,7 +286,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DtoResponseAutor"
+                    "$ref": "#/components/schemas/DtoAutorComLivros"
                   }
                 }
               }

@@ -56,7 +56,7 @@ public class ClienteService : IClienteService
     {
         if (dto is null) throw new BadRequestException("Cliente inválido!");
         var cliente = _mapper.Map<Cliente>(dto);
-        if (await _clienteRepository.ExisteCpf(cliente.Cpf)) throw new BadRequestException("CPF já cadastrado!");
+        if (await _clienteRepository.Existe(cliente.Cpf, cliente.Email, cliente.Telefone)) throw new BadRequestException("CPF, Email ou Telefone já cadastrado!");
         _clienteRepository.Create(cliente);
         await _clienteRepository.SaveAsync();
         return _mapper.Map<DtoResponseCliente>(cliente);

@@ -37,12 +37,12 @@ public class AutorService : IAutorService
         return _mapper.Map<DtoResponseAutor>(autor);
     }
 
-    public async Task<IEnumerable<DtoResponseAutor>> GetByName(string nome)
+    public async Task<IEnumerable<DtoAutorComLivros>> GetByNameComLivros(string nome)
     {
         if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
-        var autores = await _autorRepository.GetByNameAsync(nome) ?? throw new NotFoundException("Autor não encontrado!");
+        var autores = await _autorRepository.GetByNameComLivrosAsync(nome) ?? throw new NotFoundException("Autor não encontrado!");
         if (!autores.Any()) throw new NotFoundException("Autor não encontrado!");
-        return _mapper.Map<IEnumerable<DtoResponseAutor>>(autores);
+        return _mapper.Map<IEnumerable<DtoAutorComLivros>>(autores);
     }
 
     public async Task<DtoResponseAutor> Create(DtoAutor dto)

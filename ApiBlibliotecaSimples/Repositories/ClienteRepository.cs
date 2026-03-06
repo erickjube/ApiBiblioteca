@@ -54,8 +54,13 @@ public class ClienteRepository : IClienteRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<bool> ExisteCpf(string cpf)
+    public async Task<bool> Existe(string cpf, string email, string telefone)
     {
-        return await _context.Cliente.AnyAsync(x => x.Cpf == cpf);
+        if ((await _context.Cliente.AnyAsync(x => x.Cpf == cpf)) ||
+            (await _context.Cliente.AnyAsync(x => x.Email == email)) ||
+            (await _context.Cliente.AnyAsync(x => x.Telefone == telefone)))
+            return true;
+
+        return false;
     }
 }

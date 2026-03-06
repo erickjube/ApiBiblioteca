@@ -12,5 +12,5 @@ public interface IClienteRepository
     void Create(Cliente cliente);
     void Remove(Cliente cliente);
     Task SaveAsync();
-    Task<bool> ExisteCpf(string cpf);   
+    Task<bool> Existe(string cpf, string email, string telefone);
 }

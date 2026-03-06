@@ -147,8 +147,8 @@
   },
   {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.AutorController",
-    "Method": "GetByName",
-    "RelativePath": "api/Autor/nome",
+    "Method": "GetByNameComLivros",
+    "RelativePath": "api/Autor/nome/Livros",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -161,7 +161,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoResponseAutor, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoAutorComLivros, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
