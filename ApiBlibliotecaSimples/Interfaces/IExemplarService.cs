@@ -9,6 +9,7 @@ public interface IExemplarService
     public Task<IEnumerable<DtoResponseExemplar>> GetByName(string nome);
     public Task<DtoResponseExemplar> Create(DtoCriarExemplar dto);
     public Task<DtoResponseExemplar> Update(int id, DtoAtualizarExemplar dto);
-    public Task Danificar(int id);
     public Task Delete(int id);
+    public Task PerderExemplar(int id);
+    public Task DanificarExemplar(int id);
 }

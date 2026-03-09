@@ -636,8 +636,24 @@
   },
   {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.ExemplarController",
-    "Method": "Danificar",
+    "Method": "DanificarExemplar",
     "RelativePath": "api/Exemplar/{id}/danificar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.ExemplarController",
+    "Method": "PerderExemplar",
+    "RelativePath": "api/Exemplar/{id}/perder",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

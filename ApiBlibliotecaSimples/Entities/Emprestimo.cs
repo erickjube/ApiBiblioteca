@@ -17,9 +17,7 @@ public class Emprestimo
     public Emprestimo() { }
     public Emprestimo(long clienteId)
     {
-        if (clienteId <= 0)
-            throw new BadRequestException("Cliente Id deve ser um valor positivo");
-
+        if (clienteId <= 0) throw new BadRequestException("Cliente Id deve ser um valor positivo");
         DataEmprestimo = DateOnly.FromDateTime(DateTime.UtcNow);
         PrevisaoDevolucao = DataEmprestimo.AddDays(14);
         ClienteId = clienteId;

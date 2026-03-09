@@ -17,6 +17,7 @@ public class ItemEmprestimo
 
     public ItemEmprestimo(long exemplarId)
     {
+        if (exemplarId <= 0) throw new BadRequestException("Exemplar Id deve ser um valor positivo");
         ExemplarId = exemplarId;
         Status = StatusItemEmprestimo.Emprestado;
     }

@@ -33,12 +33,8 @@ public class ExemplarLivro
 
     public void AtualizarInformacoes(string nome, decimal preco)
     {
-        if (string.IsNullOrWhiteSpace(nome))
-            throw new BadRequestException("Nome é obrigatório");
-
-        if (preco < 0)
-            throw new BadRequestException("Preço deve ser um valor positivo");
-
+        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome é obrigatório");
+        if (preco < 0) throw new BadRequestException("Preço deve ser um valor positivo");
         Nome = nome;
         Preco = preco;
     }
@@ -76,12 +72,6 @@ public class ExemplarLivro
         if (Status == StatusExemplar.Vendido) throw new BadRequestException("Exemplar vendido não pode ser perdido.");
         if (Status == StatusExemplar.Perdido) throw new BadRequestException("Exemplar já está perdido.");
         Status = StatusExemplar.Perdido;
-    }
-
-    public void Reservar()
-    {
-        if (Status != StatusExemplar.Disponivel) throw new BadRequestException("Exemplar não está disponível para reserva.");
-        Status = StatusExemplar.Reservado;
     }
 
     public void Danificar()

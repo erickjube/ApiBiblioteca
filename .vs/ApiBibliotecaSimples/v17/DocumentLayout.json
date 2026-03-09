@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\entities\\itememprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\entities\\itememprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\controllers\\exemplarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\controllers\\exemplarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\services\\exemplarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\services\\exemplarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\repositories\\exemplarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\repositories\\exemplarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\interfaces\\iexemplarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\interfaces\\iexemplarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\entities\\exemplarlivro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\entities\\exemplarlivro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\entities\\itememprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\entities\\itememprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\interfaces\\iexemplarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\interfaces\\iexemplarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\entities\\emprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\entities\\emprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\enums\\statusemprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\enums\\statusemprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\enums\\statusitememprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\enums\\statusitememprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibibliotecasimples\\apiblibliotecasimples\\enums\\statusexemplar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFE3ACBF-38CD-43F7-87D2-BD1DE4FF9EF7}|ApiBlibliotecaSimples\\ApiBlibliotecaSimples.csproj|solutionrelative:apiblibliotecasimples\\enums\\statusexemplar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,17 +42,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ExemplarController.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Controllers\\ExemplarController.cs",
+              "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\Controllers\\ExemplarController.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Controllers\\ExemplarController.cs",
+              "RelativeToolTip": "ApiBlibliotecaSimples\\Controllers\\ExemplarController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAA/wEYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T18:19:28.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ExemplarService.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Services\\ExemplarService.cs",
+              "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\Services\\ExemplarService.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Services\\ExemplarService.cs",
+              "RelativeToolTip": "ApiBlibliotecaSimples\\Services\\ExemplarService.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAowFIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T18:14:06.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IExemplarService.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Interfaces\\IExemplarService.cs",
+              "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\Interfaces\\IExemplarService.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Interfaces\\IExemplarService.cs",
+              "RelativeToolTip": "ApiBlibliotecaSimples\\Interfaces\\IExemplarService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T18:13:43.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ExemplarRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Repositories\\ExemplarRepository.cs",
+              "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\Repositories\\ExemplarRepository.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Repositories\\ExemplarRepository.cs",
+              "RelativeToolTip": "ApiBlibliotecaSimples\\Repositories\\ExemplarRepository.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwDIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T17:56:15.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IExemplarRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Interfaces\\IExemplarRepository.cs",
+              "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\Interfaces\\IExemplarRepository.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Interfaces\\IExemplarRepository.cs",
+              "RelativeToolTip": "ApiBlibliotecaSimples\\Interfaces\\IExemplarRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T17:56:25.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ExemplarLivro.cs",
               "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Entities\\ExemplarLivro.cs",
               "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\Entities\\ExemplarLivro.cs",
               "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Entities\\ExemplarLivro.cs",
               "RelativeToolTip": "ApiBlibliotecaSimples\\Entities\\ExemplarLivro.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAIwBUAAABhAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAAEoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-06T19:40:25.357Z",
               "EditorCaption": ""
@@ -52,64 +125,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "StatusExemplar.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\ENUMs\\StatusExemplar.cs",
-              "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\ENUMs\\StatusExemplar.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\ENUMs\\StatusExemplar.cs",
-              "RelativeToolTip": "ApiBlibliotecaSimples\\ENUMs\\StatusExemplar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T19:36:59.732Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "StatusItemEmprestimo.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\ENUMs\\StatusItemEmprestimo.cs",
-              "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\ENUMs\\StatusItemEmprestimo.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\ENUMs\\StatusItemEmprestimo.cs",
-              "RelativeToolTip": "ApiBlibliotecaSimples\\ENUMs\\StatusItemEmprestimo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T19:10:36.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StatusEmprestimo.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\ENUMs\\StatusEmprestimo.cs",
-              "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\ENUMs\\StatusEmprestimo.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\ENUMs\\StatusEmprestimo.cs",
-              "RelativeToolTip": "ApiBlibliotecaSimples\\ENUMs\\StatusEmprestimo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-06T19:05:56.583Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "ItemEmprestimo.cs",
               "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Entities\\ItemEmprestimo.cs",
               "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\Entities\\ItemEmprestimo.cs",
               "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Entities\\ItemEmprestimo.cs",
               "RelativeToolTip": "ApiBlibliotecaSimples\\Entities\\ItemEmprestimo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-06T18:55:34.983Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Emprestimo.cs",
               "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Entities\\Emprestimo.cs",
               "RelativeDocumentMoniker": "ApiBlibliotecaSimples\\Entities\\Emprestimo.cs",
               "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBibliotecaSimples\\ApiBlibliotecaSimples\\Entities\\Emprestimo.cs",
               "RelativeToolTip": "ApiBlibliotecaSimples\\Entities\\Emprestimo.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAIwDcAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAUwDQAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-06T18:55:33.459Z",
               "EditorCaption": ""

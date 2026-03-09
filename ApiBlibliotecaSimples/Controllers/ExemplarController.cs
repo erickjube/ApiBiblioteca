@@ -50,19 +50,26 @@ public class ExemplarController : ControllerBase
     {
         var exemplarAtualizado = await _exemplarService.Update(id, dto);
         return Ok(exemplarAtualizado);
-    }
-
-    [HttpPost("{id}/danificar")]
-    public async Task<ActionResult> Danificar(int id)
-    {
-        await _exemplarService.Danificar(id);
-        return NoContent();
-    }
+    }    
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {
         await _exemplarService.Delete(id);
+        return NoContent();
+    }
+
+    [HttpPost("{id}/danificar")]
+    public async Task<ActionResult> DanificarExemplar(int id)
+    {
+        await _exemplarService.DanificarExemplar(id);
+        return NoContent();
+    }
+
+    [HttpPost("{id}/perder")]
+    public async Task<ActionResult> PerderExemplar(int id)
+    {
+        await _exemplarService.PerderExemplar(id);
         return NoContent();
     }
 }

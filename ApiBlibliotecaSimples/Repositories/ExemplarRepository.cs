@@ -47,4 +47,5 @@ public class ExemplarRepository : IExemplarRepository
     {
         return await _context.Exemplar.AnyAsync(x => x.CodigoDeBarras == codigoBarras);
     }
+
 }

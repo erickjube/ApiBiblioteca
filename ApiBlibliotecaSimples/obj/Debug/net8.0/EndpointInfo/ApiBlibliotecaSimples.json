@@ -1186,6 +1186,29 @@
         }
       }
     },
+    "/api/Exemplar/{id}/perder": {
+      "post": {
+        "tags": [
+          "Exemplar"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Livro": {
       "get": {
         "tags": [
@@ -2088,7 +2111,8 @@
         "enum": [
           1,
           2,
-          3
+          3,
+          4
         ],
         "type": "integer",
         "format": "int32"
@@ -2099,7 +2123,8 @@
           2,
           3,
           4,
-          5
+          5,
+          6
         ],
         "type": "integer",
         "format": "int32"
