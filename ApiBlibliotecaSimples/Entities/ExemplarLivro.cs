@@ -19,17 +19,10 @@ public class ExemplarLivro
 
     public ExemplarLivro(string nome, string codigoBarras, decimal preco, long livroId)
     {
-        if (string.IsNullOrWhiteSpace(nome))
-            throw new BadRequestException("Nome é obrigatório");
-
-        if (!ValidarCodigoBarras.IsValid(codigoBarras))
-            throw new BadRequestException("Código de barras inválido");
-
-        if (preco < 0)
-            throw new BadRequestException("Preço deve ser um valor positivo");
-
-        if (livroId <= 0)
-            throw new BadRequestException("Livro Id deve ser um valor positivo");
+        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome é obrigatório");
+        if (!ValidarCodigoBarras.IsValid(codigoBarras)) throw new BadRequestException("Código de barras inválido");
+        if (preco < 0) throw new BadRequestException("Preço deve ser um valor positivo");
+        if (livroId <= 0) throw new BadRequestException("Livro Id deve ser um valor positivo");
 
         Nome = nome;
         CodigoDeBarras = codigoBarras;
@@ -62,41 +55,39 @@ public class ExemplarLivro
 
     public void Emprestar()
     {
-        if (Status != StatusExemplar.Disponivel)
-            throw new BadRequestException("Exemplar não está disponível para empréstimo.");
-
+        if (Status != StatusExemplar.Disponivel) throw new BadRequestException("Exemplar não está disponível para empréstimo.");
         Status = StatusExemplar.Emprestado;
     }
 
-    public void Vender()
+    public void Vender() 
     {
-        if (Status != StatusExemplar.Disponivel)
-            throw new BadRequestException("Exemplar não pode ser vendido.");
-
+        if (Status != StatusExemplar.Disponivel) throw new BadRequestException("Exemplar não pode ser vendido.");
         Status = StatusExemplar.Vendido;
     }
 
     public void Devolver()
     {
-        if (Status != StatusExemplar.Emprestado)
-            throw new BadRequestException("Exemplar não está emprestado.");
-
+        if (Status != StatusExemplar.Emprestado) throw new BadRequestException("Exemplar não está emprestado.");
         Status = StatusExemplar.Disponivel;
+    }
+
+    public void Perder()
+    {
+        if (Status == StatusExemplar.Vendido) throw new BadRequestException("Exemplar vendido não pode ser perdido.");
+        if (Status == StatusExemplar.Perdido) throw new BadRequestException("Exemplar já está perdido.");
+        Status = StatusExemplar.Perdido;
     }
 
     public void Reservar()
     {
-        if (Status != StatusExemplar.Disponivel)
-            throw new BadRequestException("Exemplar não está disponível para reserva.");
+        if (Status != StatusExemplar.Disponivel) throw new BadRequestException("Exemplar não está disponível para reserva.");
         Status = StatusExemplar.Reservado;
     }
 
     public void Danificar()
     {
-        if (Status == StatusExemplar.Vendido)
-            throw new BadRequestException("Exemplar vendido não pode ser danificado.");
-        if (Status == StatusExemplar.Danificado)
-            throw new BadRequestException("Exemplar já está danificado.");
+        if (Status == StatusExemplar.Vendido) throw new BadRequestException("Exemplar vendido não pode ser danificado.");
+        if (Status == StatusExemplar.Danificado) throw new BadRequestException("Exemplar já está danificado.");
         Status = StatusExemplar.Danificado;
     }
 }

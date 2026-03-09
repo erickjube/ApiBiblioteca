@@ -4,7 +4,8 @@ public enum StatusExemplar
 {
     Disponivel = 1,
     Emprestado = 2,
-    Reservado = 3,
-    Vendido = 4,
-    Danificado = 5
+    Vendido = 3,
+    Reservado = 4,
+    Danificado = 5, 
+    Perdido = 6
 }
