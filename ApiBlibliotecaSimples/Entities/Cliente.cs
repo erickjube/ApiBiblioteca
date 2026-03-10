@@ -19,28 +19,15 @@ public class Cliente
     public Cliente() { }
     public Cliente(string cpf, string nome, string email, string telefone, DateOnly dataNascimento)
     {
-        if (string.IsNullOrWhiteSpace(cpf))
-            throw new BadRequestException("CPF é obrigatório.");
-        if (!CpfValido(cpf))
-            throw new BadRequestException("CPF inválido.");
-
-        if (string.IsNullOrWhiteSpace(nome))
-            throw new BadRequestException("Nome é obrigatório.");
-
-        if (string.IsNullOrWhiteSpace(email))
-            throw new BadRequestException("Email é obrigatório.");
-        if (!EmailValido(email))
-            throw new BadRequestException("Email inválido.");
-
-        if (string.IsNullOrWhiteSpace(telefone))
-            throw new BadRequestException("Telefone é obrigatório.");
-        if (!TelefoneValido(telefone))
-            throw new BadRequestException("Telefone inválido.");
-
-        if (dataNascimento == default)
-            throw new BadRequestException("Data de Nascimento é obrigatória!");
-        if (dataNascimento > DateOnly.FromDateTime(DateTime.UtcNow))
-            throw new BadRequestException("Data de nascimento não pode ser futura");
+        if (string.IsNullOrWhiteSpace(cpf)) throw new BadRequestException("CPF é obrigatório.");
+        if (!CpfValido(cpf)) throw new BadRequestException("CPF inválido.");
+        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome é obrigatório.");
+        if (string.IsNullOrWhiteSpace(email)) throw new BadRequestException("Email é obrigatório.");
+        if (!EmailValido(email)) throw new BadRequestException("Email inválido.");
+        if (string.IsNullOrWhiteSpace(telefone)) throw new BadRequestException("Telefone é obrigatório.");
+        if (!TelefoneValido(telefone)) throw new BadRequestException("Telefone inválido.");
+        if (dataNascimento == default) throw new BadRequestException("Data de Nascimento é obrigatória!");
+        if (dataNascimento > DateOnly.FromDateTime(DateTime.UtcNow)) throw new BadRequestException("Data de nascimento não pode ser futura");
 
         Cpf = cpf;
         Nome = nome;
@@ -56,12 +43,10 @@ public class Cliente
         cpf = new string(cpf.Where(char.IsDigit).ToArray());
 
         // CPF deve conter 11 dígitos
-        if (cpf.Length != 11)
-            return false;
+        if (cpf.Length != 11) return false;
 
         // Verifica se todos os dígitos são iguais (ex: 111.111.111-11)
-        if (cpf.Distinct().Count() == 1)
-            return false;
+        if (cpf.Distinct().Count() == 1) return false;
 
         // Cálculo dos dígitos verificadores
         int[] multiplicador1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -119,16 +104,11 @@ public class Cliente
 
     public void AtualizarInformacoes(string nome, string email, string telefone)
     {
-        if (string.IsNullOrWhiteSpace(nome))
-            throw new BadRequestException("Nome é obrigatório.");
-        if (string.IsNullOrWhiteSpace(email))
-            throw new BadRequestException("Email é obrigatório.");
-        if (!EmailValido(email))
-            throw new BadRequestException("Email inválido.");
-        if (string.IsNullOrWhiteSpace(telefone))
-            throw new BadRequestException("Telefone é obrigatório.");
-        if (!TelefoneValido(telefone))
-            throw new BadRequestException("Telefone inválido.");
+        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome é obrigatório.");
+        if (string.IsNullOrWhiteSpace(email)) throw new BadRequestException("Email é obrigatório.");
+        if (!EmailValido(email)) throw new BadRequestException("Email inválido.");
+        if (string.IsNullOrWhiteSpace(telefone)) throw new BadRequestException("Telefone é obrigatório.");
+        if (!TelefoneValido(telefone)) throw new BadRequestException("Telefone inválido.");
         Nome = nome;
         Email = email;
         Telefone = telefone;
@@ -136,9 +116,7 @@ public class Cliente
 
     public void ValidarExclusao()
     {
-        if (Emprestimos.Any(e => e.Status == StatusEmprestimo.Ativo))
-            throw new BadRequestException("Cliente possui empréstimos ativos!");
-        if (Vendas.Any())
-            throw new BadRequestException("Cliente possui vendas registradas!");
+        if (Emprestimos.Any(e => e.Status == StatusEmprestimo.Ativo)) throw new BadRequestException("Cliente possui empréstimos ativos!");
+        if (Vendas.Any()) throw new BadRequestException("Cliente possui vendas registradas!");
     }
 }

@@ -9,13 +9,13 @@ public class Emprestimo
     public DateOnly DataEmprestimo { get; private set; } = DateOnly.FromDateTime(DateTime.UtcNow);
     public DateOnly PrevisaoDevolucao { get; private set; }
     public StatusEmprestimo Status { get; private set; } = StatusEmprestimo.Ativo;
-    public long ClienteId { get; private set; }
+    public int ClienteId { get; private set; }
     public Cliente? Cliente { get; private set; }
 
     public ICollection<ItemEmprestimo> Itens { get; private set; } = new List<ItemEmprestimo>();
 
     public Emprestimo() { }
-    public Emprestimo(long clienteId)
+    public Emprestimo(int clienteId)
     {
         if (clienteId <= 0) throw new BadRequestException("Cliente Id deve ser um valor positivo");
         DataEmprestimo = DateOnly.FromDateTime(DateTime.UtcNow);
@@ -24,13 +24,13 @@ public class Emprestimo
         Status = StatusEmprestimo.Ativo;
     }
 
-    public void AdicionarItem(ExemplarLivro exemplar)
+    public void AdicionarItem(int exemplarId)
     {
         if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Empréstimo não está ativo.");
-        if (Itens.Any(i => i.ExemplarId == exemplar.Id)) throw new BadRequestException("Este exemplar já foi adicionado ao empréstimo.");
+        if (Itens.Any(i => i.ExemplarId == exemplarId)) throw new BadRequestException("Este exemplar já foi adicionado ao empréstimo.");
         if (Itens.Count >= 3) throw new BadRequestException("Limite de itens atingido.");
-        exemplar.Emprestar();
-        var item = new ItemEmprestimo(exemplar.Id);
+        if (exemplarId <= 0) throw new BadRequestException("Exemplar Id deve ser um valor positivo");
+        var item = new ItemEmprestimo(exemplarId);
         Itens.Add(item);
     }
 

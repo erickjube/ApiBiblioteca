@@ -12,10 +12,10 @@ public class ItemEmprestimo
     public int EmprestimoId { get; private set; }
     public Emprestimo Emprestimo { get; private set; }
 
-    public long ExemplarId { get; private set; }
+    public int ExemplarId { get; private set; }
     public ExemplarLivro Exemplar { get; private set; }
 
-    public ItemEmprestimo(long exemplarId)
+    public ItemEmprestimo(int exemplarId)
     {
         if (exemplarId <= 0) throw new BadRequestException("Exemplar Id deve ser um valor positivo");
         ExemplarId = exemplarId;

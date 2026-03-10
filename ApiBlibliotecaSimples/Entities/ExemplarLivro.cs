@@ -43,8 +43,7 @@ public class ExemplarLivro
     {
         public static bool IsValid(string codigo)
         {
-            if (!Regex.IsMatch(codigo, @"^\d{13}$"))
-                throw new BadRequestException("Código de barras inválido.");
+            if (!Regex.IsMatch(codigo, @"^\d{13}$")) throw new BadRequestException("Código de barras inválido.");
             return true;
         }
     }

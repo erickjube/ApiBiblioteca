@@ -542,6 +542,226 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "GetAll",
+    "RelativePath": "api/Emprestimo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBlibliotecaSimples.DTOs.DtoResponseEmprestimo, ApiBlibliotecaSimples, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "Create",
+    "RelativePath": "api/Emprestimo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoCriarEmprestimo",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoResponseEmprestimo",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "CancelarEmprestimo",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/cancelar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "DevolverItem",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/DevolverItem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "EstenderPrazoDevolucao",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/estender-prazo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "novoPrazoDevolucao",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "FinalizarEmprestimo",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/finalizar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "AdicionarItem",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/Item",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "exemplarId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoResponseEmprestimo",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "MarcarItemComoDanificado",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/marcar-item-danificado",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "MarcarItemComoPerdido",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/marcar-item-perdido",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.EmprestimoController",
+    "Method": "GetById",
+    "RelativePath": "api/Emprestimo/id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoResponseEmprestimoComItens",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "ObterEmprestimo"
+  },
+  {
     "ContainingType": "ApiBlibliotecaSimples.Controllers.ExemplarController",
     "Method": "Get",
     "RelativePath": "api/Exemplar",

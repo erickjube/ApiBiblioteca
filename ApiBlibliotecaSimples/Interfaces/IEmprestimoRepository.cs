@@ -4,5 +4,8 @@ namespace ApiBlibliotecaSimples.Interfaces;
 
 public interface IEmprestimoRepository
 {
-    public Task<IEnumerable<Emprestimo>> GetAllAsync();
+    Task<IEnumerable<Emprestimo>> GetAllAsync();
+    Task<Emprestimo?> GetByIdAsync(int emprestimoId);
+    Task AddAsync(Emprestimo emprestimo);
+    Task SaveChanges();
 }

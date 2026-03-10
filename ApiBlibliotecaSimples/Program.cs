@@ -36,6 +36,9 @@ builder.Services.AddScoped<IExemplarService, ExemplarService>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 
+builder.Services.AddScoped<IEmprestimoRepository, EmprestimoRepository>();
+builder.Services.AddScoped<IEmprestimoService, EmprestimoService>();
+
 builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
 
 
