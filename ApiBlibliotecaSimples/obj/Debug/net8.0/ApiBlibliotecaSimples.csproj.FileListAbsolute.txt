@@ -136,6 +136,7 @@ C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBi
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.csproj.CoreCompileInputs.cache
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.sourcelink.json
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -151,4 +152,3 @@ C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBi
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.pdb
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.genruntimeconfig.cache
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ref\ApiBlibliotecaSimples.dll
-C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBibliotecaSimples\ApiBlibliotecaSimples\obj\Debug\net8.0\ApiBlibliotecaSimples.sourcelink.json

@@ -1110,5 +1110,178 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.VendaController",
+    "Method": "GetVendas",
+    "RelativePath": "api/Venda",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoResponseVenda",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.VendaController",
+    "Method": "Create",
+    "RelativePath": "api/Venda",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoCriarVenda",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoResponseVenda",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.VendaController",
+    "Method": "AdicionarItem",
+    "RelativePath": "api/Venda/{vendaId}/AdicionarItem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "exemplarId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.VendaController",
+    "Method": "CancelarVenda",
+    "RelativePath": "api/Venda/{vendaId}/Cancelar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.VendaController",
+    "Method": "ExcluirItem",
+    "RelativePath": "api/Venda/{vendaId}/ExcluirItem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.VendaController",
+    "Method": "FinalizarVenda",
+    "RelativePath": "api/Venda/{vendaId}/Finalizar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.VendaController",
+    "Method": "GetVendaComItens",
+    "RelativePath": "api/Venda/{vendaId}/Itens",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoResponseVendaComItens",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBlibliotecaSimples.Controllers.VendaController",
+    "Method": "GetVendaPorId",
+    "RelativePath": "api/Venda/id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBlibliotecaSimples.DTOs.DtoResponseVenda",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "ObterVenda"
   }
 ]

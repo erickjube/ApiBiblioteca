@@ -79,4 +79,12 @@ public class ExemplarLivro
         if (Status == StatusExemplar.Danificado) throw new BadRequestException("Exemplar já está danificado.");
         Status = StatusExemplar.Danificado;
     }
+
+    public decimal BuscarPreco()
+    {
+        if (Status == StatusExemplar.Vendido) throw new BadRequestException("Exemplar vendido não tem preço disponível.");
+        if (Status == StatusExemplar.Perdido) throw new BadRequestException("Exemplar perdido não tem preço disponível.");
+        if (Status == StatusExemplar.Danificado) throw new BadRequestException("Exemplar danificado não tem preço disponível.");
+        return Preco;
+    }
 }

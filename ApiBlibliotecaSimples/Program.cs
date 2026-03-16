@@ -1,4 +1,4 @@
-using ApiBibliotecaSimples.Domain.Context;
+﻿using ApiBibliotecaSimples.Domain.Context;
 using ApiBibliotecaSimples.Domain.Interfaces;
 using ApiBibliotecaSimples.Domain.Repositories;
 using ApiBlibliotecaSimples.DTOs;
@@ -13,7 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<MeuDbContext>(options => options.UseSqlServer(mySqlConnection));
-
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -38,6 +37,9 @@ builder.Services.AddScoped<IClienteService, ClienteService>();
 
 builder.Services.AddScoped<IEmprestimoRepository, EmprestimoRepository>();
 builder.Services.AddScoped<IEmprestimoService, EmprestimoService>();
+
+builder.Services.AddScoped<IVendaRepository, VendaRepository>();
+builder.Services.AddScoped<IVendaService, VendaService>();
 
 builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
 

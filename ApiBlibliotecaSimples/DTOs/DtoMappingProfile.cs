@@ -26,16 +26,19 @@ public class DtoMappingProfile : Profile
         CreateMap<ExemplarLivro, DtoResponseExemplar>().ReverseMap();
         CreateMap<ExemplarLivro, DtoExemplarResumo>().ReverseMap();
 
-
         CreateMap<Emprestimo, DtoEmprestimoResumo>().ReverseMap();
         CreateMap<Emprestimo, DtoCriarEmprestimo>().ReverseMap();
         CreateMap<Emprestimo, DtoResponseEmprestimo>().ReverseMap();
         CreateMap<Emprestimo, DtoResponseEmprestimoComItens>().ReverseMap();    
 
-        CreateMap<ItemEmprestimo, DtoCriarItemEmprestimo>().ReverseMap();
         CreateMap<ItemEmprestimo, DtoResponseItemEmprestimo>().ReverseMap();
 
         CreateMap<Venda, DtoVendaResumo>().ReverseMap();
+        CreateMap<Venda, DtoCriarVenda>().ReverseMap();
+        CreateMap<Venda, DtoResponseVenda>().ReverseMap();
+        CreateMap<Venda, DtoResponseVendaComItens>().ReverseMap();
+
+        CreateMap<ItemVenda, DtoResponseItemVenda>().ReverseMap();
 
         CreateMap<Cliente, DtoCriarCliente>().ReverseMap();
         CreateMap<Cliente, DtoAtualizarCliente>().ReverseMap();
