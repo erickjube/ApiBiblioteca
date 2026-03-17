@@ -36,7 +36,7 @@ public class Emprestimo
 
     public void DevolverItem(int itemId)
     {
-        if (Status != StatusEmprestimo.Ativo && Status != StatusEmprestimo.Atrasado) throw new BadRequestException("Empréstimo não está ativo ou está atrasado.");
+        if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Empréstimo não está ativo.");
         var item = Itens.FirstOrDefault(i => i.Id == itemId);
         if (item == null) throw new BadRequestException("Item não encontrado.");
         item.Devolver();
@@ -44,7 +44,7 @@ public class Emprestimo
 
     public void MarcarItemComoPerdido(int itemId)
     {
-        if (Status != StatusEmprestimo.Ativo && Status != StatusEmprestimo.Atrasado) throw new BadRequestException("Empréstimo não está ativo ou está atrasado.");
+        if (Status != StatusEmprestimo.Ativo || EstaAtrasado) throw new BadRequestException("Empréstimo não está ativo ou está atrasado.");
         var item = Itens.FirstOrDefault(i => i.Id == itemId);
         if (item == null) throw new BadRequestException("Item não encontrado.");
         item.MarcarComoPerdido();
@@ -52,7 +52,7 @@ public class Emprestimo
 
     public void MarcarItemComoDanificado(int itemId)
     {
-        if (Status != StatusEmprestimo.Ativo && Status != StatusEmprestimo.Atrasado) throw new BadRequestException("Empréstimo não está ativo ou está atrasado.");
+        if (Status != StatusEmprestimo.Ativo || EstaAtrasado) throw new BadRequestException("Empréstimo não está ativo ou está atrasado.");
         var item = Itens.FirstOrDefault(i => i.Id == itemId);
         if (item == null) throw new BadRequestException("Item não encontrado.");
         item.MarcarComoDanificado();
@@ -60,7 +60,7 @@ public class Emprestimo
 
     public void Finalizar()
     {
-        if (Status != StatusEmprestimo.Ativo && Status != StatusEmprestimo.Atrasado) throw new BadRequestException("Empréstimo já está finalizado ou cancelado.");
+        if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Não é possivel finalizar um emprestimo que não esteja ativo");
         if (Itens.Any(i => i.Status != StatusItemEmprestimo.Devolvido)) throw new BadRequestException("Ainda existem itens pendentes.");
         Status = StatusEmprestimo.Finalizado;
     }
@@ -68,15 +68,15 @@ public class Emprestimo
     public void Cancelar()
     {
         if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Empréstimo já está finalizado ou cancelado.");
+        if (EstaAtrasado) throw new BadRequestException("Não é possivel cancelar um empréstimo que esta atrasado");
         if (Itens.Any()) throw new BadRequestException("Não é possível cancelar um empréstimo que possui itens.");
         Status = StatusEmprestimo.Cancelado;
     }
 
-    public void VerificarAtraso()
-    {
-        if (Status == StatusEmprestimo.Ativo && DateOnly.FromDateTime(DateTime.UtcNow) > PrevisaoDevolucao)
-            Status = StatusEmprestimo.Atrasado;
-    }
+    // propriedade calculada, não salva no banco
+    public bool EstaAtrasado =>
+    Status == StatusEmprestimo.Ativo &&
+    DateOnly.FromDateTime(DateTime.UtcNow) > PrevisaoDevolucao;
 
     public void AtualizarPrevisaoDevolucao(DateOnly novaPrevisao)
     {
