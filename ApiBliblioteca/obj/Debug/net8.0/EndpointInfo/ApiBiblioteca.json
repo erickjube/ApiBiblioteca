@@ -953,25 +953,16 @@
         "tags": [
           "Emprestimo"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DtoCriarEmprestimo"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DtoCriarEmprestimo"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/DtoCriarEmprestimo"
-              }
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -2387,21 +2378,6 @@
         },
         "additionalProperties": false
       },
-      "DtoCriarEmprestimo": {
-        "required": [
-          "clienteId"
-        ],
-        "type": "object",
-        "properties": {
-          "clienteId": {
-            "maximum": 2147483647,
-            "minimum": 1,
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
       "DtoCriarExemplar": {
         "required": [
           "codigoDeBarras",
@@ -2919,8 +2895,7 @@
         "enum": [
           1,
           2,
-          3,
-          4
+          3
         ],
         "type": "integer",
         "format": "int32"

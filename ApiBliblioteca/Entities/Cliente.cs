@@ -113,10 +113,4 @@ public class Cliente
         Email = email;
         Telefone = telefone;
     }
-
-    public void ValidarExclusao()
-    {
-        if (Emprestimos.Any(e => e.Status == StatusEmprestimo.Ativo)) throw new BadRequestException("Cliente possui empréstimos ativos!");
-        if (Vendas.Any()) throw new BadRequestException("Cliente possui vendas registradas!");
-    }
 }

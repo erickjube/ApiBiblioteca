@@ -11,12 +11,17 @@ public class EmprestimoService : IEmprestimoService
 {
     private readonly IEmprestimoRepository _emprestimoRepository;
     private readonly IExemplarRepository _exemplarRepository;
+    private readonly IClienteRepository _clienteRepository;
     private readonly IMapper _mapper;
 
-    public EmprestimoService(IEmprestimoRepository emprestimoRepository, IExemplarRepository exemplarRepository, IMapper mapper)
+    public EmprestimoService(IEmprestimoRepository emprestimoRepository, 
+                             IExemplarRepository exemplarRepository, 
+                             IClienteRepository clienteRepository, 
+                             IMapper mapper)
     {
         _emprestimoRepository = emprestimoRepository;
         _exemplarRepository = exemplarRepository;
+        _clienteRepository = clienteRepository;
         _mapper = mapper;
     }
 
@@ -33,10 +38,13 @@ public class EmprestimoService : IEmprestimoService
         return _mapper.Map<DtoResponseEmprestimoComItens>(emprestimo);
     }
 
-    public async Task<DtoResponseEmprestimo> CreateEmprestimo(DtoCriarEmprestimo dto)
+    public async Task<DtoResponseEmprestimo> CreateEmprestimo(int clienteId)
     {
-        if (dto == null) throw new BadRequestException("Empréstimo inválido");
-        var emprestimo = _mapper.Map<Emprestimo>(dto);
+        var cliente = await _clienteRepository.GetByIdAsync(clienteId);
+        if (cliente == null) throw new NotFoundException("Cliente não encontrado");
+        var possuiEmprestimo = await _emprestimoRepository.ClienteTemEmprestimoAtivo(clienteId);
+        if (possuiEmprestimo) throw new BadRequestException("Cliente já possui um empréstimo em aberto");
+        var emprestimo = new Emprestimo(clienteId);
         await _emprestimoRepository.AddAsync(emprestimo);
         await _emprestimoRepository.SaveChanges();
         return _mapper.Map<DtoResponseEmprestimo>(emprestimo);

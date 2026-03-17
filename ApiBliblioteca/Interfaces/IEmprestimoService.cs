@@ -7,7 +7,7 @@ public interface IEmprestimoService
 {
     Task<IEnumerable<DtoResponseEmprestimo>> GetAllEmprestimos();
     Task<DtoResponseEmprestimoComItens?> GetEmprestimoById(int emprestimoId);
-    Task<DtoResponseEmprestimo> CreateEmprestimo(DtoCriarEmprestimo dto);
+    Task<DtoResponseEmprestimo> CreateEmprestimo(int clienteId);
     public Task<DtoResponseEmprestimo> AdicionarItem(int emprestimoId, int exemplarId);
     public Task DevolverItem(int emprestimoId, int itemId);
     public Task MarcarItemComoPerdido(int emprestimoId, int itemId);

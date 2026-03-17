@@ -570,9 +570,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtoCriarEmprestimo",
-        "IsRequired": true
+        "Name": "clienteId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

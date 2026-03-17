@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.Domain.Context;
 using ApiBiblioteca.Domain.Entities;
+using ApiBiblioteca.ENUMs;
 using ApiBiblioteca.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,12 @@ public class EmprestimoRepository : IEmprestimoRepository
     {
         await _context.Emprestimo.AddAsync(emprestimo);
     }
+
+    public async Task<bool> ClienteTemEmprestimoAtivo(int clienteId)
+    {
+        return await _context.Emprestimo.AnyAsync(e => e.ClienteId == clienteId && e.Status == StatusEmprestimo.Ativo);
+    }
+
 
     public async Task SaveChanges()
     {
