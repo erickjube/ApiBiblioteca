@@ -53,6 +53,12 @@ public class VendaService : IVendaService
     {
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
+
+        foreach (var item in venda.Itens)
+        {
+            item.Cancelar();
+        }
+
         venda.Cancelar();
         await _vendaRepository.SaveAsync();
     }
@@ -66,15 +72,12 @@ public class VendaService : IVendaService
 
         foreach (var item in venda.Itens)
         {
-            if (item.ValidarItemVenda())
-            {
-                var exemplar = await _exemplarRepository.GetByIdAsync(item.ExemplarId);
-                if (exemplar == null) throw new NotFoundException("Exemplar não encontrado");
-                exemplar.Vender();
-                var preco = item.DefinirPreco(exemplar.Preco);
-                cont += preco;
-                item.Vender();
-            }
+            var exemplar = await _exemplarRepository.GetByIdAsync(item.ExemplarId);
+            if (exemplar == null) throw new NotFoundException("Exemplar não encontrado");
+            exemplar.Vender();
+            var preco = item.DefinirPreco(exemplar.Preco);
+            cont += preco;
+            item.Vender();
         }
         venda.DefinirPrecoTotal(cont);
         venda.Finalizar();
@@ -98,5 +101,5 @@ public class VendaService : IVendaService
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         venda.ExcluirItem(itemId);
         await _vendaRepository.SaveAsync();
-    }   
+    }
 }

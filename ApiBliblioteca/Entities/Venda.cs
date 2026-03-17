@@ -37,7 +37,6 @@ public class Venda
         if (Status != StatusVenda.Aberta) throw new BadRequestException("Venda não está aberta.");
         var item = Itens.FirstOrDefault(i => i.Id == itemId);
         if (item == null) throw new BadRequestException("Item não encontrado na venda.");
-        item.Cancelar();
         Itens.Remove(item);
     }   
 

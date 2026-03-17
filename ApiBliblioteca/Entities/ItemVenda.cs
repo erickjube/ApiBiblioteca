@@ -37,13 +37,6 @@ public class ItemVenda
         Status = StatusItemVenda.Cancelado;
     }
 
-    public bool ValidarItemVenda()
-    {
-        if (Status != StatusItemVenda.Cancelado && Status != StatusItemVenda.Vendido)
-            return true;
-        return false;
-    }
-
     public decimal DefinirPreco(decimal preco)
     {
         Preco = preco;
