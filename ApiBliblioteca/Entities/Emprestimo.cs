@@ -39,28 +39,12 @@ public class Emprestimo
         Itens.Add(item);
     }
 
-    public void DevolverItem(int itemId)
+    public Multa? DevolverItem(int itemId, CondicaoItem condicao)
     {
         if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Empréstimo não está ativo.");
         var item = Itens.FirstOrDefault(i => i.Id == itemId);
         if (item == null) throw new BadRequestException("Item não encontrado.");
-        item.Devolver();
-    }
-
-    public void MarcarItemComoPerdido(int itemId)
-    {
-        if (Status != StatusEmprestimo.Ativo || EstaAtrasado) throw new BadRequestException("Empréstimo não está ativo ou está atrasado.");
-        var item = Itens.FirstOrDefault(i => i.Id == itemId);
-        if (item == null) throw new BadRequestException("Item não encontrado.");
-        item.MarcarComoPerdido();
-    }
-
-    public void MarcarItemComoDanificado(int itemId)
-    {
-        if (Status != StatusEmprestimo.Ativo || EstaAtrasado) throw new BadRequestException("Empréstimo não está ativo ou está atrasado.");
-        var item = Itens.FirstOrDefault(i => i.Id == itemId);
-        if (item == null) throw new BadRequestException("Item não encontrado.");
-        item.MarcarComoDanificado();
+        return item.DevolverItem(condicao, PrevisaoDevolucao);
     }
 
     public void Finalizar()

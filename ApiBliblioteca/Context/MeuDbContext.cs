@@ -1,4 +1,5 @@
 ﻿using ApiBiblioteca.Domain.Entities;
+using ApiBiblioteca.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiBiblioteca.Domain.Context;
@@ -16,4 +17,5 @@ public class MeuDbContext : DbContext
     public DbSet<Cliente> Cliente { get; set; }
     public DbSet<ItemEmprestimo> ItemEmprestimo { get; set; }
     public DbSet<ItemVenda> ItemVenda { get; set; }
+    public DbSet<Multa> Multa { get; set; }
 }

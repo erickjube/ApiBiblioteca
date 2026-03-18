@@ -41,6 +41,8 @@ builder.Services.AddScoped<IEmprestimoService, EmprestimoService>();
 builder.Services.AddScoped<IVendaRepository, VendaRepository>();
 builder.Services.AddScoped<IVendaService, VendaService>();
 
+builder.Services.AddScoped<IMultaRepository, MultaRepository>();
+
 builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
 
 

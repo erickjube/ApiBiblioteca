@@ -12,16 +12,19 @@ public class EmprestimoService : IEmprestimoService
     private readonly IEmprestimoRepository _emprestimoRepository;
     private readonly IExemplarRepository _exemplarRepository;
     private readonly IClienteRepository _clienteRepository;
+    private readonly IMultaRepository _multaRepository;
     private readonly IMapper _mapper;
 
     public EmprestimoService(IEmprestimoRepository emprestimoRepository, 
                              IExemplarRepository exemplarRepository, 
                              IClienteRepository clienteRepository, 
+                             IMultaRepository multaRepository,
                              IMapper mapper)
     {
         _emprestimoRepository = emprestimoRepository;
         _exemplarRepository = exemplarRepository;
         _clienteRepository = clienteRepository;
+        _multaRepository = multaRepository;
         _mapper = mapper;
     }
 
@@ -62,27 +65,12 @@ public class EmprestimoService : IEmprestimoService
         return _mapper.Map<DtoResponseEmprestimo>(emprestimo);
     }
 
-    public async Task DevolverItem(int emprestimoId, int itemId)
+    public async Task DevolverItem(int emprestimoId, int itemId, CondicaoItem condicao)
     {
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        emprestimo.DevolverItem(itemId);
-        await _emprestimoRepository.SaveChanges();
-    }
-
-    public async Task MarcarItemComoPerdido(int emprestimoId, int itemId)
-    {
-        var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
-        if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        emprestimo.MarcarItemComoPerdido(itemId);
-        await _emprestimoRepository.SaveChanges();
-    }
-
-    public async Task MarcarItemComoDanificado(int emprestimoId, int itemId)
-    {
-        var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
-        if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        emprestimo.MarcarItemComoDanificado(itemId);
+        var multa = emprestimo.DevolverItem(itemId, condicao);
+        if (multa != null) await _multaRepository.AddAsync(multa);
         await _emprestimoRepository.SaveChanges();
     }
 

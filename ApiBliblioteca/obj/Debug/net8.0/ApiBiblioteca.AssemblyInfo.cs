@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiBiblioteca")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6130bb57cb9f172617de2859310790d499b0dc8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e2344e724cefcc9dbca719fcf8a06730aed6c60")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiBiblioteca")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiBiblioteca")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

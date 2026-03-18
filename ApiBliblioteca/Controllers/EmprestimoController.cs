@@ -1,4 +1,5 @@
 ﻿using ApiBiblioteca.DTOs;
+using ApiBiblioteca.ENUMs;
 using ApiBiblioteca.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -45,24 +46,10 @@ public class EmprestimoController : ControllerBase
         return Ok(emprestimoAtualizado);
     }
 
-    [HttpPost("{emprestimoId}/DevolverItem")]
-    public async Task<ActionResult> DevolverItem(int emprestimoId, int itemId)
+    [HttpPatch("{emprestimoId}/itens/devolucao")]
+    public async Task<ActionResult> DevolverItem( int emprestimoId, [FromBody] DtoDevolverItemRequest request)
     {
-        await _emprestimoService.DevolverItem(emprestimoId, itemId);
-        return NoContent();
-    }
-
-    [HttpPost("{emprestimoId}/marcar-item-perdido")]
-    public async Task<ActionResult> MarcarItemComoPerdido(int emprestimoId, int itemId)
-    {
-        await _emprestimoService.MarcarItemComoPerdido(emprestimoId, itemId);
-        return NoContent();
-    }
-
-    [HttpPost("{emprestimoId}/marcar-item-danificado")]
-    public async Task<ActionResult> MarcarItemComoDanificado(int emprestimoId, int itemId)
-    {
-        await _emprestimoService.MarcarItemComoDanificado(emprestimoId, itemId);
+        await _emprestimoService.DevolverItem(emprestimoId, request.ItemId, request.Condicao);
         return NoContent();
     }
 
