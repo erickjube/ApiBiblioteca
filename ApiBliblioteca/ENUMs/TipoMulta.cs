@@ -4,5 +4,5 @@ public enum TipoMulta
 {
     Atraso = 1,
     Dano = 2,
-    Perdido = 3
+    Perda = 3
 }

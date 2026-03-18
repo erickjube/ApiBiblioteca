@@ -1,4 +1,5 @@
-﻿using ApiBiblioteca.ENUMs;
+﻿using ApiBiblioteca.Entities;
+using ApiBiblioteca.ENUMs;
 using ApiBiblioteca.Exceptions;
 
 namespace ApiBiblioteca.Domain.Entities;
@@ -9,10 +10,14 @@ public class Emprestimo
     public DateOnly DataEmprestimo { get; private set; } = DateOnly.FromDateTime(DateTime.UtcNow);
     public DateOnly PrevisaoDevolucao { get; private set; }
     public StatusEmprestimo Status { get; private set; } = StatusEmprestimo.Ativo;
+    public decimal? MultaTotal { get; private set; }
+
     public int ClienteId { get; private set; }
     public Cliente? Cliente { get; private set; }
 
     public ICollection<ItemEmprestimo> Itens { get; private set; } = new List<ItemEmprestimo>();
+    public ICollection<Multa> Multas { get; private set; } = new List<Multa>();
+
 
     public Emprestimo() { }
     public Emprestimo(int clienteId)
