@@ -3,7 +3,6 @@ using ApiBiblioteca.DTOs;
 using ApiBiblioteca.Exceptions;
 using ApiBiblioteca.Interfaces;
 using AutoMapper;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ApiBiblioteca.Services;
 

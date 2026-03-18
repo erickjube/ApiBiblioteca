@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\services\\vendaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\services\\vendaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\entities\\multa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\entities\\multa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\entities\\itemvenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\entities\\itemvenda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\entities\\emprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\entities\\emprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\entities\\venda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\entities\\venda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\entities\\itememprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\entities\\itememprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\enums\\tipomulta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\enums\\tipomulta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "VendaService.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Services\\VendaService.cs",
-              "RelativeDocumentMoniker": "ApiBliblioteca\\Services\\VendaService.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Services\\VendaService.cs",
-              "RelativeToolTip": "ApiBliblioteca\\Services\\VendaService.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowEkAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "TipoMulta.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\ENUMs\\TipoMulta.cs",
+              "RelativeDocumentMoniker": "ApiBliblioteca\\ENUMs\\TipoMulta.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\ENUMs\\TipoMulta.cs",
+              "RelativeToolTip": "ApiBliblioteca\\ENUMs\\TipoMulta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T19:29:31.693Z",
+              "WhenOpened": "2026-03-18T17:28:09.035Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ItemVenda.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\ItemVenda.cs",
-              "RelativeDocumentMoniker": "ApiBliblioteca\\Entities\\ItemVenda.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\ItemVenda.cs",
-              "RelativeToolTip": "ApiBliblioteca\\Entities\\ItemVenda.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAIwCUAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Multa.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\Multa.cs",
+              "RelativeDocumentMoniker": "ApiBliblioteca\\Entities\\Multa.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\Multa.cs",
+              "RelativeToolTip": "ApiBliblioteca\\Entities\\Multa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T19:27:11.829Z",
+              "WhenOpened": "2026-03-18T17:18:59.251Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Venda.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\Venda.cs",
-              "RelativeDocumentMoniker": "ApiBliblioteca\\Entities\\Venda.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\Venda.cs",
-              "RelativeToolTip": "ApiBliblioteca\\Entities\\Venda.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAIwCcAAAAAAAAAAAAAAA==",
+              "Title": "ItemEmprestimo.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\ItemEmprestimo.cs",
+              "RelativeDocumentMoniker": "ApiBliblioteca\\Entities\\ItemEmprestimo.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\ItemEmprestimo.cs",
+              "RelativeToolTip": "ApiBliblioteca\\Entities\\ItemEmprestimo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T19:26:23.504Z",
+              "WhenOpened": "2026-03-18T17:16:29.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Emprestimo.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\Emprestimo.cs",
+              "RelativeDocumentMoniker": "ApiBliblioteca\\Entities\\Emprestimo.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Entities\\Emprestimo.cs",
+              "RelativeToolTip": "ApiBliblioteca\\Entities\\Emprestimo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T17:16:27.888Z",
               "EditorCaption": ""
             }
           ]
