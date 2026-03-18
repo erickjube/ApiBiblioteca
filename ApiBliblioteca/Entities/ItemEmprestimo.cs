@@ -1,4 +1,5 @@
-﻿using ApiBiblioteca.ENUMs;
+﻿using ApiBiblioteca.Entities;
+using ApiBiblioteca.ENUMs;
 using ApiBiblioteca.Exceptions;
 
 namespace ApiBiblioteca.Domain.Entities;
@@ -22,25 +23,38 @@ public class ItemEmprestimo
         Status = StatusItemEmprestimo.Emprestado;
     }
 
-    public void Devolver()
+    public Multa? DevolverItem(CondicaoItem condicao, DateOnly previsaoDevolucao)
     {
         if (Status != StatusItemEmprestimo.Emprestado) throw new BadRequestException("Item não está emprestado.");
+        var hoje = DateOnly.FromDateTime(DateTime.UtcNow);
+        DataDevolucao = hoje;
+
+        if (condicao == CondicaoItem.Perdido)
+        {
+            Status = StatusItemEmprestimo.Perdido;
+            Exemplar.Perder();
+            return Multa.CriarMultaPerda(EmprestimoId, Id, Exemplar.Preco);
+        }
+
+        if (condicao == CondicaoItem.Danificado)
+        {
+            Status = StatusItemEmprestimo.Danificado;
+            Exemplar.Danificar();
+
+            const decimal percentualDano = 0.5m;
+            return Multa.CriarMultaDano(EmprestimoId, Id, Exemplar.Preco * percentualDano);
+        }
+
         Status = StatusItemEmprestimo.Devolvido;
-        DataDevolucao = DateOnly.FromDateTime(DateTime.UtcNow);
         Exemplar.Devolver();
-    }
 
-    public void MarcarComoPerdido()
-    {
-        if (Status != StatusItemEmprestimo.Emprestado) throw new BadRequestException("Item não está emprestado.");
-        Status = StatusItemEmprestimo.Perdido;
-        Exemplar.Perder();
-    }
+        var diasAtraso = Math.Max(0, hoje.DayNumber - previsaoDevolucao.DayNumber);
+        const decimal valorMultaDia = 5;
+        decimal preco = diasAtraso * valorMultaDia;
 
-    public void MarcarComoDanificado()
-    {
-        if (Status != StatusItemEmprestimo.Emprestado) throw new BadRequestException("Item não está emprestado.");
-        Status = StatusItemEmprestimo.Danificado;
-        Exemplar.Danificar();
+        if (diasAtraso <= 0)
+            return null;
+
+        return Multa.CriarMultaAtraso(EmprestimoId, Id, preco);
     }
 }
