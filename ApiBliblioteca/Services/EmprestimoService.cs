@@ -83,7 +83,7 @@ public class EmprestimoService : IEmprestimoService
 
     public async Task FinalizarEmprestimo(int emprestimoId)
     {
-        var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
+        var emprestimo = await _emprestimoRepository.GetEmprestimoComMultas(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         decimal count = 0;
 

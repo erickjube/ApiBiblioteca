@@ -2666,6 +2666,10 @@
             "type": "string",
             "nullable": true
           },
+          "multaTotal": {
+            "type": "number",
+            "format": "double"
+          },
           "clienteId": {
             "type": "integer",
             "format": "int32"
