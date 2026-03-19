@@ -2089,12 +2089,11 @@
     "schemas": {
       "CondicaoItem": {
         "enum": [
-          0,
-          1,
-          2
+          "Normal",
+          "Perdido",
+          "Danificado"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "DtoAtualizarCliente": {
         "required": [
@@ -2974,33 +2973,30 @@
       },
       "StatusEmprestimo": {
         "enum": [
-          1,
-          2,
-          3
+          "Ativo",
+          "Finalizado",
+          "Cancelado"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "StatusExemplar": {
         "enum": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
+          "Disponivel",
+          "Emprestado",
+          "Vendido",
+          "Reservado",
+          "Danificado",
+          "Perdido"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       },
       "TipoMulta": {
         "enum": [
-          1,
-          2,
-          3
+          "Atraso",
+          "Dano",
+          "Perda"
         ],
-        "type": "integer",
-        "format": "int32"
+        "type": "string"
       }
     }
   }
