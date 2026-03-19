@@ -1075,8 +1075,8 @@
         }
       }
     },
-    "/api/Emprestimo/{emprestimoId}/DevolverItem": {
-      "post": {
+    "/api/Emprestimo/{emprestimoId}/itens/devolucao": {
+      "patch": {
         "tags": [
           "Emprestimo"
         ],
@@ -1089,78 +1089,27 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          {
-            "name": "itemId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Emprestimo/{emprestimoId}/marcar-item-perdido": {
-      "post": {
-        "tags": [
-          "Emprestimo"
-        ],
-        "parameters": [
-          {
-            "name": "emprestimoId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "itemId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DtoDevolverItemRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DtoDevolverItemRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DtoDevolverItemRequest"
+              }
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Emprestimo/{emprestimoId}/marcar-item-danificado": {
-      "post": {
-        "tags": [
-          "Emprestimo"
-        ],
-        "parameters": [
-          {
-            "name": "emprestimoId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "itemId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -2098,6 +2047,15 @@
   },
   "components": {
     "schemas": {
+      "CondicaoItem": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
       "DtoAtualizarCliente": {
         "required": [
           "dataNascimento",
@@ -2465,6 +2423,19 @@
             "minimum": 1,
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DtoDevolverItemRequest": {
+        "type": "object",
+        "properties": {
+          "itemId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "condicao": {
+            "$ref": "#/components/schemas/CondicaoItem"
           }
         },
         "additionalProperties": false

@@ -74,5 +74,10 @@ public class Emprestimo
         if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Apenas empréstimos ativos podem ter a previsão de devolução atualizada.");
         PrevisaoDevolucao = novaPrevisao;
     }
+
+    public void DefinirValorMultaTotal(decimal total)
+    {
+        MultaTotal = total;
+    }
 }
 

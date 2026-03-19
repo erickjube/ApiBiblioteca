@@ -605,27 +605,6 @@
   },
   {
     "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
-    "Method": "DevolverItem",
-    "RelativePath": "api/Emprestimo/{emprestimoId}/DevolverItem",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "emprestimoId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "itemId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
     "Method": "EstenderPrazoDevolucao",
     "RelativePath": "api/Emprestimo/{emprestimoId}/estender-prazo",
     "HttpMethod": "POST",
@@ -694,9 +673,9 @@
   },
   {
     "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
-    "Method": "MarcarItemComoDanificado",
-    "RelativePath": "api/Emprestimo/{emprestimoId}/marcar-item-danificado",
-    "HttpMethod": "POST",
+    "Method": "DevolverItem",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/itens/devolucao",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -706,30 +685,9 @@
         "IsRequired": true
       },
       {
-        "Name": "itemId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
-    "Method": "MarcarItemComoPerdido",
-    "RelativePath": "api/Emprestimo/{emprestimoId}/marcar-item-perdido",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "emprestimoId",
-        "Type": "System.Int32",
+        "Name": "request",
+        "Type": "ApiBiblioteca.DTOs.DtoDevolverItemRequest",
         "IsRequired": true
-      },
-      {
-        "Name": "itemId",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []

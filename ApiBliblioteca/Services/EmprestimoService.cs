@@ -78,6 +78,14 @@ public class EmprestimoService : IEmprestimoService
     {
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
+        decimal count = 0;
+
+        foreach (var multa in emprestimo.Multas)
+        {
+            var total = multa.Valor;
+            count += total;
+        }
+        emprestimo.DefinirValorMultaTotal(count);
         emprestimo.Finalizar();
         await _emprestimoRepository.SaveChanges();
     }
