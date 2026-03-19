@@ -1027,6 +1027,46 @@
         }
       }
     },
+    "/api/Emprestimo/{emprestimoId}/multas": {
+      "get": {
+        "tags": [
+          "Emprestimo"
+        ],
+        "parameters": [
+          {
+            "name": "emprestimoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DtoResponseEmprestimoComMultas"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DtoResponseEmprestimoComMultas"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DtoResponseEmprestimoComMultas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Emprestimo/{emprestimoId}/Item": {
       "post": {
         "tags": [
@@ -2666,6 +2706,39 @@
         },
         "additionalProperties": false
       },
+      "DtoResponseEmprestimoComMultas": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataEmprestimo": {
+            "type": "string",
+            "format": "date"
+          },
+          "previsaoDevolucao": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "clienteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "multas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DtoResponseMulta"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DtoResponseExemplar": {
         "type": "object",
         "properties": {
@@ -2787,6 +2860,39 @@
         },
         "additionalProperties": false
       },
+      "DtoResponseMulta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tipo": {
+            "$ref": "#/components/schemas/TipoMulta"
+          },
+          "valor": {
+            "type": "number",
+            "format": "double"
+          },
+          "descricao": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataMulta": {
+            "type": "string",
+            "format": "date"
+          },
+          "emprestimoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "itemEmprestiomId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "DtoResponseVenda": {
         "type": "object",
         "properties": {
@@ -2879,6 +2985,15 @@
           4,
           5,
           6
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "TipoMulta": {
+        "enum": [
+          1,
+          2,
+          3
         ],
         "type": "integer",
         "format": "int32"

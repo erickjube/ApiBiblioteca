@@ -32,6 +32,13 @@ public class EmprestimoController : ControllerBase
         return Ok(emprestimo);
     }
 
+    [HttpGet("{emprestimoId}/multas")]
+    public async Task<ActionResult<DtoResponseEmprestimoComMultas>> GetMultas(int emprestimoId)
+    {
+        var emprestimo = await _emprestimoService.GetMultas(emprestimoId);
+        return Ok(emprestimo);
+    }
+
     [HttpPost]
     public async Task<ActionResult<DtoResponseEmprestimo>> Create(int clienteId)
     {

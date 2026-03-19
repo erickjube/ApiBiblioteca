@@ -694,6 +694,32 @@
   },
   {
     "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
+    "Method": "GetMultas",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/multas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBiblioteca.DTOs.DtoResponseEmprestimoComMultas",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
     "Method": "GetById",
     "RelativePath": "api/Emprestimo/id",
     "HttpMethod": "GET",

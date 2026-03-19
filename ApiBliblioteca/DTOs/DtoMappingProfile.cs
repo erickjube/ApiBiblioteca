@@ -1,4 +1,5 @@
 ﻿using ApiBiblioteca.Domain.Entities;
+using ApiBiblioteca.Entities;
 using AutoMapper;
 
 namespace ApiBiblioteca.DTOs;
@@ -28,7 +29,8 @@ public class DtoMappingProfile : Profile
 
         CreateMap<Emprestimo, DtoEmprestimoResumo>().ReverseMap();
         CreateMap<Emprestimo, DtoResponseEmprestimo>().ReverseMap();
-        CreateMap<Emprestimo, DtoResponseEmprestimoComItens>().ReverseMap();    
+        CreateMap<Emprestimo, DtoResponseEmprestimoComItens>().ReverseMap();   
+        CreateMap<Emprestimo, DtoResponseEmprestimoComMultas>().ReverseMap();
 
         CreateMap<ItemEmprestimo, DtoResponseItemEmprestimo>().ReverseMap();
         CreateMap<ItemEmprestimo, DtoDevolverItemRequest>().ReverseMap();
@@ -45,5 +47,7 @@ public class DtoMappingProfile : Profile
         CreateMap<Cliente, DtoResponseCliente>().ReverseMap();
         CreateMap<Cliente, DtoClienteComEmprestimos>().ReverseMap();
         CreateMap<Cliente, DtoClienteComVendas>().ReverseMap();
+
+        CreateMap<Multa, DtoResponseMulta>().ReverseMap();
     }
 }

@@ -50,7 +50,7 @@ public class Emprestimo
     public void Finalizar()
     {
         if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Não é possivel finalizar um emprestimo que não esteja ativo");
-        if (Itens.Any(i => i.Status != StatusItemEmprestimo.Devolvido)) throw new BadRequestException("Ainda existem itens pendentes.");
+        if (Itens.Any(i => i.Status == StatusItemEmprestimo.Emprestado)) throw new BadRequestException("Ainda existem itens pendentes.");
         Status = StatusEmprestimo.Finalizado;
     }
 

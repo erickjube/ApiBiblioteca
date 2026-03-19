@@ -25,6 +25,11 @@ public class EmprestimoRepository : IEmprestimoRepository
         return await _context.Emprestimo.Include(e => e.Itens).ThenInclude(i => i.Exemplar).FirstOrDefaultAsync(e => e.Id == emprestimoId);
     }
 
+    public async Task<Emprestimo?> GetEmprestimoComMultas(int emprestimoId)
+    {
+        return await _context.Emprestimo.Include(i => i.Multas).FirstOrDefaultAsync(e => e.Id == emprestimoId);
+    }
+
     public async Task AddAsync(Emprestimo emprestimo)
     {
         await _context.Emprestimo.AddAsync(emprestimo);

@@ -41,6 +41,13 @@ public class EmprestimoService : IEmprestimoService
         return _mapper.Map<DtoResponseEmprestimoComItens>(emprestimo);
     }
 
+    public async Task<DtoResponseEmprestimoComMultas> GetMultas(int emprestimoId)
+    {
+        var emprestimo = await _emprestimoRepository.GetEmprestimoComMultas(emprestimoId);
+        if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
+        return _mapper.Map<DtoResponseEmprestimoComMultas>(emprestimo);
+    }
+
     public async Task<DtoResponseEmprestimo> CreateEmprestimo(int clienteId)
     {
         var cliente = await _clienteRepository.GetByIdAsync(clienteId);
