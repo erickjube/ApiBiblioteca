@@ -1,71 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\services\\emprestimoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\services\\emprestimoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\controllers\\emprestimocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\controllers\\emprestimocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Program.cs",
-              "RelativeDocumentMoniker": "ApiBliblioteca\\Program.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Program.cs",
-              "RelativeToolTip": "ApiBliblioteca\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-19T18:42:10.873Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EmprestimoController.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Controllers\\EmprestimoController.cs",
-              "RelativeDocumentMoniker": "ApiBliblioteca\\Controllers\\EmprestimoController.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Controllers\\EmprestimoController.cs",
-              "RelativeToolTip": "ApiBliblioteca\\Controllers\\EmprestimoController.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAkwDUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-19T18:40:03.379Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmprestimoService.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Services\\EmprestimoService.cs",
-              "RelativeDocumentMoniker": "ApiBliblioteca\\Services\\EmprestimoService.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Services\\EmprestimoService.cs",
-              "RelativeToolTip": "ApiBliblioteca\\Services\\EmprestimoService.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAowFAAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-19T18:39:39.899Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
