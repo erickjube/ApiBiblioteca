@@ -34,7 +34,14 @@ public class EmprestimoService : IEmprestimoService
         return _mapper.Map<IEnumerable<DtoResponseEmprestimo>>(emprestimos);
     }
 
-    public async Task<DtoResponseEmprestimoComItens?> GetEmprestimoById(int emprestimoId)
+    public async Task<DtoResponseEmprestimo> GetEmprestimoById(int emprestimoId)
+    {
+        var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
+        if (emprestimo is null) throw new NotFoundException("Empréstimo não encontrado");
+        return _mapper.Map<DtoResponseEmprestimo>(emprestimo);
+    }
+
+    public async Task<DtoResponseEmprestimoComItens?> GetEmprestimoComItens(int emprestimoId)
     {
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");

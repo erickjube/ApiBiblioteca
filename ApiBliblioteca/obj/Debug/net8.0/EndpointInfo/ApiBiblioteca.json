@@ -995,7 +995,7 @@
         "operationId": "ObterEmprestimo",
         "parameters": [
           {
-            "name": "id",
+            "name": "emprestimoId",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -1009,17 +1009,57 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/DtoResponseEmprestimoComItens"
+                  "$ref": "#/components/schemas/DtoResponseEmprestimo"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DtoResponseEmprestimoComItens"
+                  "$ref": "#/components/schemas/DtoResponseEmprestimo"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DtoResponseEmprestimoComItens"
+                  "$ref": "#/components/schemas/DtoResponseEmprestimo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Emprestimo/{emprestimoId}/Itens": {
+      "get": {
+        "tags": [
+          "Emprestimo"
+        ],
+        "parameters": [
+          {
+            "name": "emprestimoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DtoResponseEmprestimo"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DtoResponseEmprestimo"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DtoResponseEmprestimo"
                 }
               }
             }
@@ -2676,39 +2716,6 @@
         },
         "additionalProperties": false
       },
-      "DtoResponseEmprestimoComItens": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "dataEmprestimo": {
-            "type": "string",
-            "format": "date"
-          },
-          "previsaoDevolucao": {
-            "type": "string",
-            "format": "date"
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "clienteId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "itens": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DtoResponseItemEmprestimo"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "DtoResponseEmprestimoComMultas": {
         "type": "object",
         "properties": {
@@ -2768,33 +2775,6 @@
           "livroId": {
             "type": "integer",
             "format": "int64"
-          }
-        },
-        "additionalProperties": false
-      },
-      "DtoResponseItemEmprestimo": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "exemplarId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "emprestimoId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "dataDevolucao": {
-            "type": "string",
-            "format": "date",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2984,7 +2964,6 @@
           "Disponivel",
           "Emprestado",
           "Vendido",
-          "Reservado",
           "Danificado",
           "Perdido"
         ],

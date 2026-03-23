@@ -26,9 +26,16 @@ public class EmprestimoController : ControllerBase
     }
 
     [HttpGet("id", Name = "ObterEmprestimo")]
-    public async Task<ActionResult<DtoResponseEmprestimoComItens>> GetById(int id)
+    public async Task<ActionResult<DtoResponseEmprestimo>> GetById(int emprestimoId)
     {
-        var emprestimo = await _emprestimoService.GetEmprestimoById(id);
+        var emprestimo = await _emprestimoService.GetEmprestimoById(emprestimoId);
+        return Ok(emprestimo);
+    }
+
+    [HttpGet("{emprestimoId}/Itens")]
+    public async Task<ActionResult<DtoResponseEmprestimo>> GetEmprestimoComItens(int emprestimoId)
+    {
+        var emprestimo = await _emprestimoService.GetEmprestimoComItens(emprestimoId);
         return Ok(emprestimo);
     }
 

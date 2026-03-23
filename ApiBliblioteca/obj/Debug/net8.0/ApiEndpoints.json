@@ -673,6 +673,32 @@
   },
   {
     "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
+    "Method": "GetEmprestimoComItens",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/Itens",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emprestimoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ApiBiblioteca.DTOs.DtoResponseEmprestimo",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
     "Method": "DevolverItem",
     "RelativePath": "api/Emprestimo/{emprestimoId}/itens/devolucao",
     "HttpMethod": "PATCH",
@@ -727,14 +753,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "emprestimoId",
         "Type": "System.Int32",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtoResponseEmprestimoComItens",
+        "Type": "ApiBiblioteca.DTOs.DtoResponseEmprestimo",
         "MediaTypes": [
           "text/plain",
           "application/json",

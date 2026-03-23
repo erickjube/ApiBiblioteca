@@ -7,7 +7,8 @@ namespace ApiBiblioteca.Interfaces;
 public interface IEmprestimoService
 {
     Task<IEnumerable<DtoResponseEmprestimo>> GetAllEmprestimos();
-    Task<DtoResponseEmprestimoComItens?> GetEmprestimoById(int emprestimoId);
+    Task<DtoResponseEmprestimo> GetEmprestimoById(int emprestimoId);
+    Task<DtoResponseEmprestimoComItens?> GetEmprestimoComItens(int emprestimoId);
     Task<DtoResponseEmprestimoComMultas> GetMultas(int emprestimoId);
     Task<DtoResponseEmprestimo> CreateEmprestimo(int clienteId);
     public Task<DtoResponseEmprestimo> AdicionarItem(int emprestimoId, int exemplarId);
