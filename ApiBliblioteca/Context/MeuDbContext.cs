@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiBiblioteca.Domain.Context;
 
-public class MeuDbContext : IdentityDbContext
+public class MeuDbContext : IdentityDbContext<ApplicationUser>
 {
     public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options) { }
 
@@ -19,4 +19,9 @@ public class MeuDbContext : IdentityDbContext
     public DbSet<ItemEmprestimo> ItemEmprestimo { get; set; }
     public DbSet<ItemVenda> ItemVenda { get; set; }
     public DbSet<Multa> Multa { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+    }
 }

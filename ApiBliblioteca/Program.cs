@@ -2,12 +2,16 @@
 using ApiBiblioteca.Domain.Interfaces;
 using ApiBiblioteca.Domain.Repositories;
 using ApiBiblioteca.DTOs;
+using ApiBiblioteca.Entities;
 using ApiBiblioteca.Interfaces;
 using ApiBiblioteca.Middleware;
 using ApiBiblioteca.Repositories;
 using ApiBiblioteca.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,9 +55,34 @@ builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<MeuDbContext>()
                 .AddDefaultTokenProviders();
+
+// diz para o Asp.Net como validar o token que chegar nas requisições
+var secretKey = builder.Configuration["JWT:SecretKey"] ?? throw new ArgumentException("Invalid Sercret Key!");
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(option =>
+{
+    option.SaveToken = true;
+    // Em produção o ideal é true
+    option.RequireHttpsMetadata = false;
+    option.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ClockSkew = TimeSpan.Zero,
+        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+    };
+});
+
 
 var app = builder.Build();
 
