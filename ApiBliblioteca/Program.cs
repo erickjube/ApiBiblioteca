@@ -6,6 +6,7 @@ using ApiBiblioteca.Interfaces;
 using ApiBiblioteca.Middleware;
 using ApiBiblioteca.Repositories;
 using ApiBiblioteca.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -47,6 +48,12 @@ builder.Services.AddScoped<IMultaRepository, MultaRepository>();
 
 builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
 
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer();
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<MeuDbContext>()
+                .AddDefaultTokenProviders();
 
 var app = builder.Build();
 

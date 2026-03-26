@@ -1,10 +1,11 @@
 ﻿using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiBiblioteca.Domain.Context;
 
-public class MeuDbContext : DbContext
+public class MeuDbContext : IdentityDbContext
 {
     public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options) { }
 
