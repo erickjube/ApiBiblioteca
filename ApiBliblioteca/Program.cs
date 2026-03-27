@@ -50,6 +50,8 @@ builder.Services.AddScoped<IVendaService, VendaService>();
 
 builder.Services.AddScoped<IMultaRepository, MultaRepository>();
 
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
 
 builder.Services.AddAuthorization();
