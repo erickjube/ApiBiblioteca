@@ -123,4 +123,32 @@ public class AuthController : ControllerBase
         await _userManager.UpdateAsync(user);
         return NoContent();
     }
+
+    [HttpPost]
+    [Route("create-role")]
+    public async Task<IActionResult> CreateRole(string roleName)
+    {
+        var roleExist = await _roleManager.RoleExistsAsync(roleName);
+        if (!roleExist)
+        {
+            var roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
+            if (roleResult.Succeeded) return Ok($"Role {roleName} adicionada com sucesso!");
+            return BadRequest($"Erro adicionando a role {roleName}!");
+        }
+        return BadRequest("Role já existe!");
+    }
+
+    [HttpPost]
+    [Route("add-user-to-role")]
+    public async Task<IActionResult> AddUserToRole(string email, string roleName)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user != null) 
+        {
+            var result = await _userManager.AddToRoleAsync(user, roleName);
+            if (result.Succeeded) return Ok($"User {user.Email} adicionado a role {roleName} com sucesso!");
+            return BadRequest($"Erro ao adicionar {user.Email} a role {roleName}");
+        }
+        return BadRequest("Usuario não encontrado!");
+    }
 }
