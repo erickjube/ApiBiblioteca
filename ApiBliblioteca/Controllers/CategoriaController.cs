@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiBiblioteca.Controllers;
 
-[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
 public class CategoriaController : ControllerBase
@@ -18,6 +17,7 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<DtoResponseCategoria>>> GetAll()
     {
         var dtoCategorias = await _categoriaService.Get();

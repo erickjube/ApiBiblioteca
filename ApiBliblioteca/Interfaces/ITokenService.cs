@@ -5,9 +5,7 @@ namespace ApiBiblioteca.Interfaces;
 
 public interface ITokenService
 {
-    JwtSecurityToken GenerateAcessToken(IEnumerable<Claim> claims, IConfiguration _config);
-
+    JwtSecurityToken GenerateAccessToken(IEnumerable<Claim> claims, IConfiguration _config);
     string GenerateRefreshToken();
-
     ClaimsPrincipal GetPrincipalFromExpiredToken(string token, IConfiguration _config);
 }

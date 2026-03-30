@@ -9,8 +9,7 @@ namespace ApiBiblioteca.Services;
 
 public class TokenService : ITokenService
 {
-
-    public JwtSecurityToken GenerateAcessToken(IEnumerable<Claim> claims, IConfiguration _config)
+    public JwtSecurityToken GenerateAccessToken(IEnumerable<Claim> claims, IConfiguration _config)
     {
         var key = _config.GetSection("JWT").GetValue<string>("SecretKey") ?? throw new InvalidOperationException("Invalid Secret Key");
 
