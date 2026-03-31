@@ -6,13 +6,13 @@ using ApiBiblioteca.Entities;
 using ApiBiblioteca.Interfaces;
 using ApiBiblioteca.Middleware;
 using ApiBiblioteca.Repositories;
+using ApiBiblioteca.Seeders;
 using ApiBiblioteca.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -116,6 +116,14 @@ builder.Services.AddAuthorization(options =>
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    await IdentitySeeder.SeedRolesAndAdminAsync(userManager, roleManager);
+}
 
 if (app.Environment.IsDevelopment())
 {

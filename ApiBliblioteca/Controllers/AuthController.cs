@@ -11,7 +11,6 @@ namespace ApiBiblioteca.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize(Roles = "Admin")]
 public class AuthController : ControllerBase
 {
     private readonly ITokenService _tokenService;
@@ -30,9 +29,9 @@ public class AuthController : ControllerBase
         _configuration = configuration;
     }
 
+    [AllowAnonymous]
     [HttpPost]
     [Route("login")]
-    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] DtoLogin login)
     {
         var user = await _userManager.FindByNameAsync(login.Usuario!);
@@ -66,6 +65,7 @@ public class AuthController : ControllerBase
         return Unauthorized();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register([FromBody] DtoRegistro registro)
@@ -83,9 +83,9 @@ public class AuthController : ControllerBase
         return Ok("Usuario criado com sucesso!");
     }
 
+    [AllowAnonymous]
     [HttpPost]
     [Route("refresh-token")]
-    [AllowAnonymous]
     public async Task<IActionResult> RefreshToken(DtoToken token)
     {
         if (token is null) return BadRequest("Request invalido!");
@@ -114,6 +114,7 @@ public class AuthController : ControllerBase
         });
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost("revoke/{usuario}")]
     public async Task<IActionResult> Revoke(string usuario)
     {
@@ -124,6 +125,7 @@ public class AuthController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("create-role")]
     public async Task<IActionResult> CreateRole(string roleName)
@@ -138,6 +140,7 @@ public class AuthController : ControllerBase
         return BadRequest("Role já existe!");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("add-user-to-role")]
     public async Task<IActionResult> AddUserToRole(string email, string roleName)
