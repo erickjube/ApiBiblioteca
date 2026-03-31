@@ -1,5 +1,4 @@
 ﻿using ApiBiblioteca.DTOs;
-using ApiBiblioteca.ENUMs;
 using ApiBiblioteca.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +7,7 @@ namespace ApiBiblioteca.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[AllowAnonymous]
+[Authorize(Policy = "Funcionarios")]
 public class EmprestimoController : ControllerBase
 {
     private readonly IEmprestimoService _emprestimoService;

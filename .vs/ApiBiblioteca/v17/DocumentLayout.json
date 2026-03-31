@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.csproj|solutionrelative:apibliblioteca\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,9 +28,22 @@
               "RelativeDocumentMoniker": "ApiBliblioteca\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Controllers\\AuthController.cs",
               "RelativeToolTip": "ApiBliblioteca\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAqwJgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-30T19:23:57.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Program.cs",
+              "RelativeDocumentMoniker": "ApiBliblioteca\\Program.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Program.cs",
+              "RelativeToolTip": "ApiBliblioteca\\Program.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAAAHEAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T17:40:08.337Z",
               "EditorCaption": ""
             }
           ]

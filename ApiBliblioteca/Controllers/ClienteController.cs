@@ -7,7 +7,7 @@ namespace ApiBiblioteca.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[AllowAnonymous]
+[Authorize(Policy = "Funcionarios")]
 public class ClienteController : ControllerBase
 {
     private readonly IClienteService _clienteService;

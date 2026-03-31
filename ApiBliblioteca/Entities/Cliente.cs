@@ -1,5 +1,4 @@
-﻿using ApiBiblioteca.ENUMs;
-using ApiBiblioteca.Exceptions;
+﻿using ApiBiblioteca.Exceptions;
 
 namespace ApiBiblioteca.Domain.Entities;
 

@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiBiblioteca.Controllers;
 
-[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Policy = "Funcionarios")]
 public class LivroController : ControllerBase
 {
     private readonly ILivroService _livroService;

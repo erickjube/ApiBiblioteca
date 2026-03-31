@@ -7,6 +7,7 @@ namespace ApiBiblioteca.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Policy = "Funcionarios")]
 public class CategoriaController : ControllerBase
 {
     private readonly ICategoriaService _categoriaService;
@@ -17,7 +18,6 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
     public async Task<ActionResult<IEnumerable<DtoResponseCategoria>>> GetAll()
     {
         var dtoCategorias = await _categoriaService.Get();

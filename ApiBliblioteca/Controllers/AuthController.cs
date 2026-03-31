@@ -1,6 +1,5 @@
 ﻿using ApiBiblioteca.DTOs;
 using ApiBiblioteca.Entities;
-using ApiBiblioteca.Exceptions;
 using ApiBiblioteca.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +11,7 @@ namespace ApiBiblioteca.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(Roles = "Admin")]
 public class AuthController : ControllerBase
 {
     private readonly ITokenService _tokenService;
@@ -32,6 +32,7 @@ public class AuthController : ControllerBase
 
     [HttpPost]
     [Route("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] DtoLogin login)
     {
         var user = await _userManager.FindByNameAsync(login.Usuario!);
@@ -84,6 +85,7 @@ public class AuthController : ControllerBase
 
     [HttpPost]
     [Route("refresh-token")]
+    [AllowAnonymous]
     public async Task<IActionResult> RefreshToken(DtoToken token)
     {
         if (token is null) return BadRequest("Request invalido!");
@@ -112,9 +114,7 @@ public class AuthController : ControllerBase
         });
     }
 
-    [Authorize]
-    [HttpPost]
-    [Route("revoke/{usuario}")]
+    [HttpPost("revoke/{usuario}")]
     public async Task<IActionResult> Revoke(string usuario)
     {
         var user = await _userManager.FindByNameAsync(usuario);

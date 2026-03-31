@@ -109,6 +109,11 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Funcionarios", policy => policy.RequireRole("Admin", "Bibliotecario"));
+});
+
 
 var app = builder.Build();
 

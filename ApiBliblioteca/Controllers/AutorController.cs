@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiBiblioteca.Controllers;
 
-[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Policy = "Funcionarios")]
 public class AutorController : ControllerBase
 {
     private readonly IAutorService _autorService;
