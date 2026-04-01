@@ -8,26 +8,22 @@ public static class IdentitySeeder
 {
     public static async Task SeedRolesAndAdminAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
     {
-        // criar roles
+        // criar role
         if (!await roleManager.RoleExistsAsync("Admin")) await roleManager.CreateAsync(new IdentityRole("Admin"));
-        if (!await roleManager.RoleExistsAsync("Bibliotecario")) await roleManager.CreateAsync(new IdentityRole("Bibliotecario"));
 
         // criar admin
-        var adminEmail = "admin@biblioteca.com";
-        var admin = await userManager.FindByEmailAsync(adminEmail);
+        var admins = await userManager.GetUsersInRoleAsync("Admin");
 
-        if (admin == null)
+        if (!admins.Any())
         {
             var user = new ApplicationUser
             {
                 UserName = "admin",
-                Email = adminEmail,
+                Email = "admin@biblioteca.com",
                 EmailConfirmed = true
             };
             var result = await userManager.CreateAsync(user, "Admin@123");
             if (result.Succeeded) await userManager.AddToRoleAsync(user, "Admin");
         }
-
-        if (!await userManager.IsInRoleAsync(admin!, "Admin")) await userManager.AddToRoleAsync(admin, "Admin");
     }
 }
