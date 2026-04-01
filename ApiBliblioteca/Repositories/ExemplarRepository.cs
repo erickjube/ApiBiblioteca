@@ -38,11 +38,6 @@ public class ExemplarRepository : IExemplarRepository
         _context.Exemplar.Remove(exemplar);
     }
 
-    public async Task SaveAsync()
-    {
-        await _context.SaveChangesAsync();
-    }
-
     public async Task<bool> ExisteCodigoBarras(string codigoBarras)
     {
         return await _context.Exemplar.AnyAsync(x => x.CodigoDeBarras == codigoBarras);

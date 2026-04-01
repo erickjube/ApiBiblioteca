@@ -9,6 +9,5 @@ public interface ICategoriaRepository
     Task<IEnumerable<Categoria>> GetByNameComLivrosAsync(string nome);
     Task<Categoria> GetByIdAsync(long id);
     void Create(Categoria categoria);
-    Task SaveAsync();
     void Remove(Categoria categoria);
 }

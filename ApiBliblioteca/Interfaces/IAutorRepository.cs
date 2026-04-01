@@ -9,6 +9,5 @@ public interface IAutorRepository
     Task<Autor> GetByIdAsync(long id);
     Task<IEnumerable<Autor>> GetByNameComLivrosAsync(string nome);
     void Create(Autor autor);
-    Task SaveAsync();
     void Remove(Autor autor);
 }

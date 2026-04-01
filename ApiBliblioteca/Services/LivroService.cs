@@ -9,13 +9,15 @@ namespace ApiBiblioteca.Services;
 
 public class LivroService : ILivroService
 {
+    private readonly IUnitOfWork _UOW;
     private readonly ILivroRepository _livroRepository;
     private readonly IMapper _mapper;
 
-    public LivroService(ILivroRepository livroRepository, IMapper mapper)
+    public LivroService(ILivroRepository livroRepository, IMapper mapper, IUnitOfWork uOW)
     {
         _livroRepository = livroRepository;
         _mapper = mapper;
+        _UOW = uOW;
     }
 
     public async Task<IEnumerable<DtoResponseLivro>> Get()
@@ -56,7 +58,7 @@ public class LivroService : ILivroService
             throw new BadRequestException("Já existe um livro com esse ISBN.");
 
         _livroRepository.Create(livro);
-        await _livroRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseLivro>(livro);
     }
 
@@ -65,7 +67,7 @@ public class LivroService : ILivroService
         if (dto == null) throw new BadRequestException("Livro inválido!");
         var livro = await _livroRepository.GetByIdAsync(id) ?? throw new NotFoundException("Livro não encontrado!");
         livro.AtualizarInformacoes(dto.Titulo, dto.NumeroDePaginas, dto.DataPublicacao, dto.CategoriaId);
-        await _livroRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseLivro>(livro);
     }
 
@@ -75,6 +77,6 @@ public class LivroService : ILivroService
         var livro = await _livroRepository.GetByIdAsync(id) ?? throw new NotFoundException("Livro não encontrado!");
         livro.ValidarExclusao();
          _livroRepository.Remove(livro);
-        await _livroRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 }

@@ -9,13 +9,15 @@ namespace ApiBiblioteca.Services;
 
 public class CategoriaService : ICategoriaService
 {
+    private readonly IUnitOfWork _UOW;
     private readonly ICategoriaRepository _categoriaRepository;
     private readonly IMapper _mapper;
 
-    public CategoriaService(ICategoriaRepository categoriaRepository, IMapper mapper)
+    public CategoriaService(ICategoriaRepository categoriaRepository, IMapper mapper, IUnitOfWork uOW)
     {
         _categoriaRepository = categoriaRepository;
         _mapper = mapper;
+        _UOW = uOW;
     }
 
     public async Task<IEnumerable<DtoResponseCategoria>> Get()
@@ -51,7 +53,7 @@ public class CategoriaService : ICategoriaService
         if (dto is null) throw new BadRequestException("Categoria inválida!");
         var categoria = _mapper.Map<Categoria>(dto);
         _categoriaRepository.Create(categoria);
-        await _categoriaRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseCategoria>(categoria);
     }
 
@@ -60,7 +62,7 @@ public class CategoriaService : ICategoriaService
         if (dto is null) throw new BadRequestException("Categoria inválida!");
         var categoria = await _categoriaRepository.GetByIdAsync(id) ?? throw new NotFoundException("Categoria não encontrada!");
         categoria.AtualizarNome(dto.Nome);
-        await _categoriaRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseCategoria>(categoria);
     }
     
@@ -70,6 +72,6 @@ public class CategoriaService : ICategoriaService
         var categoria = _categoriaRepository.GetByIdAsync(id).Result ?? throw new NotFoundException("Categoria não encontrada!");
         categoria.ValidarExclusao();
         _categoriaRepository.Remove(categoria);
-        await _categoriaRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 }

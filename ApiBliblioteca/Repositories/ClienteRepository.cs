@@ -49,11 +49,6 @@ public class ClienteRepository : IClienteRepository
         _context.Cliente.Remove(cliente);
     }
 
-    public async Task SaveAsync()
-    {
-        await _context.SaveChangesAsync();
-    }
-
     public async Task<bool> Existe(string cpf, string email, string telefone)
     {
         if ((await _context.Cliente.AnyAsync(x => x.Cpf == cpf)) ||

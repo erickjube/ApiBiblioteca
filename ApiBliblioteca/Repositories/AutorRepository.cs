@@ -43,9 +43,4 @@ public class AutorRepository : IAutorRepository
     {
         _context.Autor.Remove(autor);
     }
-
-    public Task SaveAsync()
-    {
-        return _context.SaveChangesAsync();
-    }
 }

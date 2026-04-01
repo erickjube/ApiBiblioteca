@@ -8,13 +8,15 @@ namespace ApiBiblioteca.Services;
 
 public class AutorService : IAutorService
 {
+    private readonly IUnitOfWork _UOW;
     private readonly IAutorRepository _autorRepository;
     private readonly IMapper _mapper;
 
-    public AutorService(IAutorRepository autorRepository, IMapper mapper)
+    public AutorService(IAutorRepository autorRepository, IMapper mapper, IUnitOfWork uOW)
     {
         _autorRepository = autorRepository;
         _mapper = mapper;
+        _UOW = uOW;
     }
 
     public async Task<IEnumerable<DtoResponseAutor>> Get()
@@ -50,7 +52,7 @@ public class AutorService : IAutorService
         if (dto is null) throw new BadRequestException("Autor inválido!");
         var autor = _mapper.Map<Autor>(dto);
         _autorRepository.Create(autor);
-        await _autorRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseAutor>(autor);
     }
 
@@ -59,7 +61,7 @@ public class AutorService : IAutorService
         if (dto is null) throw new BadRequestException("Autor inválido!");
         var autor = await _autorRepository.GetByIdAsync(id) ?? throw new NotFoundException("Autor não encontrado!");
         autor.AtualizarInformacoes(dto.Nome, dto.DataNascimento, dto.Nacionalidade);
-        await _autorRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseAutor>(autor);
     }
 
@@ -69,6 +71,6 @@ public class AutorService : IAutorService
         var autor = _autorRepository.GetByIdAsync(id).Result ?? throw new NotFoundException("Autor não encontrado!");
         autor.ValidarExclusao();
         _autorRepository.Remove(autor);
-        await _autorRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 }

@@ -28,16 +28,4 @@ public class VendaRepository : IVendaRepository
     {
         await _context.Venda.AddAsync(Venda);
     }
-
-    public async Task SaveAsync()
-    {
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Erro");
-        }
-    }
 }

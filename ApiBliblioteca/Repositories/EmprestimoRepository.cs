@@ -39,10 +39,4 @@ public class EmprestimoRepository : IEmprestimoRepository
     {
         return await _context.Emprestimo.AnyAsync(e => e.ClienteId == clienteId && e.Status == StatusEmprestimo.Ativo);
     }
-
-
-    public async Task SaveChanges()
-    {
-        await _context.SaveChangesAsync();
-    }
 }

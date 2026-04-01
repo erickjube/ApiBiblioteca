@@ -48,9 +48,4 @@ public class LivroRepository : ILivroRepository
     {
         _context.Livro.Remove(livro);
     }
-
-    public async Task SaveAsync()
-    {
-        await _context.SaveChangesAsync();
-    }
 }

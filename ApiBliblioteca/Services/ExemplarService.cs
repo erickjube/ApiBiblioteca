@@ -8,13 +8,15 @@ namespace ApiBiblioteca.Services;
 
 public class ExemplarService : IExemplarService
 {
+    private readonly IUnitOfWork _UOW;
     private readonly IExemplarRepository _exemplarRepository;
     private readonly IMapper _mapper;
 
-    public ExemplarService(IExemplarRepository exemplarRepository, IMapper mapper)
+    public ExemplarService(IExemplarRepository exemplarRepository, IMapper mapper, IUnitOfWork uOW)
     {
         _exemplarRepository = exemplarRepository;
         _mapper = mapper;
+        _UOW = uOW;
     }
 
     public async Task<IEnumerable<DtoResponseExemplar>> Get()
@@ -45,7 +47,7 @@ public class ExemplarService : IExemplarService
         if (await _exemplarRepository.ExisteCodigoBarras(exemplar.CodigoDeBarras))
             throw new BadRequestException("Código de barras já existe!");
         _exemplarRepository.Create(exemplar);
-        await _exemplarRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseExemplar>(exemplar);
     }
 
@@ -54,7 +56,7 @@ public class ExemplarService : IExemplarService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         exemplar.AtualizarInformacoes(dto.Nome, dto.Preco);
-        await _exemplarRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseExemplar>(exemplar);
     }
 
@@ -63,7 +65,7 @@ public class ExemplarService : IExemplarService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         _exemplarRepository.Remove(exemplar);
-        await _exemplarRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 
     public async Task PerderExemplar(int id)
@@ -71,7 +73,7 @@ public class ExemplarService : IExemplarService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         exemplar.Perder();
-        await _exemplarRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 
     public async Task DanificarExemplar(int id)
@@ -79,6 +81,6 @@ public class ExemplarService : IExemplarService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         exemplar.Danificar();
-        await _exemplarRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 }

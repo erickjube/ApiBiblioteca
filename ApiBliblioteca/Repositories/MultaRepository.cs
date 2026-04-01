@@ -29,9 +29,4 @@ public class MultaRepository : IMultaRepository
     {
         await _context.Multa.AddAsync(multa);
     }
-
-    public async Task SaveChanges()
-    {
-        await _context.SaveChangesAsync();
-    }
 }

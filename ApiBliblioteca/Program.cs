@@ -75,6 +75,8 @@ builder.Services.AddScoped<IEmprestimoService, EmprestimoService>();
 builder.Services.AddScoped<IVendaRepository, VendaRepository>();
 builder.Services.AddScoped<IVendaService, VendaService>();
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddScoped<IMultaRepository, MultaRepository>();
 
 builder.Services.AddScoped<ITokenService, TokenService>();

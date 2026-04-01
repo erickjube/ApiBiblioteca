@@ -9,5 +9,4 @@ public interface IEmprestimoRepository
     Task<Emprestimo?> GetEmprestimoComMultas(int emprestimoId);
     Task AddAsync(Emprestimo emprestimo);
     Task<bool> ClienteTemEmprestimoAtivo(int clienteId);
-    Task SaveChanges();
 }

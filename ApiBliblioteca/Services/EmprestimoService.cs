@@ -9,6 +9,7 @@ namespace ApiBiblioteca.Services;
 
 public class EmprestimoService : IEmprestimoService
 {
+    private readonly IUnitOfWork _UOW;
     private readonly IEmprestimoRepository _emprestimoRepository;
     private readonly IExemplarRepository _exemplarRepository;
     private readonly IClienteRepository _clienteRepository;
@@ -19,13 +20,15 @@ public class EmprestimoService : IEmprestimoService
                              IExemplarRepository exemplarRepository, 
                              IClienteRepository clienteRepository, 
                              IMultaRepository multaRepository,
-                             IMapper mapper)
+                             IMapper mapper,
+                             IUnitOfWork uOF)
     {
         _emprestimoRepository = emprestimoRepository;
         _exemplarRepository = exemplarRepository;
         _clienteRepository = clienteRepository;
         _multaRepository = multaRepository;
         _mapper = mapper;
+        _UOW = uOF;
     }
 
     public async Task<IEnumerable<DtoResponseEmprestimo>> GetAllEmprestimos()
@@ -63,7 +66,7 @@ public class EmprestimoService : IEmprestimoService
         if (possuiEmprestimo) throw new BadRequestException("Cliente já possui um empréstimo em aberto");
         var emprestimo = new Emprestimo(clienteId);
         await _emprestimoRepository.AddAsync(emprestimo);
-        await _emprestimoRepository.SaveChanges();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseEmprestimo>(emprestimo);
     }
 
@@ -75,7 +78,7 @@ public class EmprestimoService : IEmprestimoService
         if (exemplar == null) throw new NotFoundException("Exemplar não encontrado");
         emprestimo.AdicionarItem(exemplarId);
         exemplar.Emprestar();
-        await _emprestimoRepository.SaveChanges();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseEmprestimo>(emprestimo);
     }
 
@@ -85,7 +88,7 @@ public class EmprestimoService : IEmprestimoService
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         var multa = emprestimo.DevolverItem(itemId, condicao);
         if (multa != null) await _multaRepository.AddAsync(multa);
-        await _emprestimoRepository.SaveChanges();
+        await _UOW.SaveAsync();
     }
 
     public async Task FinalizarEmprestimo(int emprestimoId)
@@ -101,7 +104,7 @@ public class EmprestimoService : IEmprestimoService
         }
         emprestimo.DefinirValorMultaTotal(count);
         emprestimo.Finalizar();
-        await _emprestimoRepository.SaveChanges();
+        await _UOW.SaveAsync();
     }
 
     public async Task CancelarEmprestimo(int emprestimoId)
@@ -109,7 +112,7 @@ public class EmprestimoService : IEmprestimoService
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         emprestimo.Cancelar();
-        await _emprestimoRepository.SaveChanges();
+        await _UOW.SaveAsync();
     }
 
     public async Task EstenderPrazoDevolucao(int emprestimoId, DateOnly novoPrazoDevolucao)
@@ -118,6 +121,6 @@ public class EmprestimoService : IEmprestimoService
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         if (novoPrazoDevolucao <= DateOnly.FromDateTime(DateTime.UtcNow)) throw new BadRequestException("Nova data de devolução deve ser futura");
         emprestimo.AtualizarPrevisaoDevolucao(novoPrazoDevolucao);
-        await _emprestimoRepository.SaveChanges();
+        await _UOW.SaveAsync();
     }
 }

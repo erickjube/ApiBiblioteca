@@ -8,13 +8,15 @@ namespace ApiBiblioteca.Services;
 
 public class ClienteService : IClienteService
 {
-    private IClienteRepository _clienteRepository;
-    private IMapper _mapper;
+    private readonly IUnitOfWork _UOW;
+    private readonly IClienteRepository _clienteRepository;
+    private readonly IMapper _mapper;
 
-    public ClienteService(IClienteRepository clienteRepository, IMapper mapper)
+    public ClienteService(IClienteRepository clienteRepository, IMapper mapper, IUnitOfWork uOW)
     {
         _clienteRepository = clienteRepository;
         _mapper = mapper;
+        _UOW = uOW;
     }
 
     public async Task<IEnumerable<DtoResponseCliente>> Get()
@@ -58,7 +60,7 @@ public class ClienteService : IClienteService
         var cliente = _mapper.Map<Cliente>(dto);
         if (await _clienteRepository.Existe(cliente.Cpf, cliente.Email, cliente.Telefone)) throw new BadRequestException("CPF, Email ou Telefone já cadastrado!");
         _clienteRepository.Create(cliente);
-        await _clienteRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseCliente>(cliente);
     }
 
@@ -67,7 +69,7 @@ public class ClienteService : IClienteService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var cliente = await _clienteRepository.GetByIdAsync(id) ?? throw new NotFoundException("Cliente não encontrado!");
         cliente.AtualizarInformacoes(dto.Nome, dto.Email, dto.Telefone);
-        await _clienteRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseCliente>(cliente);
     }
 
@@ -76,6 +78,6 @@ public class ClienteService : IClienteService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var cliente = await _clienteRepository.GetByIdAsync(id) ?? throw new NotFoundException("Cliente não encontrado!");
         _clienteRepository.Remove(cliente);
-        await _clienteRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 }

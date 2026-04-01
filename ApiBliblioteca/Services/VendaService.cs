@@ -8,15 +8,17 @@ namespace ApiBiblioteca.Services;
 
 public class VendaService : IVendaService
 {
+    private readonly IUnitOfWork _UOW;
     private readonly IVendaRepository _vendaRepository;
     private readonly IExemplarRepository _exemplarRepository;
     private readonly IMapper _mapper;
 
-    public VendaService(IVendaRepository vendaRepository, IExemplarRepository exemplarRepository, IMapper mapper)
+    public VendaService(IVendaRepository vendaRepository, IExemplarRepository exemplarRepository, IMapper mapper, IUnitOfWork uOW)
     {
         _vendaRepository = vendaRepository;
         _exemplarRepository = exemplarRepository;
         _mapper = mapper;
+        _UOW = uOW;
     }
 
     public async Task<IEnumerable<DtoResponseVenda>> ObterVendas()
@@ -44,7 +46,7 @@ public class VendaService : IVendaService
         if (dto is null) throw new BadRequestException("Venda inválida!");
         var venda = _mapper.Map<Venda>(dto);
         await _vendaRepository.AddAsync(venda);
-        await _vendaRepository.SaveAsync();
+        await _UOW.SaveAsync();
         return _mapper.Map<DtoResponseVenda>(venda);
     }
 
@@ -57,9 +59,8 @@ public class VendaService : IVendaService
         {
             item.Cancelar();
         }
-
         venda.Cancelar();
-        await _vendaRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 
     public async Task FinalizarVenda(int vendaId)
@@ -80,7 +81,7 @@ public class VendaService : IVendaService
         }
         venda.DefinirPrecoTotal(cont);
         venda.Finalizar();
-        await _vendaRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 
     public async Task AdicionarItem(int vendaId, int exemplarId)
@@ -91,7 +92,7 @@ public class VendaService : IVendaService
         if (exemplar == null) throw new NotFoundException("Exemplar não encontrado");
         var item = venda.AdicionarItem(exemplar);
         item.DefinirPreco(exemplar.Preco);
-        await _vendaRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 
     public async Task ExcluirItem(int vendaId, int itemId)
@@ -99,6 +100,6 @@ public class VendaService : IVendaService
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         venda.ExcluirItem(itemId);
-        await _vendaRepository.SaveAsync();
+        await _UOW.SaveAsync();
     }
 }
