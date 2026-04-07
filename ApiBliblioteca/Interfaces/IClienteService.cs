@@ -1,4 +1,5 @@
-﻿using ApiBiblioteca.DTOs;
+﻿using ApiBiblioteca.DTOs.Cliente;
+using ApiBiblioteca.DTOs.DtosCliente;
 
 namespace ApiBiblioteca.Interfaces;
 

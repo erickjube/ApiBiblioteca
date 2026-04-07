@@ -1,4 +1,14 @@
 ﻿using ApiBiblioteca.Domain.Entities;
+using ApiBiblioteca.DTOs.DtosAutor;
+using ApiBiblioteca.DTOs.DtosCategoria;
+using ApiBiblioteca.DTOs.DtosCliente;
+using ApiBiblioteca.DTOs.DtosEmprestimo;
+using ApiBiblioteca.DTOs.DtosExemplar;
+using ApiBiblioteca.DTOs.DtosItemEmprestimo;
+using ApiBiblioteca.DTOs.DtosItemVenda;
+using ApiBiblioteca.DTOs.DtosLivro;
+using ApiBiblioteca.DTOs.DtosMulta;
+using ApiBiblioteca.DTOs.DtosVenda;
 using ApiBiblioteca.Entities;
 using AutoMapper;
 

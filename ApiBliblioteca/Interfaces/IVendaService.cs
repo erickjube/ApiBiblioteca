@@ -1,4 +1,4 @@
-﻿using ApiBiblioteca.DTOs;
+﻿using ApiBiblioteca.DTOs.DtosVenda;
 
 namespace ApiBiblioteca.Interfaces;
 

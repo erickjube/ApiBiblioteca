@@ -1,5 +1,5 @@
 ﻿using ApiBiblioteca.Domain.Entities;
-using ApiBiblioteca.DTOs;
+using ApiBiblioteca.DTOs.DtosEmprestimo;
 using ApiBiblioteca.ENUMs;
 using ApiBiblioteca.Exceptions;
 using ApiBiblioteca.Interfaces;

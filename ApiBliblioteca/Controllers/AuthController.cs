@@ -1,4 +1,4 @@
-﻿using ApiBiblioteca.DTOs;
+﻿using ApiBiblioteca.DTOs.DtosAuth;
 using ApiBiblioteca.Entities;
 using ApiBiblioteca.Interfaces;
 using Microsoft.AspNetCore.Authorization;

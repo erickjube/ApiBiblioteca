@@ -1,5 +1,5 @@
 ﻿using ApiBiblioteca.Domain.Entities;
-using ApiBiblioteca.DTOs;
+using ApiBiblioteca.DTOs.DtosVenda;
 using ApiBiblioteca.Exceptions;
 using ApiBiblioteca.Interfaces;
 using AutoMapper;
