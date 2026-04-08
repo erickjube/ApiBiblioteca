@@ -19,49 +19,49 @@ public class EmprestimoController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<DtoResponseEmprestimo>>> GetAll()
+    public async Task<ActionResult<IEnumerable<EmprestimoResponseDto>>> GetAll()
     {
         var emprestimos = await _emprestimoService.GetAllEmprestimos();
         return Ok(emprestimos);
     }
 
     [HttpGet("id", Name = "ObterEmprestimo")]
-    public async Task<ActionResult<DtoResponseEmprestimo>> GetById(int emprestimoId)
+    public async Task<ActionResult<EmprestimoResponseDto>> GetById(int emprestimoId)
     {
         var emprestimo = await _emprestimoService.GetEmprestimoById(emprestimoId);
         return Ok(emprestimo);
     }
 
     [HttpGet("{emprestimoId}/Itens")]
-    public async Task<ActionResult<DtoResponseEmprestimo>> GetEmprestimoComItens(int emprestimoId)
+    public async Task<ActionResult<EmprestimoResponseDto>> GetEmprestimoComItens(int emprestimoId)
     {
         var emprestimo = await _emprestimoService.GetEmprestimoComItens(emprestimoId);
         return Ok(emprestimo);
     }
 
     [HttpGet("{emprestimoId}/multas")]
-    public async Task<ActionResult<DtoResponseEmprestimoComMultas>> GetMultas(int emprestimoId)
+    public async Task<ActionResult<EmprestimoComMultasDto>> GetMultas(int emprestimoId)
     {
         var emprestimo = await _emprestimoService.GetMultas(emprestimoId);
         return Ok(emprestimo);
     }
 
     [HttpPost]
-    public async Task<ActionResult<DtoResponseEmprestimo>> Create(int clienteId)
+    public async Task<ActionResult<EmprestimoResponseDto>> Create(int clienteId)
     {
         var emprestimoCriado = await _emprestimoService.CreateEmprestimo(clienteId);
         return CreatedAtRoute("ObterEmprestimo", new { id = emprestimoCriado.Id }, emprestimoCriado);
     }
 
     [HttpPost("{emprestimoId}/Item")]
-    public async Task<ActionResult<DtoResponseEmprestimo>> AdicionarItem(int emprestimoId, int exemplarId)
+    public async Task<ActionResult<EmprestimoResponseDto>> AdicionarItem(int emprestimoId, int exemplarId)
     {
         var emprestimoAtualizado = await _emprestimoService.AdicionarItem(emprestimoId, exemplarId);
         return Ok(emprestimoAtualizado);
     }
 
     [HttpPatch("{emprestimoId}/itens/devolucao")]
-    public async Task<ActionResult> DevolverItem( int emprestimoId, [FromBody] DtoDevolverItemRequest request)
+    public async Task<ActionResult> DevolverItem( int emprestimoId, [FromBody] DevolverItemEmprestimoDto request)
     {
         await _emprestimoService.DevolverItem(emprestimoId, request.ItemId, request.Condicao);
         return NoContent();

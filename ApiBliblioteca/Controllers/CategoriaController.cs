@@ -18,42 +18,42 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<DtoResponseCategoria>>> GetAll()
+    public async Task<ActionResult<IEnumerable<CategoriaResponseDto>>> GetAll()
     {
         var dtoCategorias = await _categoriaService.Get();
         return Ok(dtoCategorias);
     }
 
     [HttpGet("{id}/livros")]
-    public async Task<ActionResult<DtoCategoriaComLivros>> GetCategoriaComLivros(long id)
+    public async Task<ActionResult<CategoriaComLivrosDto>> GetCategoriaComLivros(long id)
     {
         var dto = await _categoriaService.GetComLivros(id);
         return Ok(dto);
     }
 
     [HttpGet("buscar")]
-    public async Task<ActionResult<IEnumerable<DtoCategoriaComLivros>>> GetByNameComLivros([FromQuery] string nome)
+    public async Task<ActionResult<IEnumerable<CategoriaComLivrosDto>>> GetByNameComLivros([FromQuery] string nome)
     {
         var dtoCategorias = await _categoriaService.GetByNameComLivros(nome);
         return Ok(dtoCategorias);
     }
 
     [HttpGet("{id}", Name = "ObterCategoria")]
-    public async Task<ActionResult<DtoResponseCategoria>> GetById(long id)
+    public async Task<ActionResult<CategoriaResponseDto>> GetById(long id)
     {
         var dto = await _categoriaService.GetId(id);
         return Ok(dto);
     }
 
     [HttpPost]
-    public async Task<ActionResult<DtoResponseCategoria>> Create(DtoCategoria dto)
+    public async Task<ActionResult<CategoriaResponseDto>> Create(CategoriaDto dto)
     {
         var categoriaCriada = await _categoriaService.Create(dto);
         return CreatedAtRoute("ObterCategoria", new { id = categoriaCriada.Id }, categoriaCriada);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<DtoResponseCategoria>> Update(long id, DtoCategoria dto)
+    public async Task<ActionResult<CategoriaResponseDto>> Update(long id, CategoriaDto dto)
     {
         var dtoAtualizado = await _categoriaService.Update(id, dto);
         return Ok(dtoAtualizado);

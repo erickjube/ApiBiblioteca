@@ -18,28 +18,28 @@ public class VendaController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<DtoResponseVenda>> GetVendas()
+    public async Task<ActionResult<VendaResponseDto>> GetVendas()
     {
         var vendas = await _vendaService.ObterVendas();
         return Ok(vendas);
     }
 
     [HttpGet("id", Name = "ObterVenda")]
-    public async Task<ActionResult<DtoResponseVenda>> GetVendaPorId(int vendaId)
+    public async Task<ActionResult<VendaResponseDto>> GetVendaPorId(int vendaId)
     {
         var venda = await _vendaService.ObterVendaPorId(vendaId);
         return Ok(venda);
     }
 
     [HttpGet("{vendaId}/Itens")]
-    public async Task<ActionResult<DtoResponseVendaComItens>> GetVendaComItens(int vendaId)
+    public async Task<ActionResult<VendaComItensDto>> GetVendaComItens(int vendaId)
     {
         var venda = await _vendaService.ObterVendaComItens(vendaId);
         return Ok(venda);
     }
 
     [HttpPost]
-    public async Task<ActionResult<DtoResponseVenda>> Create(DtoCriarVenda dto)
+    public async Task<ActionResult<VendaResponseDto>> Create(CreateVendaDto dto)
     {
         var vendaCriada = await _vendaService.Create(dto);
         return CreatedAtRoute("ObterVenda", new { id = vendaCriada.Id }, vendaCriada);

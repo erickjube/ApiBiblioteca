@@ -4,10 +4,10 @@ namespace ApiBiblioteca.Interfaces;
 
 public interface IVendaService
 {
-    public Task<IEnumerable<DtoResponseVenda>> ObterVendas();
-    public Task<DtoResponseVenda> ObterVendaPorId(int vendaId);
-    public Task<DtoResponseVendaComItens> ObterVendaComItens(int vendaId);
-    public Task<DtoResponseVenda> Create(DtoCriarVenda dto);
+    public Task<IEnumerable<VendaResponseDto>> ObterVendas();
+    public Task<VendaResponseDto> ObterVendaPorId(int vendaId);
+    public Task<VendaComItensDto> ObterVendaComItens(int vendaId);
+    public Task<VendaResponseDto> Create(CreateVendaDto dto);
     public Task CancelarVenda(int vendaId); 
     public Task FinalizarVenda(int vendaId);
     public Task AdicionarItem(int vendaId, int exemplarId);

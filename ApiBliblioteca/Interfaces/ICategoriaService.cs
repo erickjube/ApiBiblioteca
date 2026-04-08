@@ -4,11 +4,11 @@ namespace ApiBiblioteca.Interfaces;
 
 public interface ICategoriaService
 {
-    public Task<IEnumerable<DtoResponseCategoria>> Get();
-    public Task<DtoCategoriaComLivros> GetComLivros(long id);
-    public Task<IEnumerable<DtoCategoriaComLivros>> GetByNameComLivros(string nome);
-    public Task<DtoResponseCategoria> GetId(long id);
-    public Task<DtoResponseCategoria> Create(DtoCategoria dto);
-    public Task<DtoResponseCategoria> Update(long id, DtoCategoria dto);
+    public Task<IEnumerable<CategoriaResponseDto>> Get();
+    public Task<CategoriaComLivrosDto> GetComLivros(long id);
+    public Task<IEnumerable<CategoriaComLivrosDto>> GetByNameComLivros(string nome);
+    public Task<CategoriaResponseDto> GetId(long id);
+    public Task<CategoriaResponseDto> Create(CategoriaDto dto);
+    public Task<CategoriaResponseDto> Update(long id, CategoriaDto dto);
     public Task Delete(long id);
 }

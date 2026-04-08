@@ -32,7 +32,7 @@ public class AuthController : ControllerBase
     [AllowAnonymous]
     [HttpPost]
     [Route("login")]
-    public async Task<IActionResult> Login([FromBody] DtoLogin login)
+    public async Task<IActionResult> Login([FromBody] LoginDto login)
     {
         var user = await _userManager.FindByNameAsync(login.Usuario!);
 
@@ -68,7 +68,7 @@ public class AuthController : ControllerBase
     [Authorize(Roles = "Admin")]
     [HttpPost]
     [Route("register")]
-    public async Task<IActionResult> Register([FromBody] DtoRegistro registro)
+    public async Task<IActionResult> Register([FromBody] RegistroDto registro)
     {
         var userExists = await _userManager.FindByNameAsync(registro.Usuario!);
         if (userExists != null) return BadRequest("Usuario já existe!");
@@ -86,7 +86,7 @@ public class AuthController : ControllerBase
     [AllowAnonymous]
     [HttpPost]
     [Route("refresh-token")]
-    public async Task<IActionResult> RefreshToken(DtoToken token)
+    public async Task<IActionResult> RefreshToken(TokenDto token)
     {
         if (token is null) return BadRequest("Request invalido!");
         

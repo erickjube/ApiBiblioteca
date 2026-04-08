@@ -4,11 +4,11 @@ namespace ApiBiblioteca.Interfaces;
 
 public interface IExemplarService
 {
-    public Task<IEnumerable<DtoResponseExemplar>> Get();
-    public Task<DtoResponseExemplar> GetId(int id);
-    public Task<IEnumerable<DtoResponseExemplar>> GetByName(string nome);
-    public Task<DtoResponseExemplar> Create(DtoCriarExemplar dto);
-    public Task<DtoResponseExemplar> Update(int id, DtoAtualizarExemplar dto);
+    public Task<IEnumerable<ExemplarResponseDto>> Get();
+    public Task<ExemplarResponseDto> GetId(int id);
+    public Task<IEnumerable<ExemplarResponseDto>> GetByName(string nome);
+    public Task<ExemplarResponseDto> Create(CreateExemplarDto dto);
+    public Task<ExemplarResponseDto> Update(int id, UpdateExemplarDto dto);
     public Task Delete(int id);
     public Task PerderExemplar(int id);
     public Task DanificarExemplar(int id);

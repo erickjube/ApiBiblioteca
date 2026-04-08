@@ -19,28 +19,28 @@ public class ExemplarService : IExemplarService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<DtoResponseExemplar>> Get()
+    public async Task<IEnumerable<ExemplarResponseDto>> Get()
     {
         var exemplares = await _exemplarRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<DtoResponseExemplar>>(exemplares);
+        return _mapper.Map<IEnumerable<ExemplarResponseDto>>(exemplares);
     }
 
-    public async Task<DtoResponseExemplar> GetId(int id)
+    public async Task<ExemplarResponseDto> GetId(int id)
     {
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
-        return _mapper.Map<DtoResponseExemplar>(exemplar);
+        return _mapper.Map<ExemplarResponseDto>(exemplar);
     }
 
-    public async Task<IEnumerable<DtoResponseExemplar>> GetByName(string nome)
+    public async Task<IEnumerable<ExemplarResponseDto>> GetByName(string nome)
     {
         if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
         var exemplar = await _exemplarRepository.GetByNameAsync(nome) ?? throw new NotFoundException("Exemplar não encontrado!");
         if (!exemplar.Any()) throw new NotFoundException("Exemplar não encontrado!");
-        return _mapper.Map<IEnumerable<DtoResponseExemplar>>(exemplar);
+        return _mapper.Map<IEnumerable<ExemplarResponseDto>>(exemplar);
     }
 
-    public async Task<DtoResponseExemplar> Create(DtoCriarExemplar dto)
+    public async Task<ExemplarResponseDto> Create(CreateExemplarDto dto)
     {
         if (dto is null) throw new BadRequestException("Exemplar inválido!");
         var exemplar = _mapper.Map<ExemplarLivro>(dto);
@@ -48,16 +48,16 @@ public class ExemplarService : IExemplarService
             throw new BadRequestException("Código de barras já existe!");
         _exemplarRepository.Create(exemplar);
         await _UOW.SaveAsync();
-        return _mapper.Map<DtoResponseExemplar>(exemplar);
+        return _mapper.Map<ExemplarResponseDto>(exemplar);
     }
 
-    public async Task<DtoResponseExemplar> Update(int id, DtoAtualizarExemplar dto)
+    public async Task<ExemplarResponseDto> Update(int id, UpdateExemplarDto dto)
     {
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         exemplar.AtualizarInformacoes(dto.Nome, dto.Preco);
         await _UOW.SaveAsync();
-        return _mapper.Map<DtoResponseExemplar>(exemplar);
+        return _mapper.Map<ExemplarResponseDto>(exemplar);
     }
 
     public async Task Delete(int id)

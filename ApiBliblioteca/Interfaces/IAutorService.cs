@@ -4,11 +4,11 @@ namespace ApiBiblioteca.Interfaces;
 
 public interface IAutorService
 {
-    public Task<IEnumerable<DtoResponseAutor>> Get();
-    public Task<DtoAutorComLivros> GetComLivros(long id);
-    public Task<DtoResponseAutor> GetId(long id);
-    public Task<IEnumerable<DtoAutorComLivros>> GetByNameComLivros(string nome);
-    public Task<DtoResponseAutor> Create(DtoAutor dto);
-    public Task<DtoResponseAutor> Update(long id, DtoAutor dto);
+    public Task<IEnumerable<AutorResponseDto>> Get();
+    public Task<AutorComLivrosDto> GetComLivros(long id);
+    public Task<AutorResponseDto> GetId(long id);
+    public Task<IEnumerable<AutorComLivrosDto>> GetByNameComLivros(string nome);
+    public Task<AutorResponseDto> Create(AutorDto dto);
+    public Task<AutorResponseDto> Update(long id, AutorDto dto);
     public Task Delete(long id);
 }

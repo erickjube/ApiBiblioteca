@@ -18,35 +18,35 @@ public class ExemplarController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<DtoResponseExemplar>>> Get()
+    public async Task<ActionResult<IEnumerable<ExemplarResponseDto>>> Get()
     {
         var exemplares = await _exemplarService.Get();
         return Ok(exemplares);
     }
 
     [HttpGet("id", Name = "ObterExemplar")]
-    public async Task<ActionResult<DtoResponseExemplar>> GetId(int id)
+    public async Task<ActionResult<ExemplarResponseDto>> GetId(int id)
     {
         var exemplar = await _exemplarService.GetId(id);
         return Ok(exemplar);
     }
 
     [HttpGet("buscar")]
-    public async Task<ActionResult<IEnumerable<DtoResponseExemplar>>> GetByName([FromQuery] string nome)
+    public async Task<ActionResult<IEnumerable<ExemplarResponseDto>>> GetByName([FromQuery] string nome)
     {
         var exemplar = await _exemplarService.GetByName(nome);
         return Ok(exemplar);
     }
 
     [HttpPost]
-    public async Task<ActionResult<DtoResponseExemplar>> Create(DtoCriarExemplar dto)
+    public async Task<ActionResult<ExemplarResponseDto>> Create(CreateExemplarDto dto)
     {
         var exemplarCriado = await _exemplarService.Create(dto);
         return CreatedAtRoute("ObterExemplar", new { id = exemplarCriado.Id }, exemplarCriado);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<DtoResponseExemplar>> Update(int id, DtoAtualizarExemplar dto)
+    public async Task<ActionResult<ExemplarResponseDto>> Update(int id, UpdateExemplarDto dto)
     {
         var exemplarAtualizado = await _exemplarService.Update(id, dto);
         return Ok(exemplarAtualizado);

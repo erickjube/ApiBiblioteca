@@ -20,50 +20,50 @@ public class CategoriaService : ICategoriaService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<DtoResponseCategoria>> Get()
+    public async Task<IEnumerable<CategoriaResponseDto>> Get()
     {
         var categorias = await _categoriaRepository.GetAllAsync() ?? throw new NotFoundException("Categoria não encontrada!");
-        return _mapper.Map<IEnumerable<DtoResponseCategoria>>(categorias);
+        return _mapper.Map<IEnumerable<CategoriaResponseDto>>(categorias);
     }
 
-    public async Task<DtoCategoriaComLivros> GetComLivros(long id)
+    public async Task<CategoriaComLivrosDto> GetComLivros(long id)
     {
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var categorias = await _categoriaRepository.GetCategoriaComLivrosAsync(id) ?? throw new NotFoundException("Categoria não encontrada!");
-        return _mapper.Map<DtoCategoriaComLivros>(categorias);
+        return _mapper.Map<CategoriaComLivrosDto>(categorias);
     }
 
-    public async Task<IEnumerable<DtoCategoriaComLivros>> GetByNameComLivros(string nome)
+    public async Task<IEnumerable<CategoriaComLivrosDto>> GetByNameComLivros(string nome)
     {
         if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
         var categorias = await _categoriaRepository.GetByNameComLivrosAsync(nome) ?? throw new NotFoundException("Categoria não encontrada!");
         if (!categorias.Any()) throw new NotFoundException("Categoria não encontrada!");
-        return _mapper.Map<IEnumerable<DtoCategoriaComLivros>>(categorias);
+        return _mapper.Map<IEnumerable<CategoriaComLivrosDto>>(categorias);
     }
 
-    public async Task<DtoResponseCategoria> GetId(long id)
+    public async Task<CategoriaResponseDto> GetId(long id)
     {
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var categoria = await _categoriaRepository.GetByIdAsync(id) ?? throw new NotFoundException("Categoria não encontrada!");
-        return _mapper.Map<DtoResponseCategoria>(categoria);
+        return _mapper.Map<CategoriaResponseDto>(categoria);
     }
 
-    public async Task<DtoResponseCategoria> Create(DtoCategoria dto)
+    public async Task<CategoriaResponseDto> Create(CategoriaDto dto)
     {
         if (dto is null) throw new BadRequestException("Categoria inválida!");
         var categoria = _mapper.Map<Categoria>(dto);
         _categoriaRepository.Create(categoria);
         await _UOW.SaveAsync();
-        return _mapper.Map<DtoResponseCategoria>(categoria);
+        return _mapper.Map<CategoriaResponseDto>(categoria);
     }
 
-    public async Task<DtoResponseCategoria> Update(long id, DtoCategoria dto)
+    public async Task<CategoriaResponseDto> Update(long id, CategoriaDto dto)
     {
         if (dto is null) throw new BadRequestException("Categoria inválida!");
         var categoria = await _categoriaRepository.GetByIdAsync(id) ?? throw new NotFoundException("Categoria não encontrada!");
         categoria.AtualizarNome(dto.Nome);
         await _UOW.SaveAsync();
-        return _mapper.Map<DtoResponseCategoria>(categoria);
+        return _mapper.Map<CategoriaResponseDto>(categoria);
     }
     
     public async Task Delete(long id)

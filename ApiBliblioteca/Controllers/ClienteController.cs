@@ -1,5 +1,4 @@
-﻿using ApiBiblioteca.DTOs.Cliente;
-using ApiBiblioteca.DTOs.DtosCliente;
+﻿using ApiBiblioteca.DTOs.DtosCliente;
 using ApiBiblioteca.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,49 +18,49 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<DtoResponseCliente>>> Get()
+    public async Task<ActionResult<IEnumerable<ClienteResponseDto>>> Get()
     {
         var dtoClientes = await _clienteService.Get();
         return Ok(dtoClientes);
     }
 
     [HttpGet("id", Name = "ObterCliente")]
-    public async Task<ActionResult<DtoResponseCliente>> GetId(int id)
+    public async Task<ActionResult<ClienteResponseDto>> GetId(int id)
     {
         var dtoCliente = await _clienteService.GetId(id);
         return Ok(dtoCliente);
     }
 
     [HttpGet("buscar")]
-    public async Task<ActionResult<IEnumerable<DtoResponseCliente>>> GetByName([FromQuery] string nome)
+    public async Task<ActionResult<IEnumerable<ClienteResponseDto>>> GetByName([FromQuery] string nome)
     {
         var dtoCliente = await _clienteService.GetByName(nome);
         return Ok(dtoCliente);
     }
 
     [HttpGet("{id}/Emprestimos")]
-    public async Task<ActionResult<DtoClienteComEmprestimos>> GetComEmprestimos(int id)
+    public async Task<ActionResult<ClienteComEmprestimosDto>> GetComEmprestimos(int id)
     {
         var dto = await _clienteService.GetClienteComEmprestimos(id);
         return Ok(dto);
     }
 
     [HttpGet("{id}/Vendas")]
-    public async Task<ActionResult<DtoClienteComVendas>> GetComVendas(int id)
+    public async Task<ActionResult<ClienteComVendasDto>> GetComVendas(int id)
     {
         var dto = await _clienteService.GetClienteComVendas(id);
         return Ok(dto);
     }
 
     [HttpPost]
-    public async Task<ActionResult<DtoResponseCliente>> Create(DtoCriarCliente dto)
+    public async Task<ActionResult<ClienteResponseDto>> Create(CreateClienteDto dto)
     {
         var cliente = await _clienteService.Create(dto);
         return CreatedAtRoute("ObterCliente", new { id = cliente.Id }, cliente);
     }
 
     [HttpPut]
-    public async Task<ActionResult<DtoAtualizarCliente>> Update(int id,  DtoAtualizarCliente dto)
+    public async Task<ActionResult<UpdateClienteDto>> Update(int id,  UpdateClienteDto dto)
     {
         var cliente = await _clienteService.Update(id, dto);
         return Ok(cliente);

@@ -21,33 +21,33 @@ public class VendaService : IVendaService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<DtoResponseVenda>> ObterVendas()
+    public async Task<IEnumerable<VendaResponseDto>> ObterVendas()
     {
         var vendas = await _vendaRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<DtoResponseVenda>>(vendas);
+        return _mapper.Map<IEnumerable<VendaResponseDto>>(vendas);
     }
 
-    public async Task<DtoResponseVenda> ObterVendaPorId(int id)
+    public async Task<VendaResponseDto> ObterVendaPorId(int id)
     {
         var venda = await _vendaRepository.GetByIdAsync(id);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
-        return _mapper.Map<DtoResponseVenda>(venda);
+        return _mapper.Map<VendaResponseDto>(venda);
     }
 
-    public async Task<DtoResponseVendaComItens> ObterVendaComItens(int id)
+    public async Task<VendaComItensDto> ObterVendaComItens(int id)
     {
         var venda = await _vendaRepository.GetByIdAsync(id);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
-        return _mapper.Map<DtoResponseVendaComItens>(venda);
+        return _mapper.Map<VendaComItensDto>(venda);
     }
 
-    public async Task<DtoResponseVenda> Create(DtoCriarVenda dto)
+    public async Task<VendaResponseDto> Create(CreateVendaDto dto)
     {
         if (dto is null) throw new BadRequestException("Venda inválida!");
         var venda = _mapper.Map<Venda>(dto);
         await _vendaRepository.AddAsync(venda);
         await _UOW.SaveAsync();
-        return _mapper.Map<DtoResponseVenda>(venda);
+        return _mapper.Map<VendaResponseDto>(venda);
     }
 
     public async Task CancelarVenda(int vendaId)

@@ -31,34 +31,34 @@ public class EmprestimoService : IEmprestimoService
         _UOW = uOF;
     }
 
-    public async Task<IEnumerable<DtoResponseEmprestimo>> GetAllEmprestimos()
+    public async Task<IEnumerable<EmprestimoResponseDto>> GetAllEmprestimos()
     {
         var emprestimos = await _emprestimoRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<DtoResponseEmprestimo>>(emprestimos);
+        return _mapper.Map<IEnumerable<EmprestimoResponseDto>>(emprestimos);
     }
 
-    public async Task<DtoResponseEmprestimo> GetEmprestimoById(int emprestimoId)
+    public async Task<EmprestimoResponseDto> GetEmprestimoById(int emprestimoId)
     {
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo is null) throw new NotFoundException("Empréstimo não encontrado");
-        return _mapper.Map<DtoResponseEmprestimo>(emprestimo);
+        return _mapper.Map<EmprestimoResponseDto>(emprestimo);
     }
 
-    public async Task<DtoResponseEmprestimoComItens?> GetEmprestimoComItens(int emprestimoId)
+    public async Task<EmprestimoComItensDto?> GetEmprestimoComItens(int emprestimoId)
     {
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        return _mapper.Map<DtoResponseEmprestimoComItens>(emprestimo);
+        return _mapper.Map<EmprestimoComItensDto>(emprestimo);
     }
 
-    public async Task<DtoResponseEmprestimoComMultas> GetMultas(int emprestimoId)
+    public async Task<EmprestimoComMultasDto> GetMultas(int emprestimoId)
     {
         var emprestimo = await _emprestimoRepository.GetEmprestimoComMultas(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        return _mapper.Map<DtoResponseEmprestimoComMultas>(emprestimo);
+        return _mapper.Map<EmprestimoComMultasDto>(emprestimo);
     }
 
-    public async Task<DtoResponseEmprestimo> CreateEmprestimo(int clienteId)
+    public async Task<EmprestimoResponseDto> CreateEmprestimo(int clienteId)
     {
         var cliente = await _clienteRepository.GetByIdAsync(clienteId);
         if (cliente == null) throw new NotFoundException("Cliente não encontrado");
@@ -67,10 +67,10 @@ public class EmprestimoService : IEmprestimoService
         var emprestimo = new Emprestimo(clienteId);
         await _emprestimoRepository.AddAsync(emprestimo);
         await _UOW.SaveAsync();
-        return _mapper.Map<DtoResponseEmprestimo>(emprestimo);
+        return _mapper.Map<EmprestimoResponseDto>(emprestimo);
     }
 
-    public async Task<DtoResponseEmprestimo> AdicionarItem(int emprestimoId, int exemplarId)
+    public async Task<EmprestimoResponseDto> AdicionarItem(int emprestimoId, int exemplarId)
     {
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         var exemplar = await _exemplarRepository.GetByIdAsync(exemplarId);
@@ -79,7 +79,7 @@ public class EmprestimoService : IEmprestimoService
         emprestimo.AdicionarItem(exemplarId);
         exemplar.Emprestar();
         await _UOW.SaveAsync();
-        return _mapper.Map<DtoResponseEmprestimo>(emprestimo);
+        return _mapper.Map<EmprestimoResponseDto>(emprestimo);
     }
 
     public async Task DevolverItem(int emprestimoId, int itemId, CondicaoItem condicao)

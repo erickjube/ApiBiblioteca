@@ -18,46 +18,46 @@ public class DtoMappingProfile : Profile
 {
     public DtoMappingProfile()
     {
-        CreateMap<Livro, DtoResponseLivro>().ReverseMap();
-        CreateMap<Livro, DtoAtualizarLivro>().ReverseMap();
-        CreateMap<Livro, DtoCriarLivro>().ReverseMap();
-        CreateMap<Livro, DtoLivroResumo>().ReverseMap();
-        CreateMap<Livro, DtoLivroComExemplares>().ReverseMap();
+        CreateMap<Livro, LivroResponseDto>().ReverseMap();
+        CreateMap<Livro, UpdateLivroDto>().ReverseMap();
+        CreateMap<Livro, CreateLivroDto>().ReverseMap();
+        CreateMap<Livro, LivroResumoDto>().ReverseMap();
+        CreateMap<Livro, LivroComExemplaresDto>().ReverseMap();
 
-        CreateMap<Categoria, DtoCategoria>().ReverseMap();
-        CreateMap<Categoria, DtoCategoriaComLivros>().ReverseMap();
-        CreateMap<Categoria, DtoResponseCategoria>().ReverseMap();
+        CreateMap<Categoria, CategoriaDto>().ReverseMap();
+        CreateMap<Categoria, CategoriaComLivrosDto>().ReverseMap();
+        CreateMap<Categoria, CategoriaResponseDto>().ReverseMap();
 
-        CreateMap<Autor, DtoAutor>().ReverseMap();
-        CreateMap<Autor, DtoResponseAutor>().ReverseMap();
-        CreateMap<Autor, DtoAutorComLivros>().ReverseMap();
+        CreateMap<Autor, AutorDto>().ReverseMap();
+        CreateMap<Autor, AutorResponseDto>().ReverseMap();
+        CreateMap<Autor, AutorComLivrosDto>().ReverseMap();
 
-        CreateMap<ExemplarLivro, DtoAtualizarExemplar>().ReverseMap();
-        CreateMap<ExemplarLivro, DtoCriarExemplar>().ReverseMap();
-        CreateMap<ExemplarLivro, DtoResponseExemplar>().ReverseMap();
-        CreateMap<ExemplarLivro, DtoExemplarResumo>().ReverseMap();
+        CreateMap<ExemplarLivro, UpdateExemplarDto>().ReverseMap();
+        CreateMap<ExemplarLivro, CreateExemplarDto>().ReverseMap();
+        CreateMap<ExemplarLivro, ExemplarResponseDto>().ReverseMap();
+        CreateMap<ExemplarLivro, ExemplarResumoDto>().ReverseMap();
 
-        CreateMap<Emprestimo, DtoEmprestimoResumo>().ReverseMap();
-        CreateMap<Emprestimo, DtoResponseEmprestimo>().ReverseMap();
-        CreateMap<Emprestimo, DtoResponseEmprestimoComItens>().ReverseMap();   
-        CreateMap<Emprestimo, DtoResponseEmprestimoComMultas>().ReverseMap();
+        CreateMap<Emprestimo, EmprestimoResumoDto>().ReverseMap();
+        CreateMap<Emprestimo, EmprestimoResponseDto>().ReverseMap();
+        CreateMap<Emprestimo, EmprestimoComItensDto>().ReverseMap();   
+        CreateMap<Emprestimo, EmprestimoComMultasDto>().ReverseMap();
 
-        CreateMap<ItemEmprestimo, DtoResponseItemEmprestimo>().ReverseMap();
-        CreateMap<ItemEmprestimo, DtoDevolverItemRequest>().ReverseMap();
+        CreateMap<ItemEmprestimo, ItemEmprestimoResponseDto>().ReverseMap();
+        CreateMap<ItemEmprestimo, DevolverItemEmprestimoDto>().ReverseMap();
 
-        CreateMap<Venda, DtoVendaResumo>().ReverseMap();
-        CreateMap<Venda, DtoCriarVenda>().ReverseMap();
-        CreateMap<Venda, DtoResponseVenda>().ReverseMap();
-        CreateMap<Venda, DtoResponseVendaComItens>().ReverseMap();
+        CreateMap<Venda, VendaResumoDto>().ReverseMap();
+        CreateMap<Venda, CreateVendaDto>().ReverseMap();
+        CreateMap<Venda, VendaResponseDto>().ReverseMap();
+        CreateMap<Venda, VendaComItensDto>().ReverseMap();
 
-        CreateMap<ItemVenda, DtoResponseItemVenda>().ReverseMap();
+        CreateMap<ItemVenda, ItemVendaResponseDto>().ReverseMap();
 
-        CreateMap<Cliente, DtoCriarCliente>().ReverseMap();
-        CreateMap<Cliente, DtoAtualizarCliente>().ReverseMap();
-        CreateMap<Cliente, DtoResponseCliente>().ReverseMap();
-        CreateMap<Cliente, DtoClienteComEmprestimos>().ReverseMap();
-        CreateMap<Cliente, DtoClienteComVendas>().ReverseMap();
+        CreateMap<Cliente, CreateClienteDto>().ReverseMap();
+        CreateMap<Cliente, UpdateClienteDto>().ReverseMap();
+        CreateMap<Cliente, ClienteResponseDto>().ReverseMap();
+        CreateMap<Cliente, ClienteComEmprestimosDto>().ReverseMap();
+        CreateMap<Cliente, ClienteComVendasDto>().ReverseMap();
 
-        CreateMap<Multa, DtoResponseMulta>().ReverseMap();
+        CreateMap<Multa, MultaResponseDto>().ReverseMap();
     }
 }
