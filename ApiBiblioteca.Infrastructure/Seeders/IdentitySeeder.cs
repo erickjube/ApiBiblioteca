@@ -1,4 +1,4 @@
-﻿using ApiBiblioteca.Infrastructure.Context;
+﻿using ApiBiblioteca.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace ApiBiblioteca.Seeders;

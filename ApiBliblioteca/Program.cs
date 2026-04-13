@@ -1,11 +1,11 @@
-﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Context;
+﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
 using ApiBiblioteca.Application.Interfaces.Services;
 using ApiBiblioteca.Domain.Repositories;
 using ApiBiblioteca.DTOs;
-using ApiBiblioteca.Infrastructure.Context;
+using ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Middleware;
 using ApiBiblioteca.Repositories;
 using ApiBiblioteca.Seeders;

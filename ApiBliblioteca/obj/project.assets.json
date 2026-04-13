@@ -5524,9 +5524,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\ApiBiblioteca.csproj",
-      "projectName": "ApiBiblioteca",
-      "projectPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\ApiBiblioteca.csproj",
+      "projectUniqueName": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\ApiBiblioteca.API.csproj",
+      "projectName": "ApiBiblioteca.API",
+      "projectPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\ApiBiblioteca.API.csproj",
       "packagesPath": "C:\\Users\\Erick Jube\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\obj\\",
       "projectStyle": "PackageReference",

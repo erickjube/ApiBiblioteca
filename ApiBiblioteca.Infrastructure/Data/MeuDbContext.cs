@@ -1,9 +1,9 @@
 ﻿using ApiBiblioteca.Domain.Entities;
-using ApiBiblioteca.Infrastructure.Context;
+using ApiBiblioteca.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiBiblioteca.ApiBiblioteca.Infrastructure.Context;
+namespace ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
 
 public class MeuDbContext : IdentityDbContext<ApplicationUser>
 {
