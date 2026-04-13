@@ -46,7 +46,7 @@
     "Parameters": [
       {
         "Name": "login",
-        "Type": "ApiBiblioteca.DTOs.DtosAuth.DtoLogin",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAuth.LoginDto",
         "IsRequired": true
       }
     ],
@@ -62,7 +62,7 @@
     "Parameters": [
       {
         "Name": "token",
-        "Type": "ApiBiblioteca.DTOs.DtosAuth.DtoToken",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAuth.TokenDto",
         "IsRequired": true
       }
     ],
@@ -78,7 +78,7 @@
     "Parameters": [
       {
         "Name": "registro",
-        "Type": "ApiBiblioteca.DTOs.DtosAuth.DtoRegistro",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAuth.RegistroDto",
         "IsRequired": true
       }
     ],
@@ -110,7 +110,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosAutor.DtoResponseAutor, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosAutor.AutorResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -130,13 +130,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosAutor.DtoAutor",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAutor.AutorDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosAutor.DtoResponseAutor",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAutor.AutorResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -162,7 +162,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosAutor.DtoResponseAutor",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAutor.AutorResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -188,13 +188,13 @@
       },
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosAutor.DtoAutor",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAutor.AutorDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosAutor.DtoResponseAutor",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAutor.AutorResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -236,7 +236,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosAutor.DtoAutorComLivros",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosAutor.AutorComLivrosDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -262,7 +262,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosAutor.DtoAutorComLivros, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosAutor.AutorComLivrosDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -282,7 +282,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosCategoria.DtoResponseCategoria, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -302,13 +302,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosCategoria.DtoCategoria",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCategoria.DtoResponseCategoria",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -334,7 +334,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCategoria.DtoResponseCategoria",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -360,13 +360,13 @@
       },
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosCategoria.DtoCategoria",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCategoria.DtoResponseCategoria",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -408,7 +408,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCategoria.DtoCategoriaComLivros",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaComLivrosDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -434,7 +434,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosCategoria.DtoCategoriaComLivros, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaComLivrosDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -454,7 +454,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosCliente.DtoResponseCliente, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosCliente.ClienteResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -474,13 +474,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosCliente.DtoCriarCliente",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.CreateClienteDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCliente.DtoResponseCliente",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.ClienteResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -505,13 +505,13 @@
       },
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosCliente.DtoAtualizarCliente",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.UpdateClienteDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCliente.DtoAtualizarCliente",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.UpdateClienteDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -537,7 +537,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCliente.DtoClienteComEmprestimos",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.ClienteComEmprestimosDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -563,7 +563,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCliente.DtoClienteComVendas",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.ClienteComVendasDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -589,7 +589,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosCliente.DtoResponseCliente, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosCliente.ClienteResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -615,7 +615,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosCliente.DtoResponseCliente",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.ClienteResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -652,7 +652,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosEmprestimo.DtoResponseEmprestimo, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -678,7 +678,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosEmprestimo.DtoResponseEmprestimo",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -762,7 +762,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosEmprestimo.DtoResponseEmprestimo",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -788,7 +788,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosEmprestimo.DtoResponseEmprestimo",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -813,7 +813,7 @@
       },
       {
         "Name": "request",
-        "Type": "ApiBiblioteca.DTOs.DtosItemEmprestimo.DtoDevolverItemRequest",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosItemEmprestimo.DevolverItemEmprestimoDto",
         "IsRequired": true
       }
     ],
@@ -835,7 +835,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosEmprestimo.DtoResponseEmprestimoComMultas",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoComMultasDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -861,7 +861,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosEmprestimo.DtoResponseEmprestimo",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -882,7 +882,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosExemplar.DtoResponseExemplar, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosExemplar.ExemplarResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -902,13 +902,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosExemplar.DtoCriarExemplar",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosExemplar.CreateExemplarDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosExemplar.DtoResponseExemplar",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosExemplar.ExemplarResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -933,13 +933,13 @@
       },
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosExemplar.DtoAtualizarExemplar",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosExemplar.UpdateExemplarDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosExemplar.DtoResponseExemplar",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosExemplar.ExemplarResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1013,7 +1013,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosExemplar.DtoResponseExemplar, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosExemplar.ExemplarResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1039,7 +1039,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosExemplar.DtoResponseExemplar",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosExemplar.ExemplarResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1060,7 +1060,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosLivro.DtoResponseLivro, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosLivro.LivroResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1080,13 +1080,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosLivro.DtoCriarLivro",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.CreateLivroDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosLivro.DtoResponseLivro",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.LivroResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1112,7 +1112,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosLivro.DtoResponseLivro",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.LivroResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1138,13 +1138,13 @@
       },
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosLivro.DtoAtualizarLivro",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.UpdateLivroDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosLivro.DtoResponseLivro",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.LivroResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1186,7 +1186,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosLivro.DtoLivroComExemplares",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.LivroComExemplaresDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1212,7 +1212,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.DTOs.DtosLivro.DtoLivroComExemplares, ApiBiblioteca, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosLivro.LivroComExemplaresDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1232,7 +1232,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosVenda.DtoResponseVenda",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosVenda.VendaResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1252,13 +1252,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "ApiBiblioteca.DTOs.DtosVenda.DtoCriarVenda",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosVenda.CreateVendaDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosVenda.DtoResponseVenda",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosVenda.VendaResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1358,7 +1358,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosVenda.DtoResponseVendaComItens",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosVenda.VendaComItensDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1384,7 +1384,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.DTOs.DtosVenda.DtoResponseVenda",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosVenda.VendaResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

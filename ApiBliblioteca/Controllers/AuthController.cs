@@ -1,6 +1,6 @@
-﻿using ApiBiblioteca.DTOs.DtosAuth;
-using ApiBiblioteca.Entities;
-using ApiBiblioteca.Interfaces;
+﻿using ApiBiblioteca.Application.DTOs.DtosAuth;
+using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Infrastructure.Context;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

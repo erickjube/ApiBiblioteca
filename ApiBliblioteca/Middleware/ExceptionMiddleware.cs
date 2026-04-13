@@ -1,4 +1,4 @@
-﻿using ApiBiblioteca.Exceptions;
+﻿using ApiBiblioteca.Domain.Exceptions;
 using System.Net;
 using System.Text.Json;
 

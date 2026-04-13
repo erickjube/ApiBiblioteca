@@ -1,5 +1,5 @@
-﻿using ApiBiblioteca.DTOs.DtosLivro;
-using ApiBiblioteca.Interfaces;
+﻿using ApiBiblioteca.Application.DTOs.DtosLivro;
+using ApiBiblioteca.Application.Interfaces.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

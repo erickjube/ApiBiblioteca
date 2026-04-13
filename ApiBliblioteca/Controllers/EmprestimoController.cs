@@ -1,6 +1,6 @@
-﻿using ApiBiblioteca.DTOs.DtosEmprestimo;
-using ApiBiblioteca.DTOs.DtosItemEmprestimo;
-using ApiBiblioteca.Interfaces;
+﻿using ApiBiblioteca.Application.DTOs.DtosEmprestimo;
+using ApiBiblioteca.Application.DTOs.DtosItemEmprestimo;
+using ApiBiblioteca.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
