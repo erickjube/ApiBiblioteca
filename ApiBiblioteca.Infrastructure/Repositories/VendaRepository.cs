@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces.IRepository;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,14 +15,25 @@ public class VendaRepository : IVendaRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Venda>> GetAllAsync()
+    public async Task<PagedList<Venda>> GetAllAsync(int skip, int take)
     {
-        return await _context.Venda.ToListAsync();
+        var totalCount = await _context.Venda.CountAsync();
+        var data = await _context.Venda.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Venda> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<Venda?> GetByIdAsync(int VendaId)
+    public async Task<Venda?> GetByIdAsync(int id)
     {
-        return await _context.Venda.Include(e => e.Itens).ThenInclude(i => i.Exemplar).FirstOrDefaultAsync(e => e.Id == VendaId);
+        return await _context.Venda.FindAsync(id);
+    }
+
+    public async Task<PagedList<ItemVenda>> GetItensVendaByIdAsync(int VendaId, int skip, int take)
+    {
+        var query = _context.ItemVenda.Where(i => i.VendaId == VendaId).Include(i => i.Exemplar);
+
+        var totalCount = await query.CountAsync();
+        var data = await query.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<ItemVenda> { Data = data, TotalCount = totalCount };
     }
 
     public async Task AddAsync(Venda Venda)

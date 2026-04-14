@@ -1,10 +1,14 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosVenda;
+﻿using ApiBiblioteca.Application.DTOs.DtosItemVenda;
+using ApiBiblioteca.Application.DTOs.DtosVenda;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
+using MySqlX.XDevAPI.Common;
 
 namespace ApiBiblioteca.Services;
 
@@ -23,24 +27,45 @@ public class VendaService : IVendaService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<VendaResponseDto>> ObterVendas()
+    public async Task<PagedList<VendaResponseDto>> ObterVendas(QueryParameters parameters)
     {
-        var vendas = await _vendaRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<VendaResponseDto>>(vendas);
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _vendaRepository.GetAllAsync(skip, parameters.PageSize);
+        if (result.Data == null || !result.Data.Any()) throw new NotFoundException("Nenhuma venda encontrada.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<VendaResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<VendaResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
-    public async Task<VendaResponseDto> ObterVendaPorId(int id)
+    public async Task<VendaResponseDto> ObterVendaPorId(int vendaId)
     {
-        var venda = await _vendaRepository.GetByIdAsync(id);
+        var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         return _mapper.Map<VendaResponseDto>(venda);
     }
 
-    public async Task<VendaComItensDto> ObterVendaComItens(int id)
+    public async Task<PagedList<ItemVendaResponseDto>> ObterVendaComItens(int vendaId, QueryParameters parameters)
     {
-        var venda = await _vendaRepository.GetByIdAsync(id);
-        if (venda == null) throw new NotFoundException("Venda não encontrada");
-        return _mapper.Map<VendaComItensDto>(venda);
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _vendaRepository.GetItensVendaByIdAsync(vendaId, skip, parameters.PageSize);
+        if (result.Data == null || !result.Data.Any()) throw new NotFoundException("Nenhuma venda encontrada.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<ItemVendaResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<ItemVendaResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
     public async Task<VendaResponseDto> Create(CreateVendaDto dto)

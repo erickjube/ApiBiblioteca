@@ -1,7 +1,10 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosVenda;
+﻿using ApiBiblioteca.Application.DTOs.DtosItemVenda;
+using ApiBiblioteca.Application.DTOs.DtosVenda;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace ApiBiblioteca.Controllers;
 
@@ -18,10 +21,21 @@ public class VendaController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<VendaResponseDto>> GetVendas()
+    public async Task<ActionResult<VendaResponseDto>> GetVendas([FromQuery] QueryParameters parameters)
     {
-        var vendas = await _vendaService.ObterVendas();
-        return Ok(vendas);
+        var metadata = await _vendaService.ObterVendas(parameters);
+
+        Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(new
+        {
+            metadata.TotalCount,
+            metadata.PageSize,
+            metadata.PageNumber,
+            metadata.TotalPages,
+            metadata.HasNext,
+            metadata.HasPrevious
+        }));
+
+        return Ok(metadata.Data);
     }
 
     [HttpGet("id", Name = "ObterVenda")]
@@ -32,10 +46,21 @@ public class VendaController : ControllerBase
     }
 
     [HttpGet("{vendaId}/Itens")]
-    public async Task<ActionResult<VendaComItensDto>> GetVendaComItens(int vendaId)
+    public async Task<ActionResult<ItemVendaResponseDto>> GetVendaComItens(int vendaId, [FromQuery] QueryParameters parameters)
     {
-        var venda = await _vendaService.ObterVendaComItens(vendaId);
-        return Ok(venda);
+        var metadata = await _vendaService.ObterVendaComItens(vendaId, parameters);
+
+        Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(new
+        {
+            metadata.TotalCount,
+            metadata.PageSize,
+            metadata.PageNumber,
+            metadata.TotalPages,
+            metadata.HasNext,
+            metadata.HasPrevious
+        }));
+
+        return Ok(metadata.Data);
     }
 
     [HttpPost]

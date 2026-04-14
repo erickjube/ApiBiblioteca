@@ -1,10 +1,12 @@
-﻿using ApiBiblioteca.Domain.Entities;
+﻿using ApiBiblioteca.Domain.Common;
+using ApiBiblioteca.Domain.Entities;
 
 namespace ApiBiblioteca.Application.Interfaces.IRepository;
 
 public interface IVendaRepository
 {
-    Task<IEnumerable<Venda>> GetAllAsync();
-    Task<Venda?> GetByIdAsync(int vendaId);
+    Task<PagedList<Venda>> GetAllAsync(int skip, int take);
+    Task<Venda?> GetByIdAsync(int id);
+    Task<PagedList<ItemVenda>> GetItensVendaByIdAsync(int vendaId, int skip, int take);
     Task AddAsync(Venda venda);
 }

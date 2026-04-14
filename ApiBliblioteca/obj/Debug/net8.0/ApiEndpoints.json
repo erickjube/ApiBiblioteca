@@ -1229,7 +1229,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "ApiBiblioteca.Application.DTOs.DtosVenda.VendaResponseDto",
@@ -1354,11 +1365,21 @@
         "Name": "vendaId",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosVenda.VendaComItensDto",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosItemVenda.ItemVendaResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
