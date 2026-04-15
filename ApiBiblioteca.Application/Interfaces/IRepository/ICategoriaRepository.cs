@@ -1,13 +1,13 @@
-﻿using ApiBiblioteca.Domain.Entities;
+﻿using ApiBiblioteca.Domain.Common;
+using ApiBiblioteca.Domain.Entities;
 
 namespace ApiBiblioteca.Application.Interfaces.IRepository;
 
 public interface ICategoriaRepository
 {
-    Task<IEnumerable<Categoria>> GetAllAsync();
-    Task<Categoria> GetCategoriaComLivrosAsync(long id);
-    Task<IEnumerable<Categoria>> GetByNameComLivrosAsync(string nome);
-    Task<Categoria> GetByIdAsync(long id);
+    Task<PagedList<Categoria>> GetAllAsync(int skip, int take);
+    Task<PagedList<Livro>> GetLivrosByCategoriaAsync(long categoriaId, int skip, int take);
+    Task<Categoria> GetByIdAsync(long categoriaId);
     void Create(Categoria categoria);
     void Remove(Categoria categoria);
 }

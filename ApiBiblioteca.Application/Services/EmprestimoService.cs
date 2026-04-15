@@ -1,7 +1,11 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosEmprestimo;
+using ApiBiblioteca.Application.DTOs.DtosItemEmprestimo;
+using ApiBiblioteca.Application.DTOs.DtosMulta;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.Services;
+using ApiBiblioteca.Application.Pagination;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.ENUMs;
 using ApiBiblioteca.Domain.Exceptions;
@@ -33,10 +37,57 @@ public class EmprestimoService : IEmprestimoService
         _UOW = uOF;
     }
 
-    public async Task<IEnumerable<EmprestimoResponseDto>> GetAllEmprestimos()
+    public async Task<PagedList<EmprestimoResponseDto>> Get(QueryParameters parameters)
     {
-        var emprestimos = await _emprestimoRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<EmprestimoResponseDto>>(emprestimos);
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _emprestimoRepository.GetAllAsync(skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar emprestimos.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<EmprestimoResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<EmprestimoResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
+    }
+
+    public async Task<PagedList<MultaResponseDto>> GetComMultas(int emprestimoId, QueryParameters parameters)
+    {
+        if (emprestimoId <= 0) throw new BadRequestException("Id inválido!");
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _emprestimoRepository.GetMultasByEmprestimo(emprestimoId, skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar multas.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<MultaResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<MultaResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
+    }
+
+    public async Task<PagedList<ItemEmprestimoResponseDto>> GetComItens(int emprestimoId, QueryParameters parameters)
+    {
+        if (emprestimoId <= 0) throw new BadRequestException("Id inválido!");
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _emprestimoRepository.GetItensByEmprestimo(emprestimoId, skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar itens.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<ItemEmprestimoResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<ItemEmprestimoResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
     public async Task<EmprestimoResponseDto> GetEmprestimoById(int emprestimoId)
@@ -46,19 +97,6 @@ public class EmprestimoService : IEmprestimoService
         return _mapper.Map<EmprestimoResponseDto>(emprestimo);
     }
 
-    public async Task<EmprestimoComItensDto?> GetEmprestimoComItens(int emprestimoId)
-    {
-        var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
-        if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        return _mapper.Map<EmprestimoComItensDto>(emprestimo);
-    }
-
-    public async Task<EmprestimoComMultasDto> GetMultas(int emprestimoId)
-    {
-        var emprestimo = await _emprestimoRepository.GetEmprestimoComMultas(emprestimoId);
-        if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        return _mapper.Map<EmprestimoComMultasDto>(emprestimo);
-    }
 
     public async Task<EmprestimoResponseDto> CreateEmprestimo(int clienteId)
     {
@@ -95,7 +133,7 @@ public class EmprestimoService : IEmprestimoService
 
     public async Task FinalizarEmprestimo(int emprestimoId)
     {
-        var emprestimo = await _emprestimoRepository.GetEmprestimoComMultas(emprestimoId);
+        var emprestimo = await _emprestimoRepository.GetMultas(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         decimal count = 0;
 

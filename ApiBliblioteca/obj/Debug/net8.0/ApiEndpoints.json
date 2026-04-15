@@ -107,7 +107,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosAutor.AutorResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -149,13 +160,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.AutorController",
     "Method": "GetById",
-    "RelativePath": "api/Autor/{id}",
+    "RelativePath": "api/Autor/{autorId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "autorId",
         "Type": "System.Int64",
         "IsRequired": true
       }
@@ -176,13 +187,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.AutorController",
     "Method": "Update",
-    "RelativePath": "api/Autor/{id}",
+    "RelativePath": "api/Autor/{autorId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "autorId",
         "Type": "System.Int64",
         "IsRequired": true
       },
@@ -207,13 +218,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.AutorController",
     "Method": "Delete",
-    "RelativePath": "api/Autor/{id}",
+    "RelativePath": "api/Autor/{autorId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "autorId",
         "Type": "System.Int64",
         "IsRequired": true
       }
@@ -223,46 +234,30 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.AutorController",
     "Method": "GetAutorComLivros",
-    "RelativePath": "api/Autor/{id}/livros",
+    "RelativePath": "api/Autor/{autorId}/livros",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "autorId",
         "Type": "System.Int64",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
+      },
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosAutor.AutorComLivrosDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ApiBiblioteca.Controllers.AutorController",
-    "Method": "GetByNameComLivros",
-    "RelativePath": "api/Autor/buscar",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
       {
-        "Name": "nome",
-        "Type": "System.String",
+        "Name": "PageSize",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosAutor.AutorComLivrosDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosLivro.LivroResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -279,7 +274,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -321,13 +327,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.CategoriaController",
     "Method": "GetById",
-    "RelativePath": "api/Categoria/{id}",
+    "RelativePath": "api/Categoria/{categoriaId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "categoriaId",
         "Type": "System.Int64",
         "IsRequired": true
       }
@@ -348,13 +354,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.CategoriaController",
     "Method": "Update",
-    "RelativePath": "api/Categoria/{id}",
+    "RelativePath": "api/Categoria/{categoriaId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "categoriaId",
         "Type": "System.Int64",
         "IsRequired": true
       },
@@ -379,13 +385,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.CategoriaController",
     "Method": "Delete",
-    "RelativePath": "api/Categoria/{id}",
+    "RelativePath": "api/Categoria/{categoriaId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "categoriaId",
         "Type": "System.Int64",
         "IsRequired": true
       }
@@ -395,46 +401,30 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.CategoriaController",
     "Method": "GetCategoriaComLivros",
-    "RelativePath": "api/Categoria/{id}/livros",
+    "RelativePath": "api/Categoria/{categoriaId}/livros",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "categoriaId",
         "Type": "System.Int64",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
+      },
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaComLivrosDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ApiBiblioteca.Controllers.CategoriaController",
-    "Method": "GetByNameComLivros",
-    "RelativePath": "api/Categoria/buscar",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
       {
-        "Name": "nome",
-        "Type": "System.String",
+        "Name": "PageSize",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosCategoria.CategoriaComLivrosDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.LivroResponseDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -446,12 +436,23 @@
   },
   {
     "ContainingType": "ApiBiblioteca.Controllers.ClienteController",
-    "Method": "Get",
+    "Method": "GetAll",
     "RelativePath": "api/Cliente",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosCliente.ClienteResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -499,7 +500,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "clienteId",
         "Type": "System.Int32",
         "IsRequired": false
       },
@@ -524,20 +525,30 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.ClienteController",
     "Method": "GetComEmprestimos",
-    "RelativePath": "api/Cliente/{id}/Emprestimos",
+    "RelativePath": "api/Cliente/{clienteId}/Emprestimos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "clienteId",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.ClienteComEmprestimosDto",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -550,46 +561,30 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.ClienteController",
     "Method": "GetComVendas",
-    "RelativePath": "api/Cliente/{id}/Vendas",
+    "RelativePath": "api/Cliente/{clienteId}/Vendas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "clienteId",
         "Type": "System.Int32",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
+      },
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosCliente.ClienteComVendasDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ApiBiblioteca.Controllers.ClienteController",
-    "Method": "GetByName",
-    "RelativePath": "api/Cliente/buscar",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
       {
-        "Name": "nome",
-        "Type": "System.String",
+        "Name": "PageSize",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosCliente.ClienteResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosVenda.VendaResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -602,13 +597,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.ClienteController",
     "Method": "GetId",
-    "RelativePath": "api/Cliente/id",
+    "RelativePath": "api/Cliente/clienteId",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "clienteId",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -629,13 +624,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.ClienteController",
     "Method": "Delete",
-    "RelativePath": "api/Cliente/id",
+    "RelativePath": "api/Cliente/clienteId",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "clienteId",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -649,7 +644,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -784,11 +790,21 @@
         "Name": "emprestimoId",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosEmprestimo.EmprestimoResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -831,6 +847,16 @@
         "Name": "emprestimoId",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -879,7 +905,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosExemplar.ExemplarResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -921,13 +958,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.ExemplarController",
     "Method": "Update",
-    "RelativePath": "api/Exemplar/{id}",
+    "RelativePath": "api/Exemplar/{exemplarId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "exemplarId",
         "Type": "System.Int32",
         "IsRequired": true
       },
@@ -952,13 +989,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.ExemplarController",
     "Method": "Delete",
-    "RelativePath": "api/Exemplar/{id}",
+    "RelativePath": "api/Exemplar/{exemplarId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "exemplarId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -968,13 +1005,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.ExemplarController",
     "Method": "DanificarExemplar",
-    "RelativePath": "api/Exemplar/{id}/danificar",
+    "RelativePath": "api/Exemplar/{exemplarId}/danificar",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "exemplarId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -984,13 +1021,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.ExemplarController",
     "Method": "PerderExemplar",
-    "RelativePath": "api/Exemplar/{id}/perder",
+    "RelativePath": "api/Exemplar/{exemplarId}/perder",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "exemplarId",
         "Type": "System.Int32",
         "IsRequired": true
       }
@@ -999,40 +1036,14 @@
   },
   {
     "ContainingType": "ApiBiblioteca.Controllers.ExemplarController",
-    "Method": "GetByName",
-    "RelativePath": "api/Exemplar/buscar",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "nome",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosExemplar.ExemplarResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ApiBiblioteca.Controllers.ExemplarController",
     "Method": "GetId",
-    "RelativePath": "api/Exemplar/id",
+    "RelativePath": "api/Exemplar/exemplarId",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "exemplarId",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -1243,7 +1254,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosVenda.VendaResponseDto",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosVenda.VendaResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -1379,7 +1390,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosItemVenda.ItemVendaResponseDto",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosItemVenda.ItemVendaResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

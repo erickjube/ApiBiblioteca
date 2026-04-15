@@ -1,5 +1,7 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosLivro;
+﻿using ApiBiblioteca.API.Header;
+using ApiBiblioteca.Application.DTOs.DtosLivro;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,31 +20,26 @@ public class LivroController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<LivroResponseDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<LivroResponseDto>>> GetAll([FromQuery] QueryParameters parameters)
     {
-        var dtoLivros = await _livroService.Get();
-        return Ok(dtoLivros);
+        var metadata = await _livroService.Get(parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
     }
 
-    [HttpGet("{id}", Name = "ObterLivro")]
-    public async Task<ActionResult<LivroResponseDto>> GetById(long id)
+    [HttpGet("{livroId}/Exemplares")]
+    public async Task<ActionResult<LivroComExemplaresDto>> GetLivroComExemplares(long livroId, [FromQuery] QueryParameters parameters)
     {
-         var dto = await _livroService.GetId(id);
+        var metadata = await _livroService.GetComExemplares(livroId, parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
+    }
+
+    [HttpGet("{livroId}", Name = "ObterLivro")]
+    public async Task<ActionResult<LivroResponseDto>> GetById(long livroId)
+    {
+        var dto = await _livroService.GetId(livroId);
         return Ok(dto);
-    }
-
-    [HttpGet("{id}/Exemplares")]
-    public async Task<ActionResult<LivroComExemplaresDto>> GetLivroComExemplares(long id)
-    {
-        var dto = await _livroService.GetLivroComExemplares(id);
-        return Ok(dto);
-    }
-
-    [HttpGet("buscar")]
-    public async Task<IEnumerable<LivroComExemplaresDto>> GetByNameComExemplares([FromQuery] string titulo)
-    {
-        var dtos = await _livroService.GetByNameComExemplares(titulo);
-        return dtos;
     }
 
     [HttpPost]
@@ -52,17 +49,17 @@ public class LivroController : ControllerBase
         return CreatedAtRoute("ObterLivro", new { id = livroCriado.Id }, livroCriado);
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult<LivroResponseDto>> Update(long id, UpdateLivroDto dto)
+    [HttpPut("{livroId}")]
+    public async Task<ActionResult<LivroResponseDto>> Update(long livroId, UpdateLivroDto dto)
     {
-        var dtoAtualizado = await _livroService.Update(id, dto);
+        var dtoAtualizado = await _livroService.Update(livroId, dto);
         return Ok(dtoAtualizado);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(long id)
+    [HttpDelete("{livroId}")]
+    public async Task<ActionResult> Delete(long livroId)
     {
-        await _livroService.Delete(id);
+        await _livroService.Delete(livroId);
         return NoContent();
     }
 }

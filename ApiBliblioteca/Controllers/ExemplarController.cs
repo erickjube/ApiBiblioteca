@@ -1,5 +1,7 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosExemplar;
+﻿using ApiBiblioteca.API.Header;
+using ApiBiblioteca.Application.DTOs.DtosExemplar;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,23 +20,17 @@ public class ExemplarController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ExemplarResponseDto>>> Get()
+    public async Task<ActionResult<IEnumerable<ExemplarResponseDto>>> Get([FromQuery] QueryParameters parameters)
     {
-        var exemplares = await _exemplarService.Get();
-        return Ok(exemplares);
+        var metadata = await _exemplarService.Get(parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
     }
 
-    [HttpGet("id", Name = "ObterExemplar")]
-    public async Task<ActionResult<ExemplarResponseDto>> GetId(int id)
+    [HttpGet("exemplarId", Name = "ObterExemplar")]
+    public async Task<ActionResult<ExemplarResponseDto>> GetId(int exemplarId)
     {
-        var exemplar = await _exemplarService.GetId(id);
-        return Ok(exemplar);
-    }
-
-    [HttpGet("buscar")]
-    public async Task<ActionResult<IEnumerable<ExemplarResponseDto>>> GetByName([FromQuery] string nome)
-    {
-        var exemplar = await _exemplarService.GetByName(nome);
+        var exemplar = await _exemplarService.GetId(exemplarId);
         return Ok(exemplar);
     }
 
@@ -45,31 +41,31 @@ public class ExemplarController : ControllerBase
         return CreatedAtRoute("ObterExemplar", new { id = exemplarCriado.Id }, exemplarCriado);
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult<ExemplarResponseDto>> Update(int id, UpdateExemplarDto dto)
+    [HttpPut("{exemplarId}")]
+    public async Task<ActionResult<ExemplarResponseDto>> Update(int exemplarId, UpdateExemplarDto dto)
     {
-        var exemplarAtualizado = await _exemplarService.Update(id, dto);
+        var exemplarAtualizado = await _exemplarService.Update(exemplarId, dto);
         return Ok(exemplarAtualizado);
     }    
 
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(int id)
+    [HttpDelete("{exemplarId}")]
+    public async Task<ActionResult> Delete(int exemplarId)
     {
-        await _exemplarService.Delete(id);
+        await _exemplarService.Delete(exemplarId);
         return NoContent();
     }
 
-    [HttpPost("{id}/danificar")]
-    public async Task<ActionResult> DanificarExemplar(int id)
+    [HttpPost("{exemplarId}/danificar")]
+    public async Task<ActionResult> DanificarExemplar(int exemplarId)
     {
-        await _exemplarService.DanificarExemplar(id);
+        await _exemplarService.DanificarExemplar(exemplarId);
         return NoContent();
     }
 
-    [HttpPost("{id}/perder")]
-    public async Task<ActionResult> PerderExemplar(int id)
+    [HttpPost("{exemplarId}/perder")]
+    public async Task<ActionResult> PerderExemplar(int exemplarId)
     {
-        await _exemplarService.PerderExemplar(id);
+        await _exemplarService.PerderExemplar(exemplarId);
         return NoContent();
     }
 }

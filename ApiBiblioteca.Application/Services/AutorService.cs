@@ -1,7 +1,10 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosAutor;
+using ApiBiblioteca.Application.DTOs.DtosLivro;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
@@ -21,17 +24,39 @@ public class AutorService : IAutorService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<AutorResponseDto>> Get()
+    public async Task<PagedList<AutorResponseDto>> Get(QueryParameters parameters)
     {
-        var autores = await _autorRepository.GetAllAsync() ?? throw new NotFoundException("Autor não encontrado!");
-        return _mapper.Map<IEnumerable<AutorResponseDto>>(autores);
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _autorRepository.GetAllAsync(skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar autores.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<AutorResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<AutorResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
-    public async Task<AutorComLivrosDto> GetComLivros(long id)
+    public async Task<PagedList<LivroResponseDto>> GetComLivros(long autorId, QueryParameters parameters)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var autores = await _autorRepository.GetAutorComLivrosAsync(id) ?? throw new NotFoundException("Autor não encontrado!");
-        return _mapper.Map<AutorComLivrosDto>(autores);
+        if (autorId <= 0) throw new BadRequestException("Id inválido!");
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _autorRepository.GetLivrosByAutorIdAsync(autorId, skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar livros.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<LivroResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<LivroResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
     public async Task<AutorResponseDto> GetId(long id)
@@ -39,14 +64,6 @@ public class AutorService : IAutorService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var autor = await _autorRepository.GetByIdAsync(id) ?? throw new NotFoundException("Autor não encontrado!");
         return _mapper.Map<AutorResponseDto>(autor);
-    }
-
-    public async Task<IEnumerable<AutorComLivrosDto>> GetByNameComLivros(string nome)
-    {
-        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
-        var autores = await _autorRepository.GetByNameComLivrosAsync(nome) ?? throw new NotFoundException("Autor não encontrado!");
-        if (!autores.Any()) throw new NotFoundException("Autor não encontrado!");
-        return _mapper.Map<IEnumerable<AutorComLivrosDto>>(autores);
     }
 
     public async Task<AutorResponseDto> Create(AutorDto dto)

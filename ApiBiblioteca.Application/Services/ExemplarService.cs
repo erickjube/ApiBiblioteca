@@ -1,7 +1,10 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosExemplar;
+﻿using ApiBiblioteca.Application.DTOs.DtosAutor;
+using ApiBiblioteca.Application.DTOs.DtosExemplar;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
@@ -21,10 +24,21 @@ public class ExemplarService : IExemplarService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<ExemplarResponseDto>> Get()
+    public async Task<PagedList<ExemplarResponseDto>> Get(QueryParameters parameters)
     {
-        var exemplares = await _exemplarRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<ExemplarResponseDto>>(exemplares);
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _exemplarRepository.GetAllAsync(skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar exemplares.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<ExemplarResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<ExemplarResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
     public async Task<ExemplarResponseDto> GetId(int id)
@@ -32,14 +46,6 @@ public class ExemplarService : IExemplarService
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         return _mapper.Map<ExemplarResponseDto>(exemplar);
-    }
-
-    public async Task<IEnumerable<ExemplarResponseDto>> GetByName(string nome)
-    {
-        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
-        var exemplar = await _exemplarRepository.GetByNameAsync(nome) ?? throw new NotFoundException("Exemplar não encontrado!");
-        if (!exemplar.Any()) throw new NotFoundException("Exemplar não encontrado!");
-        return _mapper.Map<IEnumerable<ExemplarResponseDto>>(exemplar);
     }
 
     public async Task<ExemplarResponseDto> Create(CreateExemplarDto dto)

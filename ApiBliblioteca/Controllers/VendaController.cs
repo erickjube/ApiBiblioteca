@@ -1,10 +1,10 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosItemVenda;
+﻿using ApiBiblioteca.API.Header;
+using ApiBiblioteca.Application.DTOs.DtosItemVenda;
 using ApiBiblioteca.Application.DTOs.DtosVenda;
 using ApiBiblioteca.Application.Interfaces.IServices;
 using ApiBiblioteca.Application.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 
 namespace ApiBiblioteca.Controllers;
 
@@ -21,45 +21,25 @@ public class VendaController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<VendaResponseDto>> GetVendas([FromQuery] QueryParameters parameters)
+    public async Task<ActionResult<IEnumerable<VendaResponseDto>>> GetVendas([FromQuery] QueryParameters parameters)
     {
-        var metadata = await _vendaService.ObterVendas(parameters);
-
-        Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(new
-        {
-            metadata.TotalCount,
-            metadata.PageSize,
-            metadata.PageNumber,
-            metadata.TotalPages,
-            metadata.HasNext,
-            metadata.HasPrevious
-        }));
-
+        var metadata = await _vendaService.GetAll(parameters);
+        Response.AppendPaginationHeader(metadata);
         return Ok(metadata.Data);
     }
 
     [HttpGet("id", Name = "ObterVenda")]
     public async Task<ActionResult<VendaResponseDto>> GetVendaPorId(int vendaId)
     {
-        var venda = await _vendaService.ObterVendaPorId(vendaId);
+        var venda = await _vendaService.GetId(vendaId);
         return Ok(venda);
     }
 
     [HttpGet("{vendaId}/Itens")]
-    public async Task<ActionResult<ItemVendaResponseDto>> GetVendaComItens(int vendaId, [FromQuery] QueryParameters parameters)
+    public async Task<ActionResult<IEnumerable<ItemVendaResponseDto>>> GetVendaComItens(int vendaId, [FromQuery] QueryParameters parameters)
     {
-        var metadata = await _vendaService.ObterVendaComItens(vendaId, parameters);
-
-        Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(new
-        {
-            metadata.TotalCount,
-            metadata.PageSize,
-            metadata.PageNumber,
-            metadata.TotalPages,
-            metadata.HasNext,
-            metadata.HasPrevious
-        }));
-
+        var metadata = await _vendaService.GetComItens(vendaId, parameters);
+        Response.AppendPaginationHeader(metadata);
         return Ok(metadata.Data);
     }
 

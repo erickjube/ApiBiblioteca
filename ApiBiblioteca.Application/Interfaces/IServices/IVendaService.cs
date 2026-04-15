@@ -7,9 +7,9 @@ namespace ApiBiblioteca.Application.Interfaces.IServices;
 
 public interface IVendaService
 {
-    public Task<PagedList<VendaResponseDto>> ObterVendas(QueryParameters parameters);
-    public Task<VendaResponseDto> ObterVendaPorId(int vendaId);
-    public Task<PagedList<ItemVendaResponseDto>> ObterVendaComItens(int vendaId, QueryParameters parameters);
+    public Task<PagedList<VendaResponseDto>> GetAll(QueryParameters parameters);
+    public Task<VendaResponseDto> GetId(int vendaId);
+    public Task<PagedList<ItemVendaResponseDto>> GetComItens(int vendaId, QueryParameters parameters);
     public Task<VendaResponseDto> Create(CreateVendaDto dto);
     public Task CancelarVenda(int vendaId); 
     public Task FinalizarVenda(int vendaId);

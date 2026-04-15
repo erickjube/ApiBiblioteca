@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces.IRepository;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,24 +15,24 @@ public class LivroRepository : ILivroRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Livro>> GetAllAsync()
+    public async Task<PagedList<Livro>> GetAllAsync(int skip, int take)
     {
-        return await _context.Livro.ToListAsync();       
+        var totalCont = await _context.Livro.CountAsync();
+        var data = await _context.Livro.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Livro> { Data = data, TotalCount = totalCont };
     }
 
-    public async Task<Livro?> GetByIdAsync(long id)
+    public async Task<PagedList<ExemplarLivro>> GetExemplaresByLivroAsync(long livroId, int skip, int take)
     {
-        return await _context.Livro.FirstOrDefaultAsync(x => x.Id == id); 
+        var query = _context.Exemplar.Where(l => l.LivroId == livroId);
+        var totalCount = await query.CountAsync();
+        var data = await query.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<ExemplarLivro> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<Livro?> GetLivroComExemplaresAsync(long id)
+    public async Task<Livro?> GetByIdAsync(long livroId)
     {
-        return await _context.Livro.Include(l => l.Exemplares).FirstOrDefaultAsync(x => x.Id == id);
-    }
-
-    public async Task<IEnumerable<Livro>> GetByNameComExemplaresAsync(string titulo)
-    {
-        return await _context.Livro.Include(l => l.Exemplares).Where(x => x.Titulo.Contains(titulo)).ToListAsync();
+        return await _context.Livro.FirstOrDefaultAsync(x => x.Id == livroId); 
     }
 
     public async Task<bool> ExistsByIsbn(string isbn)

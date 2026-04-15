@@ -1,6 +1,8 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosEmprestimo;
+﻿using ApiBiblioteca.API.Header;
+using ApiBiblioteca.Application.DTOs.DtosEmprestimo;
 using ApiBiblioteca.Application.DTOs.DtosItemEmprestimo;
 using ApiBiblioteca.Application.Interfaces.Services;
+using ApiBiblioteca.Application.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,30 +21,33 @@ public class EmprestimoController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<EmprestimoResponseDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<EmprestimoResponseDto>>> GetAll([FromQuery] QueryParameters parameters)
     {
-        var emprestimos = await _emprestimoService.GetAllEmprestimos();
-        return Ok(emprestimos);
+        var metadata = await _emprestimoService.Get(parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
+    }
+
+    [HttpGet("{emprestimoId}/Itens")]
+    public async Task<ActionResult<IEnumerable<EmprestimoResponseDto>>> GetEmprestimoComItens(int emprestimoId, [FromQuery] QueryParameters parameters)
+    {
+        var metadata = await _emprestimoService.GetComItens(emprestimoId, parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
+    }
+
+    [HttpGet("{emprestimoId}/multas")]
+    public async Task<ActionResult<EmprestimoComMultasDto>> GetMultas(int emprestimoId, [FromQuery] QueryParameters parameters)
+    {
+        var metadata = await _emprestimoService.GetComMultas(emprestimoId, parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
     }
 
     [HttpGet("id", Name = "ObterEmprestimo")]
     public async Task<ActionResult<EmprestimoResponseDto>> GetById(int emprestimoId)
     {
         var emprestimo = await _emprestimoService.GetEmprestimoById(emprestimoId);
-        return Ok(emprestimo);
-    }
-
-    [HttpGet("{emprestimoId}/Itens")]
-    public async Task<ActionResult<EmprestimoResponseDto>> GetEmprestimoComItens(int emprestimoId)
-    {
-        var emprestimo = await _emprestimoService.GetEmprestimoComItens(emprestimoId);
-        return Ok(emprestimo);
-    }
-
-    [HttpGet("{emprestimoId}/multas")]
-    public async Task<ActionResult<EmprestimoComMultasDto>> GetMultas(int emprestimoId)
-    {
-        var emprestimo = await _emprestimoService.GetMultas(emprestimoId);
         return Ok(emprestimo);
     }
 

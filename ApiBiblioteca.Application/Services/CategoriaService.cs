@@ -1,7 +1,10 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosCategoria;
+using ApiBiblioteca.Application.DTOs.DtosLivro;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
@@ -21,31 +24,45 @@ public class CategoriaService : ICategoriaService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<CategoriaResponseDto>> Get()
+    public async Task<PagedList<CategoriaResponseDto>> Get(QueryParameters parameters)
     {
-        var categorias = await _categoriaRepository.GetAllAsync() ?? throw new NotFoundException("Categoria não encontrada!");
-        return _mapper.Map<IEnumerable<CategoriaResponseDto>>(categorias);
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _categoriaRepository.GetAllAsync(skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar Categorias.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<CategoriaResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<CategoriaResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
-    public async Task<CategoriaComLivrosDto> GetComLivros(long id)
+    public async Task<PagedList<LivroResponseDto>> GetComLivros(long categoriaId, QueryParameters parameters)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var categorias = await _categoriaRepository.GetCategoriaComLivrosAsync(id) ?? throw new NotFoundException("Categoria não encontrada!");
-        return _mapper.Map<CategoriaComLivrosDto>(categorias);
+        if (categoriaId <= 0) throw new BadRequestException("Id inválido!");
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _categoriaRepository.GetLivrosByCategoriaAsync(categoriaId, skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar livros.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<LivroResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<LivroResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
-    public async Task<IEnumerable<CategoriaComLivrosDto>> GetByNameComLivros(string nome)
+    public async Task<CategoriaResponseDto> GetId(long categoriaId)
     {
-        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
-        var categorias = await _categoriaRepository.GetByNameComLivrosAsync(nome) ?? throw new NotFoundException("Categoria não encontrada!");
-        if (!categorias.Any()) throw new NotFoundException("Categoria não encontrada!");
-        return _mapper.Map<IEnumerable<CategoriaComLivrosDto>>(categorias);
-    }
-
-    public async Task<CategoriaResponseDto> GetId(long id)
-    {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var categoria = await _categoriaRepository.GetByIdAsync(id) ?? throw new NotFoundException("Categoria não encontrada!");
+        if (categoriaId <= 0) throw new BadRequestException("Id inválido!");
+        var categoria = await _categoriaRepository.GetByIdAsync(categoriaId) ?? throw new NotFoundException("Categoria não encontrada!");
         return _mapper.Map<CategoriaResponseDto>(categoria);
     }
 
@@ -58,19 +75,20 @@ public class CategoriaService : ICategoriaService
         return _mapper.Map<CategoriaResponseDto>(categoria);
     }
 
-    public async Task<CategoriaResponseDto> Update(long id, CategoriaDto dto)
+    public async Task<CategoriaResponseDto> Update(long categoriaId, CategoriaDto dto)
     {
+        if (categoriaId <= 0) throw new BadRequestException("Id inválido!");
         if (dto is null) throw new BadRequestException("Categoria inválida!");
-        var categoria = await _categoriaRepository.GetByIdAsync(id) ?? throw new NotFoundException("Categoria não encontrada!");
+        var categoria = await _categoriaRepository.GetByIdAsync(categoriaId) ?? throw new NotFoundException("Categoria não encontrada!");
         categoria.AtualizarNome(dto.Nome);
         await _UOW.SaveAsync();
         return _mapper.Map<CategoriaResponseDto>(categoria);
     }
     
-    public async Task Delete(long id)
+    public async Task Delete(long categoriaId)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var categoria = _categoriaRepository.GetByIdAsync(id).Result ?? throw new NotFoundException("Categoria não encontrada!");
+        if (categoriaId <= 0) throw new BadRequestException("Id inválido!");
+        var categoria = _categoriaRepository.GetByIdAsync(categoriaId).Result ?? throw new NotFoundException("Categoria não encontrada!");
         categoria.ValidarExclusao();
         _categoriaRepository.Remove(categoria);
         await _UOW.SaveAsync();

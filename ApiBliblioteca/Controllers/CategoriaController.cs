@@ -1,5 +1,8 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosCategoria;
+﻿using ApiBiblioteca.API.Header;
+using ApiBiblioteca.Application.DTOs.DtosCategoria;
+using ApiBiblioteca.Application.DTOs.DtosLivro;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,30 +21,26 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<CategoriaResponseDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<CategoriaResponseDto>>> GetAll([FromQuery] QueryParameters parameters)
     {
-        var dtoCategorias = await _categoriaService.Get();
-        return Ok(dtoCategorias);
+        var metadata = await _categoriaService.Get(parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
     }
 
-    [HttpGet("{id}/livros")]
-    public async Task<ActionResult<CategoriaComLivrosDto>> GetCategoriaComLivros(long id)
+    [HttpGet("{categoriaId}/livros")]
+    public async Task<ActionResult<LivroResponseDto>> GetCategoriaComLivros(long categoriaId, [FromQuery] QueryParameters parameters)
     {
-        var dto = await _categoriaService.GetComLivros(id);
-        return Ok(dto);
+        var metadata = await _categoriaService.GetComLivros(categoriaId, parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
     }
 
-    [HttpGet("buscar")]
-    public async Task<ActionResult<IEnumerable<CategoriaComLivrosDto>>> GetByNameComLivros([FromQuery] string nome)
-    {
-        var dtoCategorias = await _categoriaService.GetByNameComLivros(nome);
-        return Ok(dtoCategorias);
-    }
 
-    [HttpGet("{id}", Name = "ObterCategoria")]
-    public async Task<ActionResult<CategoriaResponseDto>> GetById(long id)
+    [HttpGet("{categoriaId}", Name = "ObterCategoria")]
+    public async Task<ActionResult<CategoriaResponseDto>> GetById(long categoriaId)
     {
-        var dto = await _categoriaService.GetId(id);
+        var dto = await _categoriaService.GetId(categoriaId);
         return Ok(dto);
     }
 
@@ -52,17 +51,17 @@ public class CategoriaController : ControllerBase
         return CreatedAtRoute("ObterCategoria", new { id = categoriaCriada.Id }, categoriaCriada);
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult<CategoriaResponseDto>> Update(long id, CategoriaDto dto)
+    [HttpPut("{categoriaId}")]
+    public async Task<ActionResult<CategoriaResponseDto>> Update(long categoriaId, CategoriaDto dto)
     {
-        var dtoAtualizado = await _categoriaService.Update(id, dto);
+        var dtoAtualizado = await _categoriaService.Update(categoriaId, dto);
         return Ok(dtoAtualizado);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(long id)
+    [HttpDelete("{categoriaId}")]
+    public async Task<ActionResult> Delete(long categoriaId)
     {
-        await _categoriaService.Delete(id);
+        await _categoriaService.Delete(categoriaId);
         return NoContent();
     }
 }

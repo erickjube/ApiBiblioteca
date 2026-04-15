@@ -1,5 +1,9 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosCliente;
+﻿using ApiBiblioteca.API.Header;
+using ApiBiblioteca.Application.DTOs.DtosCliente;
+using ApiBiblioteca.Application.DTOs.DtosEmprestimo;
+using ApiBiblioteca.Application.DTOs.DtosVenda;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,38 +22,34 @@ public class ClienteController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ClienteResponseDto>>> Get()
+    public async Task<ActionResult<IEnumerable<ClienteResponseDto>>> GetAll([FromQuery] QueryParameters parameters)
     {
-        var dtoClientes = await _clienteService.Get();
-        return Ok(dtoClientes);
+        var metadata = await _clienteService.Get(parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
     }
 
-    [HttpGet("id", Name = "ObterCliente")]
-    public async Task<ActionResult<ClienteResponseDto>> GetId(int id)
+    [HttpGet("{clienteId}/Emprestimos")]
+    public async Task<ActionResult<IEnumerable<EmprestimoResponseDto>>> GetComEmprestimos(int clienteId, [FromQuery] QueryParameters parameters)
     {
-        var dtoCliente = await _clienteService.GetId(id);
+        var metadata = await _clienteService.Get(parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
+    }
+
+    [HttpGet("{clienteId}/Vendas")]
+    public async Task<ActionResult<IEnumerable<VendaResponseDto>>> GetComVendas(int clienteId, [FromQuery] QueryParameters parameters)
+    {
+        var metadata = await _clienteService.Get(parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
+    }
+
+    [HttpGet("clienteId", Name = "ObterCliente")]
+    public async Task<ActionResult<ClienteResponseDto>> GetId(int clienteId)
+    {
+        var dtoCliente = await _clienteService.GetId(clienteId);
         return Ok(dtoCliente);
-    }
-
-    [HttpGet("buscar")]
-    public async Task<ActionResult<IEnumerable<ClienteResponseDto>>> GetByName([FromQuery] string nome)
-    {
-        var dtoCliente = await _clienteService.GetByName(nome);
-        return Ok(dtoCliente);
-    }
-
-    [HttpGet("{id}/Emprestimos")]
-    public async Task<ActionResult<ClienteComEmprestimosDto>> GetComEmprestimos(int id)
-    {
-        var dto = await _clienteService.GetClienteComEmprestimos(id);
-        return Ok(dto);
-    }
-
-    [HttpGet("{id}/Vendas")]
-    public async Task<ActionResult<ClienteComVendasDto>> GetComVendas(int id)
-    {
-        var dto = await _clienteService.GetClienteComVendas(id);
-        return Ok(dto);
     }
 
     [HttpPost]
@@ -60,16 +60,16 @@ public class ClienteController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<UpdateClienteDto>> Update(int id,  UpdateClienteDto dto)
+    public async Task<ActionResult<UpdateClienteDto>> Update(int clienteId,  UpdateClienteDto dto)
     {
-        var cliente = await _clienteService.Update(id, dto);
+        var cliente = await _clienteService.Update(clienteId, dto);
         return Ok(cliente);
     }
 
-    [HttpDelete("id")]
-    public async Task<ActionResult> Delete(int id)
+    [HttpDelete("clienteId")]
+    public async Task<ActionResult> Delete(int clienteId)
     {
-        await _clienteService.Delete(id);
+        await _clienteService.Delete(clienteId);
         return NoContent();
     }
 }

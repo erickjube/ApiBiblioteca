@@ -1,5 +1,8 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosAutor;
+﻿using ApiBiblioteca.API.Header;
+using ApiBiblioteca.Application.DTOs.DtosAutor;
+using ApiBiblioteca.Application.DTOs.DtosLivro;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,31 +21,26 @@ public class AutorController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<AutorResponseDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<AutorResponseDto>>> GetAll([FromQuery] QueryParameters parameters)
     {
-        var dtoAutores = await _autorService.Get();
-        return Ok(dtoAutores);
+        var metadata = await _autorService.Get(parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
+    }   
+
+    [HttpGet("{autorId}/livros")]
+    public async Task<ActionResult<IEnumerable<LivroResponseDto>>> GetAutorComLivros(long autorId, [FromQuery] QueryParameters parameters)
+    {
+        var metadata = await _autorService.GetComLivros(autorId, parameters);
+        Response.AppendPaginationHeader(metadata);
+        return Ok(metadata.Data);
     }
 
-    [HttpGet("{id}/livros")]
-    public async Task<ActionResult<AutorComLivrosDto>> GetAutorComLivros(long id)
+    [HttpGet("{autorId}", Name = "ObterAutor")]
+    public async Task<ActionResult<AutorResponseDto>> GetById(long autorId)
     {
-        var dto = await _autorService.GetComLivros(id);
+        var dto = await _autorService.GetId(autorId);
         return Ok(dto);
-    }
-
-    [HttpGet("{id}", Name = "ObterAutor")]
-    public async Task<ActionResult<AutorResponseDto>> GetById(long id)
-    {
-        var dto = await _autorService.GetId(id);
-        return Ok(dto);
-    }
-
-    [HttpGet("buscar")]
-    public async Task<ActionResult<IEnumerable<AutorComLivrosDto>>> GetByNameComLivros([FromQuery] string nome)
-    {
-        var dtoAutores = await _autorService.GetByNameComLivros(nome);
-        return Ok(dtoAutores);
     }
 
     [HttpPost]
@@ -52,17 +50,17 @@ public class AutorController : ControllerBase
         return CreatedAtRoute("ObterAutor", new { id = autorCriado.Id }, autorCriado);
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult<AutorResponseDto>> Update(long id, AutorDto dto)
+    [HttpPut("{autorId}")]
+    public async Task<ActionResult<AutorResponseDto>> Update(long autorId, AutorDto dto)
     {
-        var dtoAtualizado = await _autorService.Update(id, dto);
+        var dtoAtualizado = await _autorService.Update(autorId, dto);
         return Ok(dtoAtualizado);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(long id)
+    [HttpDelete("{autorId}")]
+    public async Task<ActionResult> Delete(long autorId)
     {
-        await _autorService.Delete(id);
+        await _autorService.Delete(autorId);
         return NoContent();
     }
 }

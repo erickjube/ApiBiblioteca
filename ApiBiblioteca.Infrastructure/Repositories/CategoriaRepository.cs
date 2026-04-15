@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces.IRepository;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,24 +15,24 @@ public class CategoriaRepository : ICategoriaRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Categoria>> GetAllAsync()
+    public async Task<PagedList<Categoria>> GetAllAsync(int skip, int take)
     {
-        return await _context.Categoria.ToListAsync();
+        var totalCont = await _context.Categoria.CountAsync();
+        var data = await _context.Categoria.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Categoria> { Data = data, TotalCount = totalCont };
     }
 
-   public async Task<Categoria> GetCategoriaComLivrosAsync(long id)
+   public async Task<PagedList<Livro>> GetLivrosByCategoriaAsync(long categoriaId, int skip, int take)
     {
-        return await _context.Categoria.Include(c => c.Livros).FirstOrDefaultAsync(c => c.Id == id);
+        var query = _context.Livro.Where(l => l.CategoriaId == categoriaId);
+        var totalCount = await query.CountAsync();
+        var data = await query.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Livro> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<IEnumerable<Categoria>> GetByNameComLivrosAsync(string nome)
+    public async Task<Categoria?> GetByIdAsync(long categoriaId)
     {
-        return await _context.Categoria.Include(c => c.Livros).Where(c => c.Nome.Contains(nome)).ToListAsync();
-    }
-
-    public async Task<Categoria?> GetByIdAsync(long id)
-    {
-        return await _context.Categoria.FirstOrDefaultAsync(c => c.Id == id);
+        return await _context.Categoria.FirstOrDefaultAsync(c => c.Id == categoriaId);
     }
 
     public void Create(Categoria categoria)

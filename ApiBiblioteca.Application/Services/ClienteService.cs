@@ -1,7 +1,11 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosCliente;
+using ApiBiblioteca.Application.DTOs.DtosEmprestimo;
+using ApiBiblioteca.Application.DTOs.DtosVenda;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
@@ -21,39 +25,64 @@ public class ClienteService : IClienteService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<ClienteResponseDto>> Get()
+    public async Task<PagedList<ClienteResponseDto>> Get(QueryParameters parameters)
     {
-        var clientes = await _clienteRepository.GetAllAsync() ?? throw new NotFoundException("Cliente não encontrado!"); ;
-        return _mapper.Map<IEnumerable<ClienteResponseDto>>(clientes);
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _clienteRepository.GetAllAsync(skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar clientes.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<ClienteResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<ClienteResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
-    public async Task<ClienteResponseDto> GetId(int id)
+    public async Task<PagedList<EmprestimoResponseDto>> GetComEmprestimos(int clienteId, QueryParameters parameters)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido");
-        var cliente = await _clienteRepository.GetByIdAsync(id) ?? throw new NotFoundException("Cliente não encontrado!");
+        if (clienteId <= 0) throw new BadRequestException("Id inválido!");
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _clienteRepository.GetEmprestimosByClienteAsync(clienteId, skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar emprestimos.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<EmprestimoResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<EmprestimoResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
+    }
+
+    public async Task<PagedList<VendaResponseDto>> GetComVendas(int clienteId, QueryParameters parameters)
+    {
+        if (clienteId <= 0) throw new BadRequestException("Id inválido!");
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _clienteRepository.GetVendasByClienteAsync(clienteId, skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar vendas.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<VendaResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<VendaResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
+    }
+
+    public async Task<ClienteResponseDto> GetId(int clienteId)
+    {
+        if (clienteId <= 0) throw new BadRequestException("Id inválido");
+        var cliente = await _clienteRepository.GetByIdAsync(clienteId) ?? throw new NotFoundException("Cliente não encontrado!");
         return _mapper.Map<ClienteResponseDto>(cliente);
-    }
-
-    public async Task<IEnumerable<ClienteResponseDto>> GetByName(string nome)
-    {
-        if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome inválido!");
-        var clientes = await _clienteRepository.GetByNameAsync(nome) ?? throw new NotFoundException("Cliente não encontrado!");
-        if (!clientes.Any()) throw new NotFoundException("Cliente não encontrado!");
-        return _mapper.Map<IEnumerable<ClienteResponseDto>>(clientes);
-    }
-
-    public async Task<ClienteComEmprestimosDto> GetClienteComEmprestimos(int id)
-    {
-        if (id <= 0) throw new BadRequestException("Id inválido");
-        var autor = await _clienteRepository.GetClienteComEmprestimosAsync(id) ?? throw new NotFoundException("Cliente não encontrado!");
-        return _mapper.Map<ClienteComEmprestimosDto>(autor);
-    }
-
-    public async Task<ClienteComVendasDto> GetClienteComVendas(int id)
-    {
-        if (id <= 0) throw new BadRequestException("Id inválido");
-        var autor = await _clienteRepository.GetClienteComVendasAsync(id) ?? throw new NotFoundException("Cliente não encontrado!");
-        return _mapper.Map<ClienteComVendasDto>(autor);
     }
 
     public async Task<ClienteResponseDto> Create(CreateClienteDto dto)
@@ -66,19 +95,19 @@ public class ClienteService : IClienteService
         return _mapper.Map<ClienteResponseDto>(cliente);
     }
 
-    public async Task<ClienteResponseDto> Update(int id, UpdateClienteDto dto)
+    public async Task<ClienteResponseDto> Update(int clienteId, UpdateClienteDto dto)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var cliente = await _clienteRepository.GetByIdAsync(id) ?? throw new NotFoundException("Cliente não encontrado!");
+        if (clienteId <= 0) throw new BadRequestException("Id inválido!");
+        var cliente = await _clienteRepository.GetByIdAsync(clienteId) ?? throw new NotFoundException("Cliente não encontrado!");
         cliente.AtualizarInformacoes(dto.Nome, dto.Email, dto.Telefone);
         await _UOW.SaveAsync();
         return _mapper.Map<ClienteResponseDto>(cliente);
     }
 
-    public async Task Delete(int id)
+    public async Task Delete(int clienteId)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var cliente = await _clienteRepository.GetByIdAsync(id) ?? throw new NotFoundException("Cliente não encontrado!");
+        if (clienteId <= 0) throw new BadRequestException("Id inválido!");
+        var cliente = await _clienteRepository.GetByIdAsync(clienteId) ?? throw new NotFoundException("Cliente não encontrado!");
         _clienteRepository.Remove(cliente);
         await _UOW.SaveAsync();
     }

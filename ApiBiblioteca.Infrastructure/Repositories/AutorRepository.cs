@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces.IRepository;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,24 +15,24 @@ public class AutorRepository : IAutorRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Autor>> GetAllAsync()
+    public async Task<PagedList<Autor>> GetAllAsync(int skip, int take)
     {
-        return await _context.Autor.ToListAsync();
+        var totalCont = await _context.Autor.CountAsync();
+        var data = await _context.Autor.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Autor> { Data = data, TotalCount = totalCont };
     }
 
-    public async Task<Autor?> GetAutorComLivrosAsync(long id)
+    public async Task<PagedList<Livro>> GetLivrosByAutorIdAsync(long autorId, int skip, int take)
     {
-        return await _context.Autor.Include(a => a.Livros).FirstOrDefaultAsync(a => a.Id == id);
+        var query = _context.Livro.Where(l => l.AutorId == autorId);
+        var totalCount = await query.CountAsync();
+        var data = await query.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Livro> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<Autor?> GetByIdAsync(long id)
+    public async Task<Autor?> GetByIdAsync(long autorId)
     {
-        return await _context.Autor.FirstOrDefaultAsync(a => a.Id == id);
-    }
-
-    public async Task<IEnumerable<Autor?>> GetByNameComLivrosAsync(string nome)
-    {
-        return await _context.Autor.Include(a => a.Livros).Where(c => c.Nome.Contains(nome)).ToListAsync();
+        return await _context.Autor.FirstOrDefaultAsync(a => a.Id == autorId);
     }
 
     public void Create(Autor autor)

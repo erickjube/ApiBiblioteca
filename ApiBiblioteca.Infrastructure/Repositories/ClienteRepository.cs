@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces.IRepository;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,29 +15,32 @@ public class ClienteRepository : IClienteRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Cliente>> GetAllAsync()
+    public async Task<PagedList<Cliente>> GetAllAsync(int skip, int take)
     {
-        return await _context.Cliente.ToListAsync();
+        var totalCont = await _context.Cliente.CountAsync();
+        var data = await _context.Cliente.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Cliente> { Data = data, TotalCount = totalCont };
     }
 
-    public async Task<Cliente?> GetByIdAsync(int id)
+    public async Task<PagedList<Emprestimo>> GetEmprestimosByClienteAsync(int clienteId, int skip, int take)
     {
-        return await _context.Cliente.FirstOrDefaultAsync(c => c.Id == id);
+        var query = _context.Emprestimo.Where(l => l.ClienteId == clienteId);
+        var totalCount = await query.CountAsync();
+        var data = await query.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Emprestimo> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<IEnumerable<Cliente?>> GetByNameAsync(string nome)
+    public async Task<PagedList<Venda>> GetVendasByClienteAsync(int clienteId, int skip, int take)
     {
-        return await _context.Cliente.Where(c => c.Nome.Contains(nome)).ToListAsync();
+        var query = _context.Venda.Where(l => l.ClienteId == clienteId);
+        var totalCount = await query.CountAsync();
+        var data = await query.Skip(skip).Take(take).ToListAsync();
+        return new PagedList<Venda> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<Cliente?> GetClienteComEmprestimosAsync(int id)
+    public async Task<Cliente?> GetByIdAsync(int clienteId)
     {
-        return await _context.Cliente.Include(c => c.Emprestimos).FirstOrDefaultAsync(c => c.Id == id);
-    }
-
-    public async Task<Cliente?> GetClienteComVendasAsync(int id)
-    {
-        return await _context.Cliente.Include(c => c.Vendas).FirstOrDefaultAsync(c => c.Id == id);
+        return await _context.Cliente.FirstOrDefaultAsync(c => c.Id == clienteId);
     }
 
     public void Create(Cliente cliente)

@@ -27,10 +27,9 @@ public class VendaRepository : IVendaRepository
         return await _context.Venda.FindAsync(id);
     }
 
-    public async Task<PagedList<ItemVenda>> GetItensVendaByIdAsync(int VendaId, int skip, int take)
+    public async Task<PagedList<ItemVenda>> GetItensVendaByIdAsync(int vendaId, int skip, int take)
     {
-        var query = _context.ItemVenda.Where(i => i.VendaId == VendaId).Include(i => i.Exemplar);
-
+        var query = _context.ItemVenda.Where(i => i.VendaId == vendaId).Include(i => i.Exemplar);
         var totalCount = await query.CountAsync();
         var data = await query.Skip(skip).Take(take).ToListAsync();
         return new PagedList<ItemVenda> { Data = data, TotalCount = totalCount };

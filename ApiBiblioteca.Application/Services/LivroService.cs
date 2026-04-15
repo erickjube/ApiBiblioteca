@@ -1,7 +1,11 @@
-﻿using ApiBiblioteca.Application.DTOs.DtosLivro;
+﻿using ApiBiblioteca.Application.DTOs.DtosAutor;
+using ApiBiblioteca.Application.DTOs.DtosExemplar;
+using ApiBiblioteca.Application.DTOs.DtosLivro;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
+using ApiBiblioteca.Application.Pagination;
+using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
@@ -21,32 +25,46 @@ public class LivroService : ILivroService
         _UOW = uOW;
     }
 
-    public async Task<IEnumerable<LivroResponseDto>> Get()
+    public async Task<PagedList<LivroResponseDto>> Get(QueryParameters parameters)
     {
-        var livros = await _livroRepository.GetAllAsync();
-        return _mapper.Map<IEnumerable<LivroResponseDto>>(livros);
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _livroRepository.GetAllAsync(skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar livros.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<LivroResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<LivroResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
     }
 
-    public async Task<LivroResponseDto> GetId(long id)
+    public async Task<PagedList<ExemplarResponseDto>> GetComExemplares(long livroId, QueryParameters parameters)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var livro = await _livroRepository.GetByIdAsync(id) ?? throw new NotFoundException("Livro não encontrado!");
+        if (livroId <= 0) throw new BadRequestException("Id inválido!");
+        var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+        var result = await _livroRepository.GetExemplaresByLivroAsync(livroId, skip, parameters.PageSize);
+        if (result == null) throw new NotFoundException("Erro ao buscar livros.");
+        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
+        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+
+        return new PagedList<ExemplarResponseDto>
+        {
+            Data = _mapper.Map<IEnumerable<ExemplarResponseDto>>(result.Data),
+            TotalCount = result.TotalCount,
+            PageNumber = parameters.PageNumber,
+            PageSize = parameters.PageSize
+        };
+    }
+
+    public async Task<LivroResponseDto> GetId(long livroId)
+    {
+        if (livroId <= 0) throw new BadRequestException("Id inválido!");
+        var livro = await _livroRepository.GetByIdAsync(livroId) ?? throw new NotFoundException("Livro não encontrado!");
         return _mapper.Map<LivroResponseDto>(livro);
-    }
-
-    public async Task<LivroComExemplaresDto> GetLivroComExemplares(long id)
-    {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var livro = await _livroRepository.GetLivroComExemplaresAsync(id) ?? throw new NotFoundException("Livro não encontrado!");
-        return _mapper.Map<LivroComExemplaresDto>(livro);
-    }
-
-    public async Task<IEnumerable<LivroComExemplaresDto>> GetByNameComExemplares(string titulo)
-    {
-        if (string.IsNullOrWhiteSpace(titulo)) throw new BadRequestException("Titulo inválido!");
-        var livros = await _livroRepository.GetByNameComExemplaresAsync(titulo) ?? throw new NotFoundException("Livro não encontrado!");
-        if (!livros.Any()) throw new NotFoundException("Livro não encontrado!");
-        return _mapper.Map<IEnumerable<LivroComExemplaresDto>>(livros);
     }
 
     public async Task<LivroResponseDto> Create(CreateLivroDto dto)
@@ -63,19 +81,19 @@ public class LivroService : ILivroService
         return _mapper.Map<LivroResponseDto>(livro);
     }
 
-    public async Task<LivroResponseDto> Update(long id, UpdateLivroDto dto)
+    public async Task<LivroResponseDto> Update(long livroId, UpdateLivroDto dto)
     {
         if (dto == null) throw new BadRequestException("Livro inválido!");
-        var livro = await _livroRepository.GetByIdAsync(id) ?? throw new NotFoundException("Livro não encontrado!");
+        var livro = await _livroRepository.GetByIdAsync(livroId) ?? throw new NotFoundException("Livro não encontrado!");
         livro.AtualizarInformacoes(dto.Titulo, dto.NumeroDePaginas, dto.DataPublicacao, dto.CategoriaId);
         await _UOW.SaveAsync();
         return _mapper.Map<LivroResponseDto>(livro);
     }
 
-    public async Task Delete(long id)
+    public async Task Delete(long livroId)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var livro = await _livroRepository.GetByIdAsync(id) ?? throw new NotFoundException("Livro não encontrado!");
+        if (livroId <= 0) throw new BadRequestException("Id inválido!");
+        var livro = await _livroRepository.GetByIdAsync(livroId) ?? throw new NotFoundException("Livro não encontrado!");
         livro.ValidarExclusao();
          _livroRepository.Remove(livro);
         await _UOW.SaveAsync();

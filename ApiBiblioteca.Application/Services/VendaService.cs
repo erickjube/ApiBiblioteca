@@ -27,11 +27,11 @@ public class VendaService : IVendaService
         _UOW = uOW;
     }
 
-    public async Task<PagedList<VendaResponseDto>> ObterVendas(QueryParameters parameters)
+    public async Task<PagedList<VendaResponseDto>> GetAll(QueryParameters parameters)
     {
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _vendaRepository.GetAllAsync(skip, parameters.PageSize);
-        if (result.Data == null || !result.Data.Any()) throw new NotFoundException("Nenhuma venda encontrada.");
+        if (result == null) throw new NotFoundException("Erro ao buscar vendas.");
         var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
         if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
 
@@ -44,18 +44,19 @@ public class VendaService : IVendaService
         };
     }
 
-    public async Task<VendaResponseDto> ObterVendaPorId(int vendaId)
+    public async Task<VendaResponseDto> GetId(int vendaId)
     {
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         return _mapper.Map<VendaResponseDto>(venda);
     }
 
-    public async Task<PagedList<ItemVendaResponseDto>> ObterVendaComItens(int vendaId, QueryParameters parameters)
+    public async Task<PagedList<ItemVendaResponseDto>> GetComItens(int vendaId, QueryParameters parameters)
     {
+        if (vendaId <= 0) throw new BadRequestException("Id inválido!");
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _vendaRepository.GetItensVendaByIdAsync(vendaId, skip, parameters.PageSize);
-        if (result.Data == null || !result.Data.Any()) throw new NotFoundException("Nenhuma venda encontrada.");
+        if (result == null) throw new NotFoundException("Erro ao buscar itens.");
         var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
         if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
 
