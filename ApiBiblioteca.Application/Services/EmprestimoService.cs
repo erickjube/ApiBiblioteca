@@ -11,7 +11,7 @@ using ApiBiblioteca.Domain.ENUMs;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
 
-namespace ApiBiblioteca.Services;
+namespace ApiBiblioteca.Application.Services;
 
 public class EmprestimoService : IEmprestimoService
 {

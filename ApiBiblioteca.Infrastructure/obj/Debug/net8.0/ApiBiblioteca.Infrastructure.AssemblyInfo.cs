@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiBiblioteca.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0edc755ba9e39a144e957fa8a320332a2c892d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+545b7e5b919d94814ae6092980d7ec8d6b8ffaf1")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiBiblioteca.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiBiblioteca.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,30 +1,14 @@
-﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
-using ApiBiblioteca.Application.Interfaces;
-using ApiBiblioteca.Application.Interfaces.IRepository;
-using ApiBiblioteca.Application.Interfaces.IServices;
-using ApiBiblioteca.Application.Interfaces.Services;
-using ApiBiblioteca.Domain.Repositories;
-using ApiBiblioteca.DTOs;
-using ApiBiblioteca.Infrastructure.Data;
+﻿using ApiBiblioteca.Application.DependencyInjection;
+using ApiBiblioteca.Infrastructure.DependencyInjection;
 using ApiBiblioteca.Middleware;
-using ApiBiblioteca.Repositories;
-using ApiBiblioteca.Seeders;
-using ApiBiblioteca.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-
-builder.Services.AddDbContext<MeuDbContext>(options => options.UseSqlServer(mySqlConnection));
-
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -54,81 +38,15 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddControllers().AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ILivroRepository, LivroRepository>();
-builder.Services.AddScoped<ILivroService, LivroService>();
-
-builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
-builder.Services.AddScoped<ICategoriaService, CategoriaService>();
-
-builder.Services.AddScoped<IAutorRepository, AutorRepository>();
-builder.Services.AddScoped<IAutorService, AutorService>();
-
-builder.Services.AddScoped<IExemplarRepository, ExemplarRepository>();
-builder.Services.AddScoped<IExemplarService, ExemplarService>();
-
-builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-builder.Services.AddScoped<IClienteService, ClienteService>();
-
-builder.Services.AddScoped<IEmprestimoRepository, EmprestimoRepository>();
-builder.Services.AddScoped<IEmprestimoService, EmprestimoService>();
-
-builder.Services.AddScoped<IVendaRepository, VendaRepository>();
-builder.Services.AddScoped<IVendaService, VendaService>();
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-builder.Services.AddScoped<IMultaRepository, MultaRepository>();
-
-builder.Services.AddScoped<ITokenService, TokenService>();
-
-builder.Services.AddAutoMapper(typeof(DtoMappingProfile));
-
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<MeuDbContext>()
-                .AddDefaultTokenProviders();
-
-// diz para o Asp.Net como validar o token que chegar nas requisições
-var secretKey = builder.Configuration["JWT:SecretKey"] ?? throw new ArgumentException("Invalid Sercret Key!");
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(option =>
-{
-    option.SaveToken = true;
-    // Em produção o ideal é true
-    option.RequireHttpsMetadata = false;
-    option.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ClockSkew = TimeSpan.Zero,
-        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
-    };
-});
-
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Funcionarios", policy => policy.RequireRole("Admin", "Bibliotecario"));
-});
-
+builder.Services
+    .AddInfrastructure(builder.Configuration)
+    .AddApplication()
+    .AddAuth(builder.Configuration);
 
 var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-    await IdentitySeeder.SeedRolesAndAdminAsync(userManager, roleManager);
-}
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -137,7 +55,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
-app.UseAuthentication();  
-app.UseAuthorization();
+app.UseAuthentication();   
+app.UseAuthorization();    
 app.MapControllers();
 app.Run();

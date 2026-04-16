@@ -10,7 +10,7 @@ using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
 
-namespace ApiBiblioteca.Services;
+namespace ApiBiblioteca.Application.Services;
 
 public class LivroService : ILivroService
 {

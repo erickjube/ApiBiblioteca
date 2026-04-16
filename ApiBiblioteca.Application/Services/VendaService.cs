@@ -10,7 +10,7 @@ using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
 using MySqlX.XDevAPI.Common;
 
-namespace ApiBiblioteca.Services;
+namespace ApiBiblioteca.Application.Services;
 
 public class VendaService : IVendaService
 {
