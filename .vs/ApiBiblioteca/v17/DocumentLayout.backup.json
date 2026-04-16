@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{657FB66E-4ECF-448F-BF7D-4094AB71DEFB}|ApiBiblioteca.Application\\ApiBiblioteca.Application.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.application\\interfaces\\iservices\\ilivroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{657FB66E-4ECF-448F-BF7D-4094AB71DEFB}|ApiBiblioteca.Application\\ApiBiblioteca.Application.csproj|solutionrelative:apibiblioteca.application\\interfaces\\iservices\\ilivroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.infrastructure\\repositories\\livrorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|solutionrelative:apibiblioteca.infrastructure\\repositories\\livrorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{657FB66E-4ECF-448F-BF7D-4094AB71DEFB}|ApiBiblioteca.Application\\ApiBiblioteca.Application.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.application\\services\\livroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{657FB66E-4ECF-448F-BF7D-4094AB71DEFB}|ApiBiblioteca.Application\\ApiBiblioteca.Application.csproj|solutionrelative:apibiblioteca.application\\services\\livroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.API.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\controllers\\livrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.API.csproj|solutionrelative:apibliblioteca\\controllers\\livrocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{657FB66E-4ECF-448F-BF7D-4094AB71DEFB}|ApiBiblioteca.Application\\ApiBiblioteca.Application.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.application\\services\\autorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{657FB66E-4ECF-448F-BF7D-4094AB71DEFB}|ApiBiblioteca.Application\\ApiBiblioteca.Application.csproj|solutionrelative:apibiblioteca.application\\services\\autorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.infrastructure\\repositories\\autorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|solutionrelative:apibiblioteca.infrastructure\\repositories\\autorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.API.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibliblioteca\\controllers\\autorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25A8CD2C-7795-7BEB-1823-2DB8FB40D84A}|ApiBliblioteca\\ApiBiblioteca.API.csproj|solutionrelative:apibliblioteca\\controllers\\autorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,27 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LivroRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Repositories\\LivroRepository.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Infrastructure\\Repositories\\LivroRepository.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Repositories\\LivroRepository.cs",
-              "RelativeToolTip": "ApiBiblioteca.Infrastructure\\Repositories\\LivroRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ILivroService.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Application\\Interfaces\\IServices\\ILivroService.cs",
+              "RelativeDocumentMoniker": "ApiBiblioteca.Application\\Interfaces\\IServices\\ILivroService.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Application\\Interfaces\\IServices\\ILivroService.cs",
+              "RelativeToolTip": "ApiBiblioteca.Application\\Interfaces\\IServices\\ILivroService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABrAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T19:36:42.975Z",
+              "WhenOpened": "2026-04-16T17:06:45.099Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LivroService.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Application\\Services\\LivroService.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Application\\Services\\LivroService.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Application\\Services\\LivroService.cs",
-              "RelativeToolTip": "ApiBiblioteca.Application\\Services\\LivroService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "LivroRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Repositories\\LivroRepository.cs",
+              "RelativeDocumentMoniker": "ApiBiblioteca.Infrastructure\\Repositories\\LivroRepository.cs",
+              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Repositories\\LivroRepository.cs",
+              "RelativeToolTip": "ApiBiblioteca.Infrastructure\\Repositories\\LivroRepository.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAiwAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T19:36:40.027Z",
+              "WhenOpened": "2026-04-16T17:06:39.884Z",
               "EditorCaption": ""
             },
             {
@@ -70,48 +58,9 @@
               "RelativeDocumentMoniker": "ApiBliblioteca\\Controllers\\LivroController.cs",
               "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Controllers\\LivroController.cs",
               "RelativeToolTip": "ApiBliblioteca\\Controllers\\LivroController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAADgvyAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T19:36:35.465Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AutorRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Repositories\\AutorRepository.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Infrastructure\\Repositories\\AutorRepository.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Repositories\\AutorRepository.cs",
-              "RelativeToolTip": "ApiBiblioteca.Infrastructure\\Repositories\\AutorRepository.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T18:09:02.289Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AutorService.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Application\\Services\\AutorService.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Application\\Services\\AutorService.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Application\\Services\\AutorService.cs",
-              "RelativeToolTip": "ApiBiblioteca.Application\\Services\\AutorService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T17:46:51.393Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AutorController.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Controllers\\AutorController.cs",
-              "RelativeDocumentMoniker": "ApiBliblioteca\\Controllers\\AutorController.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBliblioteca\\Controllers\\AutorController.cs",
-              "RelativeToolTip": "ApiBliblioteca\\Controllers\\AutorController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-15T18:50:25.948Z",
+              "WhenOpened": "2026-04-16T17:06:30.81Z",
               "EditorCaption": ""
             }
           ]

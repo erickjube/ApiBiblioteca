@@ -1774,6 +1774,24 @@
         "tags": [
           "Livro"
         ],
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1853,7 +1871,63 @@
         }
       }
     },
-    "/api/Livro/{id}": {
+    "/api/Livro/{livroId}/Exemplares": {
+      "get": {
+        "tags": [
+          "Livro"
+        ],
+        "parameters": [
+          {
+            "name": "livroId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LivroComExemplaresDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LivroComExemplaresDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LivroComExemplaresDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Livro/{livroId}": {
       "get": {
         "tags": [
           "Livro"
@@ -1861,7 +1935,7 @@
         "operationId": "ObterLivro",
         "parameters": [
           {
-            "name": "id",
+            "name": "livroId",
             "in": "path",
             "required": true,
             "schema": {
@@ -1899,7 +1973,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "livroId",
             "in": "path",
             "required": true,
             "schema": {
@@ -1956,7 +2030,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "livroId",
             "in": "path",
             "required": true,
             "schema": {
@@ -1968,93 +2042,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Livro/{id}/Exemplares": {
-      "get": {
-        "tags": [
-          "Livro"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/LivroComExemplaresDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LivroComExemplaresDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LivroComExemplaresDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Livro/buscar": {
-      "get": {
-        "tags": [
-          "Livro"
-        ],
-        "parameters": [
-          {
-            "name": "titulo",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/LivroComExemplaresDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/LivroComExemplaresDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/LivroComExemplaresDto"
-                  }
-                }
-              }
-            }
           }
         }
       }

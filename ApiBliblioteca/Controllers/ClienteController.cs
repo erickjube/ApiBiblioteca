@@ -32,7 +32,7 @@ public class ClienteController : ControllerBase
     [HttpGet("{clienteId}/Emprestimos")]
     public async Task<ActionResult<IEnumerable<EmprestimoResponseDto>>> GetComEmprestimos(int clienteId, [FromQuery] QueryParameters parameters)
     {
-        var metadata = await _clienteService.Get(parameters);
+        var metadata = await _clienteService.GetComEmprestimos(clienteId, parameters);
         Response.AppendPaginationHeader(metadata);
         return Ok(metadata.Data);
     }
@@ -40,7 +40,7 @@ public class ClienteController : ControllerBase
     [HttpGet("{clienteId}/Vendas")]
     public async Task<ActionResult<IEnumerable<VendaResponseDto>>> GetComVendas(int clienteId, [FromQuery] QueryParameters parameters)
     {
-        var metadata = await _clienteService.Get(parameters);
+        var metadata = await _clienteService.GetComVendas(clienteId, parameters);
         Response.AppendPaginationHeader(metadata);
         return Ok(metadata.Data);
     }

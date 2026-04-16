@@ -1068,7 +1068,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosLivro.LivroResponseDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -1110,13 +1121,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.LivroController",
     "Method": "GetById",
-    "RelativePath": "api/Livro/{id}",
+    "RelativePath": "api/Livro/{livroId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "livroId",
         "Type": "System.Int64",
         "IsRequired": true
       }
@@ -1137,13 +1148,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.LivroController",
     "Method": "Update",
-    "RelativePath": "api/Livro/{id}",
+    "RelativePath": "api/Livro/{livroId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "livroId",
         "Type": "System.Int64",
         "IsRequired": true
       },
@@ -1168,13 +1179,13 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.LivroController",
     "Method": "Delete",
-    "RelativePath": "api/Livro/{id}",
+    "RelativePath": "api/Livro/{livroId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "livroId",
         "Type": "System.Int64",
         "IsRequired": true
       }
@@ -1184,46 +1195,30 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.LivroController",
     "Method": "GetLivroComExemplares",
-    "RelativePath": "api/Livro/{id}/Exemplares",
+    "RelativePath": "api/Livro/{livroId}/Exemplares",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "livroId",
         "Type": "System.Int64",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
+      },
       {
-        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.LivroComExemplaresDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ApiBiblioteca.Controllers.LivroController",
-    "Method": "GetByNameComExemplares",
-    "RelativePath": "api/Livro/buscar",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
       {
-        "Name": "titulo",
-        "Type": "System.String",
+        "Name": "PageSize",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiBiblioteca.Application.DTOs.DtosLivro.LivroComExemplaresDto, ApiBiblioteca.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosLivro.LivroComExemplaresDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
