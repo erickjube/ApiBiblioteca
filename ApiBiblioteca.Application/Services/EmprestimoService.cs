@@ -128,7 +128,10 @@ public class EmprestimoService : IEmprestimoService
         if (emprestimoId <= 0) throw new BadRequestException("Id inválido");
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        var multa = emprestimo.DevolverItem(dto.ItemId, dto.Condicao);
+        var item = await _emprestimoRepository.GetItemByIdAsync(dto.ItemId);
+        if (item is null) throw new NotFoundException("Item não encontrado");
+        var exemplar = await _exemplarRepository.GetByIdAsync(item.ExemplarId);
+        var multa = emprestimo.DevolverItem(item, exemplar, dto.Condicao);
         if (multa != null) await _multaRepository.AddAsync(multa);
         await _UOW.SaveAsync();
     }

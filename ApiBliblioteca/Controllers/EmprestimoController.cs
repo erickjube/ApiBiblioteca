@@ -66,7 +66,7 @@ public class EmprestimoController : ControllerBase
     }
 
     [HttpPatch("{emprestimoId}/itens/devolucao")]
-    public async Task<ActionResult> DevolverItem( int emprestimoId, [FromBody] DevolverItemEmprestimoDto dto)
+    public async Task<ActionResult> DevolverItem( int emprestimoId, [FromQuery] DevolverItemEmprestimoDto dto)
     {
         await _emprestimoService.DevolverItem(emprestimoId, dto);
         return NoContent();

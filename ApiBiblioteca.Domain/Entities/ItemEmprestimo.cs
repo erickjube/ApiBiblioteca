@@ -30,7 +30,7 @@ public class ItemEmprestimo
         Status = StatusItemEmprestimo.Disponivel;
     }
 
-    public Multa? DevolverItem(CondicaoItem condicao, DateOnly previsaoDevolucao)
+    public Multa? DevolverItem(CondicaoItem condicao, ExemplarLivro exemplar, DateOnly previsaoDevolucao)
     {
         if (Status != StatusItemEmprestimo.Emprestado) throw new BadRequestException("Item não está emprestado.");
         var hoje = DateOnly.FromDateTime(DateTime.UtcNow);
@@ -53,7 +53,7 @@ public class ItemEmprestimo
         }
 
         Status = StatusItemEmprestimo.Devolvido;
-        Exemplar.Devolver();
+        exemplar.Devolver();
 
         var diasAtraso = Math.Max(0, hoje.DayNumber - previsaoDevolucao.DayNumber);
         const decimal valorMultaDia = 5;

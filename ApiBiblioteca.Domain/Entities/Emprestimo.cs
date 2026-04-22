@@ -38,12 +38,11 @@ public class Emprestimo
         Itens.Add(item);
     }
 
-    public Multa? DevolverItem(int itemId, CondicaoItem condicao)
+    public Multa? DevolverItem(ItemEmprestimo item, ExemplarLivro exemplar, CondicaoItem condicao)
     {
         if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Empréstimo não está ativo.");
-        var item = Itens.FirstOrDefault(i => i.Id == itemId);
-        if (item == null) throw new BadRequestException("Item não encontrado.");
-        return item.DevolverItem(condicao, PrevisaoDevolucao);
+        if (exemplar is null) throw new NotFoundException("Exemplar não encontrado.");
+        return item.DevolverItem(condicao, exemplar, PrevisaoDevolucao);
     }
 
     public void Finalizar()

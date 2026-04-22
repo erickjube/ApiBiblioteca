@@ -828,9 +828,14 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
-        "Type": "ApiBiblioteca.Application.DTOs.DtosItemEmprestimo.DevolverItemEmprestimoDto",
-        "IsRequired": true
+        "Name": "ItemId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Condicao",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

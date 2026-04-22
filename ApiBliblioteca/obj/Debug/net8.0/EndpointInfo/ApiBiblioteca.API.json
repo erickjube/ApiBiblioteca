@@ -1405,27 +1405,23 @@
               "type": "integer",
               "format": "int32"
             }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DevolverItemEmprestimoDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DevolverItemEmprestimoDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/DevolverItemEmprestimoDto"
-              }
+          },
+          {
+            "name": "ItemId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Condicao",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/CondicaoItem"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2634,19 +2630,6 @@
             "minimum": 1,
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "DevolverItemEmprestimoDto": {
-        "type": "object",
-        "properties": {
-          "itemId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "condicao": {
-            "$ref": "#/components/schemas/CondicaoItem"
           }
         },
         "additionalProperties": false
