@@ -22,6 +22,14 @@ public class ItemEmprestimo
         Status = StatusItemEmprestimo.Emprestado;
     }
 
+    public void Cancelar()
+    {
+        if (Status == StatusItemEmprestimo.Devolvido)
+            return;
+
+        Status = StatusItemEmprestimo.Disponivel;
+    }
+
     public Multa? DevolverItem(CondicaoItem condicao, DateOnly previsaoDevolucao)
     {
         if (Status != StatusItemEmprestimo.Emprestado) throw new BadRequestException("Item não está emprestado.");

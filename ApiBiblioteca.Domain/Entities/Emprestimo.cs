@@ -57,7 +57,10 @@ public class Emprestimo
     {
         if (Status != StatusEmprestimo.Ativo) throw new BadRequestException("Empréstimo já está finalizado ou cancelado.");
         if (EstaAtrasado) throw new BadRequestException("Não é possivel cancelar um empréstimo que esta atrasado");
-        if (Itens.Any()) throw new BadRequestException("Não é possível cancelar um empréstimo que possui itens.");
+        foreach (var item in Itens)
+        {
+            item.Cancelar(); // você vai precisar criar isso
+        }
         Status = StatusEmprestimo.Cancelado;
     }
 

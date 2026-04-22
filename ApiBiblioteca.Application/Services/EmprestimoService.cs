@@ -156,6 +156,11 @@ public class EmprestimoService : IEmprestimoService
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         emprestimo.Cancelar();
+        foreach (var item in emprestimo.Itens)
+        {
+            var exemplar = await _exemplarRepository.GetByIdAsync(item.ExemplarId);
+            exemplar.Devolver();
+        }
         await _UOW.SaveAsync();
     }
 

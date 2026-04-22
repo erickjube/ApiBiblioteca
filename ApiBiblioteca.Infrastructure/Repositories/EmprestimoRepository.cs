@@ -39,14 +39,14 @@ public class EmprestimoRepository : IEmprestimoRepository
         return new PagedList<ItemEmprestimo> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<Emprestimo> GetByIdAsync(int emprestimoId)
+    public async Task<Emprestimo?> GetByIdAsync(int emprestimoId)
     {
-        return await _context.Emprestimo.FirstOrDefaultAsync(a => a.Id == emprestimoId);
+        return await _context.Emprestimo.Include(e => e.Itens).FirstOrDefaultAsync(e => e.Id == emprestimoId);
     }
 
     public async Task<Emprestimo?> GetMultas(int emprestimoId)
     {
-        return await _context.Emprestimo.Include(e => e.Multas).FirstOrDefaultAsync(e => e.Id == emprestimoId);
+        return await _context.Emprestimo.Include(e => e.Multas).Include(e => e.Itens).FirstOrDefaultAsync(e => e.Id == emprestimoId);
     }
 
     public async Task AddAsync(Emprestimo emprestimo)
