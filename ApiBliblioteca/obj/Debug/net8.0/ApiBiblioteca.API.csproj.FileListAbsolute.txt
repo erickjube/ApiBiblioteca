@@ -175,3 +175,6 @@ C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBi
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca\bin\Debug\net8.0\runtimes\win-x64\native\krb5_64.dll
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

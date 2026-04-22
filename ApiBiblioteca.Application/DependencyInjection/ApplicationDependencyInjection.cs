@@ -1,9 +1,10 @@
 ﻿using ApiBiblioteca.Application.Interfaces.IServices;
 using ApiBiblioteca.Application.Interfaces.Services;
 using ApiBiblioteca.Application.Services;
+using ApiBiblioteca.Application.Validators.EmprestimoDto;
+using ApiBiblioteca.Application.Validators.ItemEmprestimoDto;
 using ApiBiblioteca.DTOs;
-
-
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ApiBiblioteca.Application.DependencyInjection;
@@ -19,6 +20,11 @@ public static class ApplicationDependencyInjection
         services.AddScoped<IClienteService, ClienteService>();
         services.AddScoped<IEmprestimoService, EmprestimoService>();
         services.AddScoped<IVendaService, VendaService>();
+
+
+        services.AddValidatorsFromAssemblyContaining<CreateEmprestimoDtoValidator>();
+        services.AddValidatorsFromAssemblyContaining<DevolverItemDtoValidator>();
+        services.AddValidatorsFromAssemblyContaining<EstenderDevolucaoDtoValidator>();
 
         services.AddAutoMapper(typeof(DtoMappingProfile));
 

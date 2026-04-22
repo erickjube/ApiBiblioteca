@@ -13,10 +13,10 @@ public interface IEmprestimoService
     Task<PagedList<MultaResponseDto>> GetComMultas(int emprestimoId, QueryParameters parameters);
     Task<PagedList<ItemEmprestimoResponseDto>> GetComItens(int emprestimoId, QueryParameters parameters);
     Task<EmprestimoResponseDto> GetEmprestimoById(int emprestimoId);
-    Task<EmprestimoResponseDto> CreateEmprestimo(int clienteId);
+    Task<EmprestimoResponseDto> CreateEmprestimo(CreateEmprestimoDto dto);
     public Task<EmprestimoResponseDto> AdicionarItem(int emprestimoId, int exemplarId);
-    public Task DevolverItem(int emprestimoId, int itemId, CondicaoItem condicao);
+    public Task DevolverItem(int emprestimoId, DevolverItemEmprestimoDto dto);
     public Task FinalizarEmprestimo(int emprestimoId);
     public Task CancelarEmprestimo(int emprestimoId);
-    public Task EstenderPrazoDevolucao(int emprestimoId, DateOnly novoPrazoDevolucao);
+    public Task EstenderPrazoDevolucao(EstenderDevolucaoDto dto);
 }

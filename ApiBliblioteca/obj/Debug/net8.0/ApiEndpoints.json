@@ -677,9 +677,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "clienteId",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "dto",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosEmprestimo.CreateEmprestimoDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -719,14 +719,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "emprestimoId",
-        "Type": "System.Int32",
+        "Name": "dto",
+        "Type": "ApiBiblioteca.Application.DTOs.DtosEmprestimo.EstenderDevolucaoDto",
         "IsRequired": true
       },
       {
-        "Name": "novoPrazoDevolucao",
-        "Type": "System.DateOnly",
-        "IsRequired": false
+        "Name": "emprestimoId",
+        "Type": "",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -828,7 +828,7 @@
         "IsRequired": true
       },
       {
-        "Name": "request",
+        "Name": "dto",
         "Type": "ApiBiblioteca.Application.DTOs.DtosItemEmprestimo.DevolverItemEmprestimoDto",
         "IsRequired": true
       }

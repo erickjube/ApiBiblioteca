@@ -1139,16 +1139,25 @@
         "tags": [
           "Emprestimo"
         ],
-        "parameters": [
-          {
-            "name": "clienteId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEmprestimoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEmprestimoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEmprestimoDto"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -1481,19 +1490,29 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "novoPrazoDevolucao",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date"
+              "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstenderDevolucaoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstenderDevolucaoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstenderDevolucaoDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -2518,6 +2537,16 @@
         },
         "additionalProperties": false
       },
+      "CreateEmprestimoDto": {
+        "type": "object",
+        "properties": {
+          "clienteId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "CreateExemplarDto": {
         "required": [
           "codigoDeBarras",
@@ -2681,6 +2710,20 @@
           "clienteId": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EstenderDevolucaoDto": {
+        "type": "object",
+        "properties": {
+          "emprestimoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "novoPrazoDevolucao": {
+            "type": "string",
+            "format": "date"
           }
         },
         "additionalProperties": false

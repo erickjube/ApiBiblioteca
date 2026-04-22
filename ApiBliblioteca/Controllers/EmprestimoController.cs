@@ -52,9 +52,9 @@ public class EmprestimoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<EmprestimoResponseDto>> Create(int clienteId)
+    public async Task<ActionResult<EmprestimoResponseDto>> Create(CreateEmprestimoDto dto)
     {
-        var emprestimoCriado = await _emprestimoService.CreateEmprestimo(clienteId);
+        var emprestimoCriado = await _emprestimoService.CreateEmprestimo(dto);
         return CreatedAtRoute("ObterEmprestimo", new { id = emprestimoCriado.Id }, emprestimoCriado);
     }
 
@@ -66,9 +66,9 @@ public class EmprestimoController : ControllerBase
     }
 
     [HttpPatch("{emprestimoId}/itens/devolucao")]
-    public async Task<ActionResult> DevolverItem( int emprestimoId, [FromBody] DevolverItemEmprestimoDto request)
+    public async Task<ActionResult> DevolverItem( int emprestimoId, [FromBody] DevolverItemEmprestimoDto dto)
     {
-        await _emprestimoService.DevolverItem(emprestimoId, request.ItemId, request.Condicao);
+        await _emprestimoService.DevolverItem(emprestimoId, dto);
         return NoContent();
     }
 
@@ -87,9 +87,9 @@ public class EmprestimoController : ControllerBase
     }
 
     [HttpPost("{emprestimoId}/estender-prazo")]
-    public async Task<ActionResult> EstenderPrazoDevolucao(int emprestimoId, DateOnly novoPrazoDevolucao)
+    public async Task<ActionResult> EstenderPrazoDevolucao(EstenderDevolucaoDto dto)
     {
-        await _emprestimoService.EstenderPrazoDevolucao(emprestimoId, novoPrazoDevolucao);
+        await _emprestimoService.EstenderPrazoDevolucao(dto);
         return NoContent();
     }
 }

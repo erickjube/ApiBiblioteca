@@ -1,6 +1,7 @@
 ﻿using ApiBiblioteca.Application.DependencyInjection;
 using ApiBiblioteca.Infrastructure.DependencyInjection;
 using ApiBiblioteca.Middleware;
+using FluentValidation.AspNetCore;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 
@@ -9,6 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
+// valida automaticamente os DTOs
+builder.Services.AddFluentValidationAutoValidation();
+
+// suporte pra validação
+builder.Services.AddFluentValidationClientsideAdapters();
 
 builder.Services.AddSwaggerGen(c =>
 {

@@ -1,6 +1,7 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosEmprestimo;
 using ApiBiblioteca.Application.DTOs.DtosItemEmprestimo;
 using ApiBiblioteca.Application.DTOs.DtosMulta;
+using ApiBiblioteca.Application.Helpers;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.Services;
@@ -42,8 +43,7 @@ public class EmprestimoService : IEmprestimoService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _emprestimoRepository.GetAllAsync(skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar emprestimos.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<EmprestimoResponseDto>
         {
@@ -60,8 +60,7 @@ public class EmprestimoService : IEmprestimoService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _emprestimoRepository.GetMultasByEmprestimo(emprestimoId, skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar multas.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<MultaResponseDto>
         {
@@ -78,8 +77,7 @@ public class EmprestimoService : IEmprestimoService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _emprestimoRepository.GetItensByEmprestimo(emprestimoId, skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar itens.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<ItemEmprestimoResponseDto>
         {
@@ -98,13 +96,15 @@ public class EmprestimoService : IEmprestimoService
     }
 
 
-    public async Task<EmprestimoResponseDto> CreateEmprestimo(int clienteId)
+    public async Task<EmprestimoResponseDto> CreateEmprestimo(CreateEmprestimoDto dto)
     {
-        var cliente = await _clienteRepository.GetByIdAsync(clienteId);
+        var cliente = await _clienteRepository.GetByIdAsync(dto.ClienteId);
         if (cliente == null) throw new NotFoundException("Cliente não encontrado");
-        var possuiEmprestimo = await _emprestimoRepository.ClienteTemEmprestimoAtivo(clienteId);
+
+        var possuiEmprestimo = await _emprestimoRepository.ClienteTemEmprestimoAtivo(dto.ClienteId);
         if (possuiEmprestimo) throw new BadRequestException("Cliente já possui um empréstimo em aberto");
-        var emprestimo = new Emprestimo(clienteId);
+        
+        var emprestimo = new Emprestimo(dto.ClienteId);
         await _emprestimoRepository.AddAsync(emprestimo);
         await _UOW.SaveAsync();
         return _mapper.Map<EmprestimoResponseDto>(emprestimo);
@@ -112,6 +112,7 @@ public class EmprestimoService : IEmprestimoService
 
     public async Task<EmprestimoResponseDto> AdicionarItem(int emprestimoId, int exemplarId)
     {
+        if (emprestimoId <= 0 || exemplarId <= 0) throw new BadRequestException("Ids inválidos");
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         var exemplar = await _exemplarRepository.GetByIdAsync(exemplarId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
@@ -122,17 +123,19 @@ public class EmprestimoService : IEmprestimoService
         return _mapper.Map<EmprestimoResponseDto>(emprestimo);
     }
 
-    public async Task DevolverItem(int emprestimoId, int itemId, CondicaoItem condicao)
+    public async Task DevolverItem(int emprestimoId, DevolverItemEmprestimoDto dto)
     {
+        if (emprestimoId <= 0) throw new BadRequestException("Id inválido");
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        var multa = emprestimo.DevolverItem(itemId, condicao);
+        var multa = emprestimo.DevolverItem(dto.ItemId, dto.Condicao);
         if (multa != null) await _multaRepository.AddAsync(multa);
         await _UOW.SaveAsync();
     }
 
     public async Task FinalizarEmprestimo(int emprestimoId)
     {
+        if (emprestimoId <= 0) throw new BadRequestException("Id inválido");
         var emprestimo = await _emprestimoRepository.GetMultas(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         decimal count = 0;
@@ -149,18 +152,18 @@ public class EmprestimoService : IEmprestimoService
 
     public async Task CancelarEmprestimo(int emprestimoId)
     {
+        if (emprestimoId <= 0) throw new BadRequestException("Id inválido");
         var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         emprestimo.Cancelar();
         await _UOW.SaveAsync();
     }
 
-    public async Task EstenderPrazoDevolucao(int emprestimoId, DateOnly novoPrazoDevolucao)
+    public async Task EstenderPrazoDevolucao(EstenderDevolucaoDto dto)
     {
-        var emprestimo = await _emprestimoRepository.GetByIdAsync(emprestimoId);
+        var emprestimo = await _emprestimoRepository.GetByIdAsync(dto.EmprestimoId);
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
-        if (novoPrazoDevolucao <= DateOnly.FromDateTime(DateTime.UtcNow)) throw new BadRequestException("Nova data de devolução deve ser futura");
-        emprestimo.AtualizarPrevisaoDevolucao(novoPrazoDevolucao);
+        emprestimo.AtualizarPrevisaoDevolucao(dto.NovoPrazoDevolucao);
         await _UOW.SaveAsync();
     }
 }
