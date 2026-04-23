@@ -101,15 +101,17 @@ public class Cliente
         return telefone.Length == 10 || telefone.Length == 11;
     }
 
-    public void AtualizarInformacoes(string nome, string email, string telefone)
+    public void AtualizarInformacoes(string nome, string email, string telefone, DateOnly nascimento)
     {
         if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome é obrigatório.");
         if (string.IsNullOrWhiteSpace(email)) throw new BadRequestException("Email é obrigatório.");
         if (!EmailValido(email)) throw new BadRequestException("Email inválido.");
         if (string.IsNullOrWhiteSpace(telefone)) throw new BadRequestException("Telefone é obrigatório.");
         if (!TelefoneValido(telefone)) throw new BadRequestException("Telefone inválido.");
+        if (nascimento > DateOnly.FromDateTime(DateTime.UtcNow)) throw new BadRequestException("Data de nascimento não pode ser futura");
         Nome = nome;
         Email = email;
         Telefone = telefone;
+        DataNascimento = nascimento;
     }
 }

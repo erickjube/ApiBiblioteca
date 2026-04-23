@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosAutor;
 using ApiBiblioteca.Application.DTOs.DtosExemplar;
+using ApiBiblioteca.Application.Helpers;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
@@ -29,8 +30,7 @@ public class ExemplarService : IExemplarService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _exemplarRepository.GetAllAsync(skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar exemplares.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<ExemplarResponseDto>
         {

@@ -1,6 +1,7 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosCliente;
 using ApiBiblioteca.Application.DTOs.DtosEmprestimo;
 using ApiBiblioteca.Application.DTOs.DtosVenda;
+using ApiBiblioteca.Application.Helpers;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
@@ -30,8 +31,7 @@ public class ClienteService : IClienteService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _clienteRepository.GetAllAsync(skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar clientes.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<ClienteResponseDto>
         {
@@ -48,8 +48,7 @@ public class ClienteService : IClienteService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _clienteRepository.GetEmprestimosByClienteAsync(clienteId, skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar emprestimos.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<EmprestimoResponseDto>
         {
@@ -66,8 +65,7 @@ public class ClienteService : IClienteService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _clienteRepository.GetVendasByClienteAsync(clienteId, skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar vendas.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<VendaResponseDto>
         {
@@ -99,7 +97,7 @@ public class ClienteService : IClienteService
     {
         if (clienteId <= 0) throw new BadRequestException("Id inválido!");
         var cliente = await _clienteRepository.GetByIdAsync(clienteId) ?? throw new NotFoundException("Cliente não encontrado!");
-        cliente.AtualizarInformacoes(dto.Nome, dto.Email, dto.Telefone);
+        cliente.AtualizarInformacoes(dto.Nome, dto.Email, dto.Telefone, dto.DataNascimento);
         await _UOW.SaveAsync();
         return _mapper.Map<ClienteResponseDto>(cliente);
     }

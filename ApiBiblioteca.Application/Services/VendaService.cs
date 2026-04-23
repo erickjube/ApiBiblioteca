@@ -8,7 +8,6 @@ using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
-using MySqlX.XDevAPI.Common;
 
 namespace ApiBiblioteca.Application.Services;
 
@@ -46,6 +45,7 @@ public class VendaService : IVendaService
 
     public async Task<VendaResponseDto> GetId(int vendaId)
     {
+        if (vendaId <= 0) throw new BadRequestException("Id inválido!");
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         return _mapper.Map<VendaResponseDto>(venda);
@@ -80,6 +80,7 @@ public class VendaService : IVendaService
 
     public async Task CancelarVenda(int vendaId)
     {
+        if (vendaId <= 0) throw new BadRequestException("Id inválido!");
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
 
@@ -93,6 +94,7 @@ public class VendaService : IVendaService
 
     public async Task FinalizarVenda(int vendaId)
     {
+        if (vendaId <= 0) throw new BadRequestException("Id inválido!");
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         if (!venda.ValidarVenda()) throw new BadRequestException("Venda já finalizada ou cancelada.");
@@ -114,6 +116,7 @@ public class VendaService : IVendaService
 
     public async Task AdicionarItem(int vendaId, int exemplarId)
     {
+        if (vendaId <=0 || exemplarId <= 0) throw new BadRequestException("Ids inválidos!");
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         var exemplar = await _exemplarRepository.GetByIdAsync(exemplarId);
@@ -125,6 +128,7 @@ public class VendaService : IVendaService
 
     public async Task ExcluirItem(int vendaId, int itemId)
     {
+        if (vendaId <= 0 || itemId <= 0) throw new BadRequestException("Ids inválidos!");
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         venda.ExcluirItem(itemId);

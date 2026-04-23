@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosCategoria;
 using ApiBiblioteca.Application.DTOs.DtosLivro;
+using ApiBiblioteca.Application.Helpers;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
@@ -29,8 +30,7 @@ public class CategoriaService : ICategoriaService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _categoriaRepository.GetAllAsync(skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar Categorias.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<CategoriaResponseDto>
         {
@@ -47,8 +47,7 @@ public class CategoriaService : ICategoriaService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _categoriaRepository.GetLivrosByCategoriaAsync(categoriaId, skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar livros.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<LivroResponseDto>
         {

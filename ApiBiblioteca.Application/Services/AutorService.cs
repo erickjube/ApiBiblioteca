@@ -1,5 +1,6 @@
 ﻿using ApiBiblioteca.Application.DTOs.DtosAutor;
 using ApiBiblioteca.Application.DTOs.DtosLivro;
+using ApiBiblioteca.Application.Helpers;
 using ApiBiblioteca.Application.Interfaces;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Application.Interfaces.IServices;
@@ -29,8 +30,7 @@ public class AutorService : IAutorService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _autorRepository.GetAllAsync(skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar autores.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<AutorResponseDto>
         {
@@ -47,8 +47,7 @@ public class AutorService : IAutorService
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
         var result = await _autorRepository.GetLivrosByAutorIdAsync(autorId, skip, parameters.PageSize);
         if (result == null) throw new NotFoundException("Erro ao buscar livros.");
-        var totalPages = (int)Math.Ceiling((double)result.TotalCount / parameters.PageSize);
-        if (parameters.PageNumber > totalPages && totalPages > 0) throw new BadRequestException("Página solicitada não existe.");
+        ValidatePagination.Validate(parameters.PageNumber, parameters.PageSize, result.TotalCount);
 
         return new PagedList<LivroResponseDto>
         {
@@ -75,10 +74,11 @@ public class AutorService : IAutorService
         return _mapper.Map<AutorResponseDto>(autor);
     }
 
-    public async Task<AutorResponseDto> Update(long id, AutorDto dto)
+    public async Task<AutorResponseDto> Update(long autorId, AutorDto dto)
     {
+        if (autorId <= 0) throw new BadRequestException("Id inválido!");
         if (dto is null) throw new BadRequestException("Autor inválido!");
-        var autor = await _autorRepository.GetByIdAsync(id) ?? throw new NotFoundException("Autor não encontrado!");
+        var autor = await _autorRepository.GetByIdAsync(autorId) ?? throw new NotFoundException("Autor não encontrado!");
         autor.AtualizarInformacoes(dto.Nome, dto.DataNascimento, dto.Nacionalidade);
         await _UOW.SaveAsync();
         return _mapper.Map<AutorResponseDto>(autor);

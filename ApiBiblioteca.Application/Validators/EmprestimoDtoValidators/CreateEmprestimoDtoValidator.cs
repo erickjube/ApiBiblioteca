@@ -7,7 +7,9 @@ public class CreateEmprestimoDtoValidator : AbstractValidator<CreateEmprestimoDt
 {
     public CreateEmprestimoDtoValidator()
     {
-        RuleFor(x => x.ClienteId).GreaterThan(0).WithMessage("ClienteId deve ser maior que 0");
+        RuleFor(x => x.ClienteId)
+            .NotEmpty().WithMessage("ClienteId é obrigatório")
+            .GreaterThan(0).WithMessage("ClienteId deve ser maior que 0");
     }
 
 }

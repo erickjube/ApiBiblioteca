@@ -2380,26 +2380,19 @@
   "components": {
     "schemas": {
       "AutorDto": {
-        "required": [
-          "dataNascimento",
-          "nacionalidade",
-          "nome"
-        ],
         "type": "object",
         "properties": {
           "nome": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dataNascimento": {
             "type": "string",
             "format": "date"
           },
           "nacionalidade": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2427,15 +2420,11 @@
         "additionalProperties": false
       },
       "CategoriaDto": {
-        "required": [
-          "nome"
-        ],
         "type": "object",
         "properties": {
           "nome": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2497,34 +2486,23 @@
         "type": "string"
       },
       "CreateClienteDto": {
-        "required": [
-          "cpf",
-          "dataNascimento",
-          "email",
-          "nome",
-          "telefone"
-        ],
         "type": "object",
         "properties": {
           "nome": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "cpf": {
-            "maxLength": 14,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "email": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "telefone": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dataNascimento": {
             "type": "string",
@@ -2544,31 +2522,21 @@
         "additionalProperties": false
       },
       "CreateExemplarDto": {
-        "required": [
-          "codigoDeBarras",
-          "livroId",
-          "nome",
-          "preco"
-        ],
         "type": "object",
         "properties": {
           "nome": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "codigoDeBarras": {
-            "minLength": 1,
-            "pattern": "^\\d{13}$",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "preco": {
-            "minimum": 1,
             "type": "number",
             "format": "double"
           },
           "livroId": {
-            "minimum": 1,
             "type": "integer",
             "format": "int64"
           }
@@ -2576,43 +2544,29 @@
         "additionalProperties": false
       },
       "CreateLivroDto": {
-        "required": [
-          "autorId",
-          "categoriaId",
-          "dataPublicacao",
-          "isbn",
-          "numeroDePaginas",
-          "titulo"
-        ],
         "type": "object",
         "properties": {
           "titulo": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dataPublicacao": {
             "type": "string",
             "format": "date"
           },
           "numeroDePaginas": {
-            "maximum": 2147483647,
-            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
           "isbn": {
-            "minLength": 1,
-            "pattern": "^(97(8|9))?\\d{9}(\\d|X)$",
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "categoriaId": {
-            "minimum": 1,
             "type": "integer",
             "format": "int64"
           },
           "autorId": {
-            "minimum": 1,
             "type": "integer",
             "format": "int64"
           }
@@ -2620,14 +2574,9 @@
         "additionalProperties": false
       },
       "CreateVendaDto": {
-        "required": [
-          "clienteId"
-        ],
         "type": "object",
         "properties": {
           "clienteId": {
-            "maximum": 2147483647,
-            "minimum": 1,
             "type": "integer",
             "format": "int32"
           }
@@ -2979,28 +2928,19 @@
         "additionalProperties": false
       },
       "UpdateClienteDto": {
-        "required": [
-          "dataNascimento",
-          "email",
-          "nome",
-          "telefone"
-        ],
         "type": "object",
         "properties": {
           "nome": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "email": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "telefone": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dataNascimento": {
             "type": "string",
@@ -3010,19 +2950,13 @@
         "additionalProperties": false
       },
       "UpdateExemplarDto": {
-        "required": [
-          "nome",
-          "preco"
-        ],
         "type": "object",
         "properties": {
           "nome": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "preco": {
-            "minimum": 0,
             "type": "number",
             "format": "double"
           }
