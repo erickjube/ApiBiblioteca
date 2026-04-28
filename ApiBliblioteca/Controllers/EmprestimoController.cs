@@ -28,7 +28,7 @@ public class EmprestimoController : ControllerBase
         return Ok(metadata.Data);
     }
 
-    [HttpGet("{emprestimoId}/Itens")]
+    [HttpGet("{emprestimoId}/itens")]
     public async Task<ActionResult<IEnumerable<EmprestimoResponseDto>>> GetEmprestimoComItens(int emprestimoId, [FromQuery] QueryParameters parameters)
     {
         var metadata = await _emprestimoService.GetComItens(emprestimoId, parameters);
@@ -58,14 +58,14 @@ public class EmprestimoController : ControllerBase
         return CreatedAtRoute("ObterEmprestimo", new { id = emprestimoCriado.Id }, emprestimoCriado);
     }
 
-    [HttpPost("{emprestimoId}/Item")]
+    [HttpPost("{emprestimoId}/item")]
     public async Task<ActionResult<EmprestimoResponseDto>> AdicionarItem(int emprestimoId, int exemplarId)
     {
         var emprestimoAtualizado = await _emprestimoService.AdicionarItem(emprestimoId, exemplarId);
         return Ok(emprestimoAtualizado);
     }
 
-    [HttpPatch("{emprestimoId}/itens/devolucao")]
+    [HttpPatch("{emprestimoId}/itens-devolucao")]
     public async Task<ActionResult> DevolverItem( int emprestimoId, [FromQuery] DevolverItemEmprestimoDto dto)
     {
         await _emprestimoService.DevolverItem(emprestimoId, dto);

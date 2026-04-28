@@ -750,7 +750,7 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
     "Method": "AdicionarItem",
-    "RelativePath": "api/Emprestimo/{emprestimoId}/Item",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/item",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -781,7 +781,7 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
     "Method": "GetEmprestimoComItens",
-    "RelativePath": "api/Emprestimo/{emprestimoId}/Itens",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/itens",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -817,7 +817,7 @@
   {
     "ContainingType": "ApiBiblioteca.Controllers.EmprestimoController",
     "Method": "DevolverItem",
-    "RelativePath": "api/Emprestimo/{emprestimoId}/itens/devolucao",
+    "RelativePath": "api/Emprestimo/{emprestimoId}/itens-devolucao",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,

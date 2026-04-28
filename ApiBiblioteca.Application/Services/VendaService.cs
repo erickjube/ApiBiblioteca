@@ -8,6 +8,7 @@ using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace ApiBiblioteca.Application.Services;
 
@@ -17,13 +18,19 @@ public class VendaService : IVendaService
     private readonly IVendaRepository _vendaRepository;
     private readonly IExemplarRepository _exemplarRepository;
     private readonly IMapper _mapper;
+    private readonly ILogger<VendaService> _logger;
 
-    public VendaService(IVendaRepository vendaRepository, IExemplarRepository exemplarRepository, IMapper mapper, IUnitOfWork uOW)
+    public VendaService(IVendaRepository vendaRepository, 
+                        IExemplarRepository exemplarRepository, 
+                        IMapper mapper, 
+                        IUnitOfWork uOW,
+                        ILogger<VendaService> logger)
     {
         _vendaRepository = vendaRepository;
         _exemplarRepository = exemplarRepository;
         _mapper = mapper;
         _UOW = uOW;
+        _logger = logger;
     }
 
     public async Task<PagedList<VendaResponseDto>> GetAll(QueryParameters parameters)
@@ -94,6 +101,7 @@ public class VendaService : IVendaService
 
     public async Task FinalizarVenda(int vendaId)
     {
+        _logger.LogInformation("Iniciando finalização da venda {VendaId}", vendaId);
         if (vendaId <= 0) throw new BadRequestException("Id inválido!");
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
@@ -109,9 +117,11 @@ public class VendaService : IVendaService
             cont += preco;
             item.Vender();
         }
+
         venda.DefinirPrecoTotal(cont);
         venda.Finalizar();
         await _UOW.SaveAsync();
+        _logger.LogInformation("Venda {VendaId} finalizada com sucesso. Total: {Total}", vendaId, cont);
     }
 
     public async Task AdicionarItem(int vendaId, int exemplarId)

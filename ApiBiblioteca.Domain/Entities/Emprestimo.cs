@@ -58,7 +58,7 @@ public class Emprestimo
         if (EstaAtrasado) throw new BadRequestException("Não é possivel cancelar um empréstimo que esta atrasado");
         foreach (var item in Itens)
         {
-            item.Cancelar(); // você vai precisar criar isso
+            item.Cancelar(); 
         }
         Status = StatusEmprestimo.Cancelado;
     }

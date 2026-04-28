@@ -9,11 +9,13 @@ public class ExceptionMiddleware
 {
     // RequestDelegate representa o próximo passo do pipeline.
     private readonly RequestDelegate _next;
+    private readonly ILogger<ExceptionMiddleware> _logger;
 
     // O ASP.NET injeta automaticamente o “próximo da fila”.
-    public ExceptionMiddleware(RequestDelegate next)
+    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     // Metodo obrigatorio para o middleware, onde a lógica de tratamento de exceção é implementada.
@@ -26,7 +28,31 @@ public class ExceptionMiddleware
         }
         catch (Exception ex)
         {
+            LogException(context, ex);
             await HandleExceptionAsync(context, ex);
+        }
+    }
+
+    private void LogException(HttpContext context, Exception exception)
+    {
+        var method = context.Request.Method;
+        var path = context.Request.Path;
+
+        if (exception is BadRequestException || exception is NotFoundException)
+        {
+            // sem passar exception como parâmetro por que está tratando erro esperado como erro técnico
+            _logger.LogWarning( 
+                "Erro de negócio [{Tipo}] em {Method} {Path}: {Mensagem}",
+                exception.GetType().Name,
+                method, path,
+                exception.Message);
+        }
+        else
+        {
+            // aqui sim com stack trace por ser erro interno inesperado
+            _logger.LogError(exception, 
+                "Erro interno em {Method} {Path}",
+                method, path);
         }
     }
 

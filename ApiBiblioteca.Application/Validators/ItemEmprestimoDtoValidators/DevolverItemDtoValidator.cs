@@ -7,7 +7,12 @@ public class DevolverItemDtoValidator : AbstractValidator<DevolverItemEmprestimo
 {
     public DevolverItemDtoValidator()
     {
-        RuleFor(x => x.ItemId).GreaterThan(0).WithMessage("Id do item deve ser maior que zero.");
-        RuleFor(x => x.Condicao).IsInEnum().WithMessage("Condição do item inválida.");
+        RuleFor(x => x.ItemId)
+            .NotEmpty().WithMessage("Id do item é obrigatório.")
+            .GreaterThan(0).WithMessage("Id do item deve ser maior que zero.");
+
+        RuleFor(x => x.Condicao)
+            .NotEmpty().WithMessage("Condição do item é obrigatória.")
+            .IsInEnum().WithMessage("Condição do item inválida.");
     }
 }

@@ -1182,7 +1182,7 @@
         }
       }
     },
-    "/api/Emprestimo/{emprestimoId}/Itens": {
+    "/api/Emprestimo/{emprestimoId}/itens": {
       "get": {
         "tags": [
           "Emprestimo"
@@ -1343,7 +1343,7 @@
         }
       }
     },
-    "/api/Emprestimo/{emprestimoId}/Item": {
+    "/api/Emprestimo/{emprestimoId}/item": {
       "post": {
         "tags": [
           "Emprestimo"
@@ -1391,7 +1391,7 @@
         }
       }
     },
-    "/api/Emprestimo/{emprestimoId}/itens/devolucao": {
+    "/api/Emprestimo/{emprestimoId}/itens-devolucao": {
       "patch": {
         "tags": [
           "Emprestimo"
