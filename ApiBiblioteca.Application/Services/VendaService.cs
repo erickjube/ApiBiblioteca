@@ -82,6 +82,7 @@ public class VendaService : IVendaService
         var venda = _mapper.Map<Venda>(dto);
         await _vendaRepository.AddAsync(venda);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Venda criada com sucesso. Id: {VendaId}", venda.Id);
         return _mapper.Map<VendaResponseDto>(venda);
     }
 
@@ -97,11 +98,11 @@ public class VendaService : IVendaService
         }
         venda.Cancelar();
         await _UOW.SaveAsync();
+        _logger.LogInformation("Venda {VendaId} cancelada com sucesso.", vendaId);
     }
 
     public async Task FinalizarVenda(int vendaId)
     {
-        _logger.LogInformation("Iniciando finalização da venda {VendaId}", vendaId);
         if (vendaId <= 0) throw new BadRequestException("Id inválido!");
         var venda = await _vendaRepository.GetByIdAsync(vendaId);
         if (venda == null) throw new NotFoundException("Venda não encontrada");
@@ -134,6 +135,7 @@ public class VendaService : IVendaService
         var item = venda.AdicionarItem(exemplar);
         item.DefinirPreco(exemplar.Preco);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Item {ExemplarId} adicionado à venda {VendaId} com sucesso.", exemplarId, vendaId);
     }
 
     public async Task ExcluirItem(int vendaId, int itemId)
@@ -143,5 +145,6 @@ public class VendaService : IVendaService
         if (venda == null) throw new NotFoundException("Venda não encontrada");
         venda.ExcluirItem(itemId);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Item {ItemId} excluído da venda {VendaId} com sucesso.", itemId, vendaId);
     }
 }

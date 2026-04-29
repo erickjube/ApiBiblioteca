@@ -10,6 +10,7 @@ using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace ApiBiblioteca.Application.Services;
 
@@ -18,12 +19,17 @@ public class ClienteService : IClienteService
     private readonly IUnitOfWork _UOW;
     private readonly IClienteRepository _clienteRepository;
     private readonly IMapper _mapper;
+    private readonly ILogger<ClienteService> _logger;
 
-    public ClienteService(IClienteRepository clienteRepository, IMapper mapper, IUnitOfWork uOW)
+    public ClienteService(IClienteRepository clienteRepository, 
+                          IMapper mapper, 
+                          IUnitOfWork uOW, 
+                          ILogger<ClienteService> logger)
     {
         _clienteRepository = clienteRepository;
         _mapper = mapper;
         _UOW = uOW;
+        _logger = logger;
     }
 
     public async Task<PagedList<ClienteResponseDto>> Get(QueryParameters parameters)
@@ -90,6 +96,7 @@ public class ClienteService : IClienteService
         if (await _clienteRepository.Existe(cliente.Cpf, cliente.Email, cliente.Telefone)) throw new BadRequestException("CPF, Email ou Telefone já cadastrado!");
         _clienteRepository.Create(cliente);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Cliente criado com sucesso: {ClienteId}", cliente.Id);
         return _mapper.Map<ClienteResponseDto>(cliente);
     }
 
@@ -99,6 +106,7 @@ public class ClienteService : IClienteService
         var cliente = await _clienteRepository.GetByIdAsync(clienteId) ?? throw new NotFoundException("Cliente não encontrado!");
         cliente.AtualizarInformacoes(dto.Nome, dto.Email, dto.Telefone, dto.DataNascimento);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Cliente atualizado com sucesso: {ClienteId}", cliente.Id);
         return _mapper.Map<ClienteResponseDto>(cliente);
     }
 
@@ -108,5 +116,6 @@ public class ClienteService : IClienteService
         var cliente = await _clienteRepository.GetByIdAsync(clienteId) ?? throw new NotFoundException("Cliente não encontrado!");
         _clienteRepository.Remove(cliente);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Cliente deletado com sucesso: {ClienteId}", cliente.Id);
     }
 }

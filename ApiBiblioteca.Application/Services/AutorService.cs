@@ -9,6 +9,7 @@ using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace ApiBiblioteca.Application.Services;
 
@@ -17,12 +18,17 @@ public class AutorService : IAutorService
     private readonly IUnitOfWork _UOW;
     private readonly IAutorRepository _autorRepository;
     private readonly IMapper _mapper;
+    private readonly ILogger<AutorService> _logger;
 
-    public AutorService(IAutorRepository autorRepository, IMapper mapper, IUnitOfWork uOW)
+    public AutorService(IAutorRepository autorRepository, 
+                        IMapper mapper, 
+                        IUnitOfWork uOW,
+                        ILogger<AutorService> logger)
     {
         _autorRepository = autorRepository;
         _mapper = mapper;
         _UOW = uOW;
+        _logger = logger;
     }
 
     public async Task<PagedList<AutorResponseDto>> Get(QueryParameters parameters)
@@ -71,6 +77,7 @@ public class AutorService : IAutorService
         var autor = _mapper.Map<Autor>(dto);
         _autorRepository.Create(autor);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Autor criado com sucesso: {AutorId}", autor.Id);
         return _mapper.Map<AutorResponseDto>(autor);
     }
 
@@ -81,15 +88,17 @@ public class AutorService : IAutorService
         var autor = await _autorRepository.GetByIdAsync(autorId) ?? throw new NotFoundException("Autor não encontrado!");
         autor.AtualizarInformacoes(dto.Nome, dto.DataNascimento, dto.Nacionalidade);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Autor atualizado com sucesso: {AutorId}", autor.Id);
         return _mapper.Map<AutorResponseDto>(autor);
     }
 
-    public async Task Delete(long id)
+    public async Task Delete(long autorId)
     {
-        if (id <= 0) throw new BadRequestException("Id inválido!");
-        var autor = _autorRepository.GetByIdAsync(id).Result ?? throw new NotFoundException("Autor não encontrado!");
+        if (autorId <= 0) throw new BadRequestException("Id inválido!");
+        var autor = _autorRepository.GetByIdAsync(autorId).Result ?? throw new NotFoundException("Autor não encontrado!");
         autor.ValidarExclusao();
         _autorRepository.Remove(autor);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Autor excluído com sucesso: {AutorId}", autorId);
     }
 }

@@ -9,6 +9,7 @@ using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace ApiBiblioteca.Application.Services;
 
@@ -17,12 +18,17 @@ public class CategoriaService : ICategoriaService
     private readonly IUnitOfWork _UOW;
     private readonly ICategoriaRepository _categoriaRepository;
     private readonly IMapper _mapper;
+    private readonly ILogger<CategoriaService> _logger;
 
-    public CategoriaService(ICategoriaRepository categoriaRepository, IMapper mapper, IUnitOfWork uOW)
+    public CategoriaService(ICategoriaRepository categoriaRepository, 
+                            IMapper mapper, 
+                            IUnitOfWork uOW,
+                            ILogger<CategoriaService> logger)
     {
         _categoriaRepository = categoriaRepository;
         _mapper = mapper;
         _UOW = uOW;
+        _logger = logger;
     }
 
     public async Task<PagedList<CategoriaResponseDto>> Get(QueryParameters parameters)
@@ -71,6 +77,7 @@ public class CategoriaService : ICategoriaService
         var categoria = _mapper.Map<Categoria>(dto);
         _categoriaRepository.Create(categoria);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Categoria criada com sucesso: {CategoriaId}", categoria.Id);
         return _mapper.Map<CategoriaResponseDto>(categoria);
     }
 
@@ -81,6 +88,7 @@ public class CategoriaService : ICategoriaService
         var categoria = await _categoriaRepository.GetByIdAsync(categoriaId) ?? throw new NotFoundException("Categoria não encontrada!");
         categoria.AtualizarNome(dto.Nome);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Categoria atualizada com sucesso: {CategoriaId}", categoria.Id);
         return _mapper.Map<CategoriaResponseDto>(categoria);
     }
     
@@ -90,6 +98,7 @@ public class CategoriaService : ICategoriaService
         var categoria = _categoriaRepository.GetByIdAsync(categoriaId).Result ?? throw new NotFoundException("Categoria não encontrada!");
         categoria.ValidarExclusao();
         _categoriaRepository.Remove(categoria);
-        await _UOW.SaveAsync();
+        await _UOW.SaveAsync(); 
+        _logger.LogInformation("Categoria excluída com sucesso: {CategoriaId}", categoria.Id);
     }
 }

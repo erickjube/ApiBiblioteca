@@ -9,6 +9,7 @@ using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace ApiBiblioteca.Application.Services;
 
@@ -17,12 +18,17 @@ public class ExemplarService : IExemplarService
     private readonly IUnitOfWork _UOW;
     private readonly IExemplarRepository _exemplarRepository;
     private readonly IMapper _mapper;
+    private readonly ILogger<ExemplarService> _logger;
 
-    public ExemplarService(IExemplarRepository exemplarRepository, IMapper mapper, IUnitOfWork uOW)
+    public ExemplarService(IExemplarRepository exemplarRepository, 
+                           IMapper mapper, 
+                           IUnitOfWork uOW,
+                           ILogger<ExemplarService> logger)
     {
         _exemplarRepository = exemplarRepository;
         _mapper = mapper;
         _UOW = uOW;
+        _logger = logger;
     }
 
     public async Task<PagedList<ExemplarResponseDto>> Get(QueryParameters parameters)
@@ -56,6 +62,7 @@ public class ExemplarService : IExemplarService
             throw new BadRequestException("Código de barras já existe!");
         _exemplarRepository.Create(exemplar);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Exemplar criado com sucesso: {ExemplarId}", exemplar.Id);
         return _mapper.Map<ExemplarResponseDto>(exemplar);
     }
 
@@ -65,6 +72,7 @@ public class ExemplarService : IExemplarService
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         exemplar.AtualizarInformacoes(dto.Nome, dto.Preco);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Exemplar atualizado com sucesso: {ExemplarId}", exemplar.Id);
         return _mapper.Map<ExemplarResponseDto>(exemplar);
     }
 
@@ -74,6 +82,7 @@ public class ExemplarService : IExemplarService
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         _exemplarRepository.Remove(exemplar);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Exemplar deletado com sucesso: {ExemplarId}", exemplar.Id);
     }
 
     public async Task PerderExemplar(int id)
@@ -82,6 +91,7 @@ public class ExemplarService : IExemplarService
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         exemplar.Perder();
         await _UOW.SaveAsync();
+        _logger.LogInformation("Exemplar marcado como perdido: {ExemplarId}", exemplar.Id);
     }
 
     public async Task DanificarExemplar(int id)
@@ -90,5 +100,6 @@ public class ExemplarService : IExemplarService
         var exemplar = await _exemplarRepository.GetByIdAsync(id) ?? throw new NotFoundException("Exemplar não encontrado!");
         exemplar.Danificar();
         await _UOW.SaveAsync();
+        _logger.LogInformation("Exemplar marcado como danificado: {ExemplarId}", exemplar.Id);
     }
 }

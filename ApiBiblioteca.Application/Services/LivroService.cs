@@ -10,6 +10,7 @@ using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace ApiBiblioteca.Application.Services;
 
@@ -18,12 +19,17 @@ public class LivroService : ILivroService
     private readonly IUnitOfWork _UOW;
     private readonly ILivroRepository _livroRepository;
     private readonly IMapper _mapper;
+    private readonly ILogger<LivroService> _logger;
 
-    public LivroService(ILivroRepository livroRepository, IMapper mapper, IUnitOfWork uOW)
+    public LivroService(ILivroRepository livroRepository, 
+                        IMapper mapper, 
+                        IUnitOfWork uOW,
+                        ILogger<LivroService> logger)
     {
         _livroRepository = livroRepository;
         _mapper = mapper;
         _UOW = uOW;
+        _logger = logger;
     }
 
     public async Task<PagedList<LivroResponseDto>> Get(QueryParameters parameters)
@@ -77,6 +83,7 @@ public class LivroService : ILivroService
 
         _livroRepository.Create(livro);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Livro criado com sucesso: {Titulo}", livro.Titulo);
         return _mapper.Map<LivroResponseDto>(livro);
     }
 
@@ -86,6 +93,7 @@ public class LivroService : ILivroService
         var livro = await _livroRepository.GetByIdAsync(livroId) ?? throw new NotFoundException("Livro não encontrado!");
         livro.AtualizarInformacoes(dto.Titulo, dto.NumeroDePaginas, dto.DataPublicacao, dto.CategoriaId);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Livro atualizado com sucesso: {Titulo}", livro.Titulo);
         return _mapper.Map<LivroResponseDto>(livro);
     }
 
@@ -96,5 +104,6 @@ public class LivroService : ILivroService
         livro.ValidarExclusao();
          _livroRepository.Remove(livro);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Livro excluído com sucesso: {Titulo}", livro.Titulo);
     }
 }

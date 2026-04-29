@@ -11,6 +11,7 @@ using ApiBiblioteca.Domain.Entities;
 using ApiBiblioteca.Domain.ENUMs;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace ApiBiblioteca.Application.Services;
 
@@ -22,13 +23,15 @@ public class EmprestimoService : IEmprestimoService
     private readonly IClienteRepository _clienteRepository;
     private readonly IMultaRepository _multaRepository;
     private readonly IMapper _mapper;
+    private readonly ILogger<EmprestimoService> _logger;    
 
     public EmprestimoService(IEmprestimoRepository emprestimoRepository, 
                              IExemplarRepository exemplarRepository, 
                              IClienteRepository clienteRepository, 
                              IMultaRepository multaRepository,
                              IMapper mapper,
-                             IUnitOfWork uOF)
+                             IUnitOfWork uOF,
+                             ILogger<EmprestimoService> logger)
     {
         _emprestimoRepository = emprestimoRepository;
         _exemplarRepository = exemplarRepository;
@@ -36,6 +39,7 @@ public class EmprestimoService : IEmprestimoService
         _multaRepository = multaRepository;
         _mapper = mapper;
         _UOW = uOF;
+        _logger = logger;
     }
 
     public async Task<PagedList<EmprestimoResponseDto>> Get(QueryParameters parameters)
@@ -107,6 +111,7 @@ public class EmprestimoService : IEmprestimoService
         var emprestimo = new Emprestimo(dto.ClienteId);
         await _emprestimoRepository.AddAsync(emprestimo);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Empréstimo criado com sucesso: {EmprestimoId}", emprestimo.Id);
         return _mapper.Map<EmprestimoResponseDto>(emprestimo);
     }
 
@@ -120,6 +125,7 @@ public class EmprestimoService : IEmprestimoService
         emprestimo.AdicionarItem(exemplarId);
         exemplar.Emprestar();
         await _UOW.SaveAsync();
+        _logger.LogInformation("Item adicionado ao empréstimo com sucesso: {EmprestimoId}, ExemplarId: {ExemplarId}", emprestimo.Id, exemplar.Id);
         return _mapper.Map<EmprestimoResponseDto>(emprestimo);
     }
 
@@ -134,6 +140,7 @@ public class EmprestimoService : IEmprestimoService
         var multa = emprestimo.DevolverItem(item, exemplar, dto.Condicao);
         if (multa != null) await _multaRepository.AddAsync(multa);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Item devolvido com sucesso: {EmprestimoId}, ItemId: {ItemId}, Multa: {MultaValor}", emprestimo.Id, item.Id, multa?.Valor);
     }
 
     public async Task FinalizarEmprestimo(int emprestimoId)
@@ -151,6 +158,7 @@ public class EmprestimoService : IEmprestimoService
         emprestimo.DefinirValorMultaTotal(count);
         emprestimo.Finalizar();
         await _UOW.SaveAsync();
+        _logger.LogInformation("Empréstimo finalizado com sucesso: {EmprestimoId}, Valor total de multas: {ValorMultas}", emprestimo.Id, count);
     }
 
     public async Task CancelarEmprestimo(int emprestimoId)
@@ -165,6 +173,7 @@ public class EmprestimoService : IEmprestimoService
             exemplar.Devolver();
         }
         await _UOW.SaveAsync();
+        _logger.LogInformation("Empréstimo cancelado com sucesso: {EmprestimoId}", emprestimo.Id);
     }
 
     public async Task EstenderPrazoDevolucao(EstenderDevolucaoDto dto)
@@ -173,5 +182,6 @@ public class EmprestimoService : IEmprestimoService
         if (emprestimo == null) throw new NotFoundException("Empréstimo não encontrado");
         emprestimo.AtualizarPrevisaoDevolucao(dto.NovoPrazoDevolucao);
         await _UOW.SaveAsync();
+        _logger.LogInformation("Prazo de devolução estendido com sucesso: {EmprestimoId}, Novo prazo: {NovoPrazo}", emprestimo.Id, dto.NovoPrazoDevolucao);
     }
 }
