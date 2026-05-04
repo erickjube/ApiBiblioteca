@@ -8,7 +8,6 @@ using ApiBiblioteca.Application.Interfaces.Services;
 using ApiBiblioteca.Application.Pagination;
 using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
-using ApiBiblioteca.Domain.ENUMs;
 using ApiBiblioteca.Domain.Exceptions;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
@@ -98,7 +97,6 @@ public class EmprestimoService : IEmprestimoService
         if (emprestimo is null) throw new NotFoundException("Empréstimo não encontrado");
         return _mapper.Map<EmprestimoResponseDto>(emprestimo);
     }
-
 
     public async Task<EmprestimoResponseDto> CreateEmprestimo(CreateEmprestimoDto dto)
     {

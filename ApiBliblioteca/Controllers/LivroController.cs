@@ -27,7 +27,7 @@ public class LivroController : ControllerBase
         return Ok(metadata.Data);
     }
 
-    [HttpGet("{livroId}/Exemplares")]
+    [HttpGet("{livroId}/exemplares")]
     public async Task<ActionResult<LivroComExemplaresDto>> GetLivroComExemplares(long livroId, [FromQuery] QueryParameters parameters)
     {
         var metadata = await _livroService.GetComExemplares(livroId, parameters);

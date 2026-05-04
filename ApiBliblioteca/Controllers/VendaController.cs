@@ -28,14 +28,14 @@ public class VendaController : ControllerBase
         return Ok(metadata.Data);
     }
 
-    [HttpGet("id", Name = "ObterVenda")]
+    [HttpGet("vendaId", Name = "ObterVenda")]
     public async Task<ActionResult<VendaResponseDto>> GetVendaPorId(int vendaId)
     {
         var venda = await _vendaService.GetId(vendaId);
         return Ok(venda);
     }
 
-    [HttpGet("{vendaId}/Itens")]
+    [HttpGet("{vendaId}/itens")]
     public async Task<ActionResult<IEnumerable<ItemVendaResponseDto>>> GetVendaComItens(int vendaId, [FromQuery] QueryParameters parameters)
     {
         var metadata = await _vendaService.GetComItens(vendaId, parameters);
@@ -50,28 +50,28 @@ public class VendaController : ControllerBase
         return CreatedAtRoute("ObterVenda", new { id = vendaCriada.Id }, vendaCriada);
     }
 
-    [HttpPost("{vendaId}/Cancelar")]
+    [HttpPost("{vendaId}/cancelar")]
     public async Task<ActionResult> CancelarVenda(int vendaId)
     {
         await _vendaService.CancelarVenda(vendaId);
         return NoContent();
     }
 
-    [HttpPost("{vendaId}/Finalizar")]
+    [HttpPost("{vendaId}/finalizar")]
     public async Task<ActionResult> FinalizarVenda(int vendaId)
     {
         await _vendaService.FinalizarVenda(vendaId);
         return NoContent();
     }
 
-    [HttpPost("{vendaId}/AdicionarItem")]
+    [HttpPost("{vendaId}/adicionar-item")]
     public async Task<ActionResult> AdicionarItem(int vendaId, [FromQuery] int exemplarId)
     {
         await _vendaService.AdicionarItem(vendaId, exemplarId);
         return NoContent();
     }
 
-    [HttpPost("{vendaId}/ExcluirItem")]
+    [HttpPost("{vendaId}/excluir-item")]
     public async Task<ActionResult> ExcluirItem(int vendaId, [FromQuery] int itemId)
     {
         await _vendaService.ExcluirItem(vendaId, itemId);
