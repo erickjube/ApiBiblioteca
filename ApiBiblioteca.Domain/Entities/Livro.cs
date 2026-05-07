@@ -11,17 +11,17 @@ public class Livro
     public int NumeroDePaginas { get; private set; }
     public string Isbn { get; private set; }
 
-    public long CategoriaId { get; private set; }
+    public int CategoriaId { get; private set; }
     public Categoria Categoria { get; private set; }
 
-    public long AutorId { get; private set; }
+    public int AutorId { get; private set; }
     public Autor Autor { get; private set; }
 
     public ICollection<ExemplarLivro> Exemplares { get; private set; } = new List<ExemplarLivro>();
 
     private Livro() { }
 
-    public Livro(string titulo, DateOnly dataPublicacao, int numeroPaginas, string isbn, long categoriaId, long autorId)
+    public Livro(string titulo, DateOnly dataPublicacao, int numeroPaginas, string isbn, int categoriaId, int autorId)
     {
         if (string.IsNullOrWhiteSpace(titulo))
             throw new BadRequestException("Título é obrigatório");
@@ -108,7 +108,7 @@ public class Livro
         }
     }
 
-    public void AtualizarInformacoes(string titulo, int numeroPaginas, DateOnly dataPublicacao, long categoriaId)
+    public void AtualizarInformacoes(string titulo, int numeroPaginas, DateOnly dataPublicacao, int categoriaId)
     {
         if (string.IsNullOrWhiteSpace(titulo))
             throw new BadRequestException("Título inválido");

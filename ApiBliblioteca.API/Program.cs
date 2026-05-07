@@ -2,7 +2,9 @@
 using ApiBiblioteca.Infrastructure.DependencyInjection;
 using ApiBiblioteca.Middleware;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);

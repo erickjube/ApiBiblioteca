@@ -1,4 +1,4 @@
-﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
+﻿using ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
@@ -22,7 +22,7 @@ public class LivroRepository : ILivroRepository
         return new PagedList<Livro> { Data = data, TotalCount = totalCont };
     }
 
-    public async Task<PagedList<ExemplarLivro>> GetExemplaresByLivroAsync(long livroId, int skip, int take)
+    public async Task<PagedList<ExemplarLivro>> GetExemplaresByLivroAsync(int livroId, int skip, int take)
     {
         var query = _context.Exemplar.Where(l => l.LivroId == livroId);
         var totalCount = await query.CountAsync();
@@ -30,7 +30,7 @@ public class LivroRepository : ILivroRepository
         return new PagedList<ExemplarLivro> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<Livro?> GetByIdAsync(long livroId)
+    public async Task<Livro?> GetByIdAsync(int livroId)
     {
         return await _context.Livro.FirstOrDefaultAsync(x => x.Id == livroId); 
     }

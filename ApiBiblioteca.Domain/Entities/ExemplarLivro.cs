@@ -6,7 +6,7 @@ namespace ApiBiblioteca.Domain.Entities;
 
 public class ExemplarLivro
 {
-    // mudei o id para int por que não tem necessidade de ser long
+    // mudei o id para int por que não tem necessidade de ser int
     public int Id { get; private set; }
     public string Nome { get; private set; }
     public string CodigoDeBarras { get; private set; }

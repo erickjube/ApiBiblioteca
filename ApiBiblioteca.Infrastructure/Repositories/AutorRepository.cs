@@ -1,4 +1,4 @@
-﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
+﻿using ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;
@@ -22,7 +22,7 @@ public class AutorRepository : IAutorRepository
         return new PagedList<Autor> { Data = data, TotalCount = totalCont };
     }
 
-    public async Task<PagedList<Livro>> GetLivrosByAutorIdAsync(long autorId, int skip, int take)
+    public async Task<PagedList<Livro>> GetLivrosByAutorIdAsync(int autorId, int skip, int take)
     {
         var query = _context.Livro.Where(l => l.AutorId == autorId);
         var totalCount = await query.CountAsync();
@@ -30,7 +30,7 @@ public class AutorRepository : IAutorRepository
         return new PagedList<Livro> { Data = data, TotalCount = totalCount };
     }
 
-    public async Task<Autor?> GetByIdAsync(long autorId)
+    public async Task<Autor?> GetByIdAsync(int autorId)
     {
         return await _context.Autor.FirstOrDefaultAsync(a => a.Id == autorId);
     }

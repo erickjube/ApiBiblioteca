@@ -29,7 +29,7 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpGet("{categoriaId}/livros")]
-    public async Task<ActionResult<LivroResponseDto>> GetCategoriaComLivros(long categoriaId, [FromQuery] QueryParameters parameters)
+    public async Task<ActionResult<LivroResponseDto>> GetCategoriaComLivros(int categoriaId, [FromQuery] QueryParameters parameters)
     {
         var metadata = await _categoriaService.GetComLivros(categoriaId, parameters);
         Response.AppendPaginationHeader(metadata);
@@ -38,7 +38,7 @@ public class CategoriaController : ControllerBase
 
 
     [HttpGet("{categoriaId}", Name = "ObterCategoria")]
-    public async Task<ActionResult<CategoriaResponseDto>> GetById(long categoriaId)
+    public async Task<ActionResult<CategoriaResponseDto>> GetById(int categoriaId)
     {
         var dto = await _categoriaService.GetId(categoriaId);
         return Ok(dto);
@@ -52,14 +52,14 @@ public class CategoriaController : ControllerBase
     }
 
     [HttpPut("{categoriaId}")]
-    public async Task<ActionResult<CategoriaResponseDto>> Update(long categoriaId, CategoriaDto dto)
+    public async Task<ActionResult<CategoriaResponseDto>> Update(int categoriaId, CategoriaDto dto)
     {
         var dtoAtualizado = await _categoriaService.Update(categoriaId, dto);
         return Ok(dtoAtualizado);
     }
 
     [HttpDelete("{categoriaId}")]
-    public async Task<ActionResult> Delete(long categoriaId)
+    public async Task<ActionResult> Delete(int categoriaId)
     {
         await _categoriaService.Delete(categoriaId);
         return NoContent();

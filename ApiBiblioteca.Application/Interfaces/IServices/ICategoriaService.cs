@@ -8,9 +8,9 @@ namespace ApiBiblioteca.Application.Interfaces.IServices;
 public interface ICategoriaService
 {
     public Task<PagedList<CategoriaResponseDto>> Get(QueryParameters parameters);
-    public Task<PagedList<LivroResponseDto>> GetComLivros(long categoriaId, QueryParameters parameters);
-    public Task<CategoriaResponseDto> GetId(long id);
+    public Task<PagedList<LivroResponseDto>> GetComLivros(int categoriaId, QueryParameters parameters);
+    public Task<CategoriaResponseDto> GetId(int id);
     public Task<CategoriaResponseDto> Create(CategoriaDto dto);
-    public Task<CategoriaResponseDto> Update(long id, CategoriaDto dto);
-    public Task Delete(long id);
+    public Task<CategoriaResponseDto> Update(int id, CategoriaDto dto);
+    public Task Delete(int id);
 }

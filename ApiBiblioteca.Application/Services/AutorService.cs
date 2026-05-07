@@ -47,7 +47,7 @@ public class AutorService : IAutorService
         };
     }
 
-    public async Task<PagedList<LivroResponseDto>> GetComLivros(long autorId, QueryParameters parameters)
+    public async Task<PagedList<LivroResponseDto>> GetComLivros(int autorId, QueryParameters parameters)
     {
         if (autorId <= 0) throw new BadRequestException("Id inválido!");
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
@@ -64,7 +64,7 @@ public class AutorService : IAutorService
         };
     }
 
-    public async Task<AutorResponseDto> GetId(long id)
+    public async Task<AutorResponseDto> GetId(int id)
     {
         if (id <= 0) throw new BadRequestException("Id inválido!");
         var autor = await _autorRepository.GetByIdAsync(id) ?? throw new NotFoundException("Autor não encontrado!");
@@ -81,7 +81,7 @@ public class AutorService : IAutorService
         return _mapper.Map<AutorResponseDto>(autor);
     }
 
-    public async Task<AutorResponseDto> Update(long autorId, AutorDto dto)
+    public async Task<AutorResponseDto> Update(int autorId, AutorDto dto)
     {
         if (autorId <= 0) throw new BadRequestException("Id inválido!");
         if (dto is null) throw new BadRequestException("Autor inválido!");
@@ -92,7 +92,7 @@ public class AutorService : IAutorService
         return _mapper.Map<AutorResponseDto>(autor);
     }
 
-    public async Task Delete(long autorId)
+    public async Task Delete(int autorId)
     {
         if (autorId <= 0) throw new BadRequestException("Id inválido!");
         var autor = _autorRepository.GetByIdAsync(autorId).Result ?? throw new NotFoundException("Autor não encontrado!");

@@ -28,7 +28,7 @@ public class LivroController : ControllerBase
     }
 
     [HttpGet("{livroId}/exemplares")]
-    public async Task<ActionResult<LivroComExemplaresDto>> GetLivroComExemplares(long livroId, [FromQuery] QueryParameters parameters)
+    public async Task<ActionResult<LivroComExemplaresDto>> GetLivroComExemplares(int livroId, [FromQuery] QueryParameters parameters)
     {
         var metadata = await _livroService.GetComExemplares(livroId, parameters);
         Response.AppendPaginationHeader(metadata);
@@ -36,7 +36,7 @@ public class LivroController : ControllerBase
     }
 
     [HttpGet("{livroId}", Name = "ObterLivro")]
-    public async Task<ActionResult<LivroResponseDto>> GetById(long livroId)
+    public async Task<ActionResult<LivroResponseDto>> GetById(int livroId)
     {
         var dto = await _livroService.GetId(livroId);
         return Ok(dto);
@@ -50,14 +50,14 @@ public class LivroController : ControllerBase
     }
 
     [HttpPut("{livroId}")]
-    public async Task<ActionResult<LivroResponseDto>> Update(long livroId, UpdateLivroDto dto)
+    public async Task<ActionResult<LivroResponseDto>> Update(int livroId, UpdateLivroDto dto)
     {
         var dtoAtualizado = await _livroService.Update(livroId, dto);
         return Ok(dtoAtualizado);
     }
 
     [HttpDelete("{livroId}")]
-    public async Task<ActionResult> Delete(long livroId)
+    public async Task<ActionResult> Delete(int livroId)
     {
         await _livroService.Delete(livroId);
         return NoContent();

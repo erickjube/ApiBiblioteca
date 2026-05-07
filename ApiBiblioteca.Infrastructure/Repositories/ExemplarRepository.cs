@@ -1,4 +1,4 @@
-﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
+﻿using ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Application.Interfaces.IRepository;
 using ApiBiblioteca.Domain.Common;
 using ApiBiblioteca.Domain.Entities;

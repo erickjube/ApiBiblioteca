@@ -243,8 +243,6 @@ C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBi
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\bin\Debug\net8.0\MySql.Data.dll
-C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\bin\Debug\net8.0\MySqlConnector.dll
-C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -357,4 +355,3 @@ C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBi
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\obj\Debug\net8.0\ApiBiblioteca.API.pdb
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\obj\Debug\net8.0\ApiBiblioteca.API.genruntimeconfig.cache
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\obj\Debug\net8.0\ref\ApiBiblioteca.API.dll
-C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBliblioteca.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -48,7 +48,7 @@ public class LivroService : ILivroService
         };
     }
 
-    public async Task<PagedList<ExemplarResponseDto>> GetComExemplares(long livroId, QueryParameters parameters)
+    public async Task<PagedList<ExemplarResponseDto>> GetComExemplares(int livroId, QueryParameters parameters)
     {
         if (livroId <= 0) throw new BadRequestException("Id inválido!");
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
@@ -65,7 +65,7 @@ public class LivroService : ILivroService
         };
     }
 
-    public async Task<LivroResponseDto> GetId(long livroId)
+    public async Task<LivroResponseDto> GetId(int livroId)
     {
         if (livroId <= 0) throw new BadRequestException("Id inválido!");
         var livro = await _livroRepository.GetByIdAsync(livroId) ?? throw new NotFoundException("Livro não encontrado!");
@@ -87,7 +87,7 @@ public class LivroService : ILivroService
         return _mapper.Map<LivroResponseDto>(livro);
     }
 
-    public async Task<LivroResponseDto> Update(long livroId, UpdateLivroDto dto)
+    public async Task<LivroResponseDto> Update(int livroId, UpdateLivroDto dto)
     {
         if (dto == null) throw new BadRequestException("Livro inválido!");
         var livro = await _livroRepository.GetByIdAsync(livroId) ?? throw new NotFoundException("Livro não encontrado!");
@@ -97,7 +97,7 @@ public class LivroService : ILivroService
         return _mapper.Map<LivroResponseDto>(livro);
     }
 
-    public async Task Delete(long livroId)
+    public async Task Delete(int livroId)
     {
         if (livroId <= 0) throw new BadRequestException("Id inválido!");
         var livro = await _livroRepository.GetByIdAsync(livroId) ?? throw new NotFoundException("Livro não encontrado!");

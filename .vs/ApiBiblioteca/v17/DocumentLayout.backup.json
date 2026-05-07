@@ -1,54 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.infrastructure\\configurations\\autorconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|solutionrelative:apibiblioteca.infrastructure\\configurations\\autorconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.infrastructure\\configurations\\livroconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|solutionrelative:apibiblioteca.infrastructure\\configurations\\livroconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AutorConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\AutorConfiguration.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Infrastructure\\Configurations\\AutorConfiguration.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\AutorConfiguration.cs",
-              "RelativeToolTip": "ApiBiblioteca.Infrastructure\\Configurations\\AutorConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T17:59:14.29Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LivroConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\LivroConfiguration.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Infrastructure\\Configurations\\LivroConfiguration.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\LivroConfiguration.cs",
-              "RelativeToolTip": "ApiBiblioteca.Infrastructure\\Configurations\\LivroConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-06T17:24:02.39Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

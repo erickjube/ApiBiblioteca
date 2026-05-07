@@ -1,4 +1,4 @@
-﻿using ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
+﻿using ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Infrastructure.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

@@ -12,6 +12,6 @@ public class UpdateLivroDto
     [Range(1, int.MaxValue)]
     public int NumeroDePaginas { get; set; }
 
-    [Range(1, long.MaxValue)]
-    public long CategoriaId { get; set; }
+    [Range(1, int.MaxValue)]
+    public int CategoriaId { get; set; }
 }

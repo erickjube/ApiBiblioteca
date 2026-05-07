@@ -13,7 +13,7 @@ public class LivroConfiguration : IEntityTypeConfiguration<Livro>
         builder.Property(l => l.Isbn).IsRequired().HasMaxLength(13);
         builder.HasIndex(l => l.Isbn).IsUnique();
         builder.Property(l => l.DataPublicacao).IsRequired().HasColumnType("date"); 
-        builder.Property(l => l.NumeroDePaginas).IsRequired().HasColumnType("date");
+        builder.Property(l => l.NumeroDePaginas).IsRequired();
         builder.HasOne(l => l.Autor).WithMany().HasForeignKey(l => l.AutorId).OnDelete(DeleteBehavior.Restrict);
         builder.HasOne(l => l.Categoria).WithMany().HasForeignKey(l => l.CategoriaId).OnDelete(DeleteBehavior.Restrict);
     }

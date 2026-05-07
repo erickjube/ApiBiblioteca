@@ -3,7 +3,7 @@ using ApiBiblioteca.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiBiblioteca.ApiBiblioteca.Infrastructure.Data;
+namespace ApiBiblioteca.Infrastructure.Data;
 
 public class MeuDbContext : IdentityDbContext<ApplicationUser>
 {

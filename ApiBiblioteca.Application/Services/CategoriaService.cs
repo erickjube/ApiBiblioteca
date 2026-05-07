@@ -47,7 +47,7 @@ public class CategoriaService : ICategoriaService
         };
     }
 
-    public async Task<PagedList<LivroResponseDto>> GetComLivros(long categoriaId, QueryParameters parameters)
+    public async Task<PagedList<LivroResponseDto>> GetComLivros(int categoriaId, QueryParameters parameters)
     {
         if (categoriaId <= 0) throw new BadRequestException("Id inválido!");
         var skip = (parameters.PageNumber - 1) * parameters.PageSize;
@@ -64,7 +64,7 @@ public class CategoriaService : ICategoriaService
         };
     }
 
-    public async Task<CategoriaResponseDto> GetId(long categoriaId)
+    public async Task<CategoriaResponseDto> GetId(int categoriaId)
     {
         if (categoriaId <= 0) throw new BadRequestException("Id inválido!");
         var categoria = await _categoriaRepository.GetByIdAsync(categoriaId) ?? throw new NotFoundException("Categoria não encontrada!");
@@ -81,7 +81,7 @@ public class CategoriaService : ICategoriaService
         return _mapper.Map<CategoriaResponseDto>(categoria);
     }
 
-    public async Task<CategoriaResponseDto> Update(long categoriaId, CategoriaDto dto)
+    public async Task<CategoriaResponseDto> Update(int categoriaId, CategoriaDto dto)
     {
         if (categoriaId <= 0) throw new BadRequestException("Id inválido!");
         if (dto is null) throw new BadRequestException("Categoria inválida!");
@@ -92,7 +92,7 @@ public class CategoriaService : ICategoriaService
         return _mapper.Map<CategoriaResponseDto>(categoria);
     }
     
-    public async Task Delete(long categoriaId)
+    public async Task Delete(int categoriaId)
     {
         if (categoriaId <= 0) throw new BadRequestException("Id inválido!");
         var categoria = _categoriaRepository.GetByIdAsync(categoriaId).Result ?? throw new NotFoundException("Categoria não encontrada!");

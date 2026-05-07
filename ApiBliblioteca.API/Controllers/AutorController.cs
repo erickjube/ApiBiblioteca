@@ -29,7 +29,7 @@ public class AutorController : ControllerBase
     }   
 
     [HttpGet("{autorId}/livros")]
-    public async Task<ActionResult<IEnumerable<LivroResponseDto>>> GetAutorComLivros(long autorId, [FromQuery] QueryParameters parameters)
+    public async Task<ActionResult<IEnumerable<LivroResponseDto>>> GetAutorComLivros(int autorId, [FromQuery] QueryParameters parameters)
     {
         var metadata = await _autorService.GetComLivros(autorId, parameters);
         Response.AppendPaginationHeader(metadata);
@@ -37,7 +37,7 @@ public class AutorController : ControllerBase
     }
 
     [HttpGet("{autorId}", Name = "ObterAutor")]
-    public async Task<ActionResult<AutorResponseDto>> GetById(long autorId)
+    public async Task<ActionResult<AutorResponseDto>> GetById(int autorId)
     {
         var dto = await _autorService.GetId(autorId);
         return Ok(dto);
@@ -51,14 +51,14 @@ public class AutorController : ControllerBase
     }
 
     [HttpPut("{autorId}")]
-    public async Task<ActionResult<AutorResponseDto>> Update(long autorId, AutorDto dto)
+    public async Task<ActionResult<AutorResponseDto>> Update(int autorId, AutorDto dto)
     {
         var dtoAtualizado = await _autorService.Update(autorId, dto);
         return Ok(dtoAtualizado);
     }
 
     [HttpDelete("{autorId}")]
-    public async Task<ActionResult> Delete(long autorId)
+    public async Task<ActionResult> Delete(int autorId)
     {
         await _autorService.Delete(autorId);
         return NoContent();
