@@ -23,5 +23,6 @@ public class MeuDbContext : IdentityDbContext<ApplicationUser>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        builder.ApplyConfigurationsFromAssembly(typeof(MeuDbContext).Assembly);
     }
 }

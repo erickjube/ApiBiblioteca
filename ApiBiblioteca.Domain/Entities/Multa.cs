@@ -12,7 +12,10 @@ public class Multa
     public  DateOnly DataMulta { get; private set; } = DateOnly.FromDateTime(DateTime.UtcNow);
 
     public int EmprestimoId { get; private set; }
+    public Emprestimo Emprestimo { get; private set; }
+
     public int ItemEmprestimoId { get; private set; }
+    public ItemEmprestimo ItemEmprestimo { get; private set; }
 
     public Multa() { }
 

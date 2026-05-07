@@ -4,7 +4,7 @@ namespace ApiBiblioteca.Domain.Entities;
 
 public class Autor
 {
-    public long Id { get; private set; }
+    public int Id { get; private set; }
     public string Nome { get; private set; }
     public DateOnly DataNascimento { get; private set; }
     public string Nacionalidade { get; private set; }

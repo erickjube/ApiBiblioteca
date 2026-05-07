@@ -7,5 +7,5 @@ public class ExemplarResponseDto
     public string CodigoDeBarras { get; set; }
     public string Status { get; set; }
     public decimal Preco { get; set; }
-    public long LivroId { get; set; }
+    public int LivroId { get; set; }
 }

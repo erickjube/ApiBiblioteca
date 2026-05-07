@@ -2,7 +2,7 @@
 
 public class AutorResponseDto
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
     public string Nome { get; set; }
     public DateOnly DataNascimento { get; set; }
     public string Nacionalidade { get; set; }

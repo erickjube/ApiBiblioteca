@@ -12,12 +12,12 @@ public class ExemplarLivro
     public string CodigoDeBarras { get; private set; }
     public StatusExemplar Status { get; private set; } = StatusExemplar.Disponivel;
     public decimal Preco { get; private set; }
-    public long LivroId { get; private set; }
+    public int LivroId { get; private set; }
     public Livro Livro { get; private set; }
 
     public ExemplarLivro() { }
 
-    public ExemplarLivro(string nome, string codigoBarras, decimal preco, long livroId)
+    public ExemplarLivro(string nome, string codigoBarras, decimal preco, int livroId)
     {
         if (string.IsNullOrWhiteSpace(nome)) throw new BadRequestException("Nome é obrigatório");
         if (!ValidarCodigoBarras.IsValid(codigoBarras)) throw new BadRequestException("Código de barras inválido");

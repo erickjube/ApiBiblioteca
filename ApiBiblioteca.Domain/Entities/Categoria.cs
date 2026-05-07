@@ -4,7 +4,7 @@ namespace ApiBiblioteca.Domain.Entities;
 
 public class Categoria
 {
-    public long Id { get; private set; }
+    public int Id { get; private set; }
     public string Nome { get; private set; }
     public ICollection<Livro> Livros { get; private set; } = new List<Livro>();
 

@@ -16,3 +16,5 @@ C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBi
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBiblioteca.Infrastructure\obj\Debug\net8.0\refint\ApiBiblioteca.Infrastructure.dll
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBiblioteca.Infrastructure\obj\Debug\net8.0\ApiBiblioteca.Infrastructure.pdb
 C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBiblioteca.Infrastructure\obj\Debug\net8.0\ref\ApiBiblioteca.Infrastructure.dll
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBiblioteca.Infrastructure\bin\Debug\net8.0\ApiBiblioteca.Infrastructure.runtimeconfig.json
+C:\Users\Erick Jube\OneDrive\Documents\00Faculdade\Estudos\C#\0 - Projetos\ApiBiblioteca\ApiBiblioteca.Infrastructure\obj\Debug\net8.0\ApiBiblioteca.Infrastructure.genruntimeconfig.cache

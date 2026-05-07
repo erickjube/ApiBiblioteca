@@ -4,7 +4,7 @@ namespace ApiBiblioteca.Domain.Entities;
 
 public class Livro
 {
-    public long Id { get; private set; }
+    public int Id { get; private set; }
     public string Titulo { get; private set; }
     public DateOnly DataPublicacao { get; private set; }
     public DateOnly DataCadastro { get; private set; } = DateOnly.FromDateTime(DateTime.UtcNow);
