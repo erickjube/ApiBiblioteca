@@ -24,7 +24,7 @@ public class CreateClienteDtoValidator : AbstractValidator<CreateClienteDto>
 
         RuleFor(x => x.DataNascimento)
             .NotEmpty().WithMessage("A data é obrigatoria.")
-            .GreaterThan(DateOnly.FromDateTime(DateTime.Now))
-            .WithMessage("A Data de Nascimento deve ser uma data futura.");
+            .LessThan(DateOnly.FromDateTime(DateTime.Now))
+            .WithMessage("A Data de Nascimento deve ser anterior à data atual.");
     }
 }

@@ -13,7 +13,7 @@ public class CreateLivroDtoValidator : AbstractValidator<CreateLivroDto>
 
         RuleFor(x => x.DataPublicacao)
             .NotEmpty().WithMessage("A data de publicação é obrigatória.")
-            .GreaterThan(DateOnly.FromDateTime(DateTime.Now)).WithMessage("Data da Publicação deve ser uma data futura.");
+            .LessThan(DateOnly.FromDateTime(DateTime.Now)).WithMessage("Data da Publicação deve ser anterior à data atual.");
 
         RuleFor(x => x.NumeroDePaginas)
             .NotEmpty().WithMessage("O número de páginas é obrigatório.")

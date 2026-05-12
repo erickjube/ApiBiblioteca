@@ -1,71 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.infrastructure\\configurations\\multaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|solutionrelative:apibiblioteca.infrastructure\\configurations\\multaconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.infrastructure\\configurations\\itememprestimoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|solutionrelative:apibiblioteca.infrastructure\\configurations\\itememprestimoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|c:\\users\\erick jube\\onedrive\\documents\\00faculdade\\estudos\\c#\\0 - projetos\\apibiblioteca\\apibiblioteca.infrastructure\\configurations\\emprestimoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{47EA5FD7-1AC3-4CDB-9914-06FD4EC92975}|ApiBiblioteca.Infrastructure\\ApiBiblioteca.Infrastructure.csproj|solutionrelative:apibiblioteca.infrastructure\\configurations\\emprestimoconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ItemEmprestimoConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\ItemEmprestimoConfiguration.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Infrastructure\\Configurations\\ItemEmprestimoConfiguration.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\ItemEmprestimoConfiguration.cs",
-              "RelativeToolTip": "ApiBiblioteca.Infrastructure\\Configurations\\ItemEmprestimoConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAACEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-12T18:36:35.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EmprestimoConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\EmprestimoConfiguration.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Infrastructure\\Configurations\\EmprestimoConfiguration.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\EmprestimoConfiguration.cs",
-              "RelativeToolTip": "ApiBiblioteca.Infrastructure\\Configurations\\EmprestimoConfiguration.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAYwBEAAACFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-12T18:36:32.565Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MultaConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\MultaConfiguration.cs",
-              "RelativeDocumentMoniker": "ApiBiblioteca.Infrastructure\\Configurations\\MultaConfiguration.cs",
-              "ToolTip": "C:\\Users\\Erick Jube\\OneDrive\\Documents\\00Faculdade\\Estudos\\C#\\0 - Projetos\\ApiBiblioteca\\ApiBiblioteca.Infrastructure\\Configurations\\MultaConfiguration.cs",
-              "RelativeToolTip": "ApiBiblioteca.Infrastructure\\Configurations\\MultaConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-12T18:36:19.167Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

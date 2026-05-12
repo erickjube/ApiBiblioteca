@@ -1,10 +1,11 @@
 ﻿using ApiBiblioteca.Application.DependencyInjection;
+using ApiBiblioteca.Infrastructure.Data;
 using ApiBiblioteca.Infrastructure.DependencyInjection;
 using ApiBiblioteca.Middleware;
+using ApiBiblioteca.Seeders;
 using FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
-using System;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -60,6 +61,16 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+    await IdentitySeeder.SeedRolesAndAdminAsync(userManager, roleManager);
 }
 
 app.UseMiddleware<ExceptionMiddleware>();

@@ -13,7 +13,7 @@ public class CreateAutorDtoValidator : AbstractValidator<AutorDto>
 
         RuleFor(x => x.DataNascimento)
             .LessThan(DateOnly.FromDateTime(DateTime.Now))
-            .WithMessage("Data de nascimento deve ser no passado");
+            .WithMessage("A Data de Nascimento deve ser anterior à data atual.");
 
         RuleFor(x => x.Nacionalidade)
             .NotEmpty().WithMessage("Nacionalidade é obrigatória")
