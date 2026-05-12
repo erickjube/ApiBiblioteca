@@ -167,7 +167,7 @@
     "Parameters": [
       {
         "Name": "autorId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -194,7 +194,7 @@
     "Parameters": [
       {
         "Name": "autorId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {
@@ -225,7 +225,7 @@
     "Parameters": [
       {
         "Name": "autorId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -241,7 +241,7 @@
     "Parameters": [
       {
         "Name": "autorId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {
@@ -334,7 +334,7 @@
     "Parameters": [
       {
         "Name": "categoriaId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -361,7 +361,7 @@
     "Parameters": [
       {
         "Name": "categoriaId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {
@@ -392,7 +392,7 @@
     "Parameters": [
       {
         "Name": "categoriaId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -408,7 +408,7 @@
     "Parameters": [
       {
         "Name": "categoriaId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {
@@ -1133,7 +1133,7 @@
     "Parameters": [
       {
         "Name": "livroId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -1160,7 +1160,7 @@
     "Parameters": [
       {
         "Name": "livroId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {
@@ -1191,7 +1191,7 @@
     "Parameters": [
       {
         "Name": "livroId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -1207,7 +1207,7 @@
     "Parameters": [
       {
         "Name": "livroId",
-        "Type": "System.Int64",
+        "Type": "System.Int32",
         "IsRequired": true
       },
       {

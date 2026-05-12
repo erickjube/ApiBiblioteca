@@ -283,7 +283,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           },
           {
@@ -349,7 +349,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -387,7 +387,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -444,7 +444,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -569,7 +569,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           },
           {
@@ -626,7 +626,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -664,7 +664,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -721,7 +721,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -1898,7 +1898,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           },
           {
@@ -1955,7 +1955,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -1993,7 +1993,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -2050,7 +2050,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         ],
@@ -2402,7 +2402,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "nome": {
             "type": "string",
@@ -2434,7 +2434,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "nome": {
             "type": "string",
@@ -2538,7 +2538,7 @@
           },
           "livroId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2564,11 +2564,11 @@
           },
           "categoriaId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "autorId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2685,7 +2685,7 @@
           },
           "livroId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2742,7 +2742,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "titulo": {
             "type": "string",
@@ -2766,11 +2766,11 @@
           },
           "categoriaId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "autorId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "exemplares": {
             "type": "array",
@@ -2787,7 +2787,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "titulo": {
             "type": "string",
@@ -2811,11 +2811,11 @@
           },
           "categoriaId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           },
           "autorId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -2985,9 +2985,10 @@
             "format": "int32"
           },
           "categoriaId": {
+            "maximum": 2147483647,
             "minimum": 1,
             "type": "integer",
-            "format": "int64"
+            "format": "int32"
           }
         },
         "additionalProperties": false

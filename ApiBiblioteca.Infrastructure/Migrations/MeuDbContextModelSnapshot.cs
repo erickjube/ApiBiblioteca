@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ApiBiblioteca.Migrations
+namespace ApiBiblioteca.Infrastructure.Migrations
 {
     [DbContext(typeof(MeuDbContext))]
     partial class MeuDbContextModelSnapshot : ModelSnapshot
@@ -249,13 +249,7 @@ namespace ApiBiblioteca.Migrations
                     b.Property<int>("AutorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AutorId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoriaId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoriaId1")
                         .HasColumnType("int");
 
                     b.Property<DateOnly>("DataCadastro")
@@ -281,11 +275,7 @@ namespace ApiBiblioteca.Migrations
 
                     b.HasIndex("AutorId");
 
-                    b.HasIndex("AutorId1");
-
                     b.HasIndex("CategoriaId");
-
-                    b.HasIndex("CategoriaId1");
 
                     b.HasIndex("Isbn")
                         .IsUnique();
@@ -312,13 +302,10 @@ namespace ApiBiblioteca.Migrations
                     b.Property<int>("EmprestimoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EmprestimoId1")
+                    b.Property<int?>("EmprestimoId1")
                         .HasColumnType("int");
 
                     b.Property<int>("ItemEmprestimoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemEmprestimoId1")
                         .HasColumnType("int");
 
                     b.Property<int>("Tipo")
@@ -334,8 +321,6 @@ namespace ApiBiblioteca.Migrations
                     b.HasIndex("EmprestimoId1");
 
                     b.HasIndex("ItemEmprestimoId");
-
-                    b.HasIndex("ItemEmprestimoId1");
 
                     b.ToTable("Multa");
                 });
@@ -600,7 +585,7 @@ namespace ApiBiblioteca.Migrations
                     b.HasOne("ApiBiblioteca.Domain.Entities.Emprestimo", "Emprestimo")
                         .WithMany("Itens")
                         .HasForeignKey("EmprestimoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ApiBiblioteca.Domain.Entities.ExemplarLivro", "Exemplar")
@@ -636,24 +621,16 @@ namespace ApiBiblioteca.Migrations
             modelBuilder.Entity("ApiBiblioteca.Domain.Entities.Livro", b =>
                 {
                     b.HasOne("ApiBiblioteca.Domain.Entities.Autor", "Autor")
-                        .WithMany()
+                        .WithMany("Livros")
                         .HasForeignKey("AutorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ApiBiblioteca.Domain.Entities.Autor", null)
-                        .WithMany("Livros")
-                        .HasForeignKey("AutorId1");
-
                     b.HasOne("ApiBiblioteca.Domain.Entities.Categoria", "Categoria")
-                        .WithMany()
+                        .WithMany("Livros")
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("ApiBiblioteca.Domain.Entities.Categoria", null)
-                        .WithMany("Livros")
-                        .HasForeignKey("CategoriaId1");
 
                     b.Navigation("Autor");
 
@@ -662,28 +639,20 @@ namespace ApiBiblioteca.Migrations
 
             modelBuilder.Entity("ApiBiblioteca.Domain.Entities.Multa", b =>
                 {
-                    b.HasOne("ApiBiblioteca.Domain.Entities.Emprestimo", null)
+                    b.HasOne("ApiBiblioteca.Domain.Entities.Emprestimo", "Emprestimo")
                         .WithMany()
                         .HasForeignKey("EmprestimoId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ApiBiblioteca.Domain.Entities.Emprestimo", "Emprestimo")
+                    b.HasOne("ApiBiblioteca.Domain.Entities.Emprestimo", null)
                         .WithMany("Multas")
-                        .HasForeignKey("EmprestimoId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApiBiblioteca.Domain.Entities.ItemEmprestimo", null)
-                        .WithMany()
-                        .HasForeignKey("ItemEmprestimoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("EmprestimoId1");
 
                     b.HasOne("ApiBiblioteca.Domain.Entities.ItemEmprestimo", "ItemEmprestimo")
                         .WithMany()
-                        .HasForeignKey("ItemEmprestimoId1")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("ItemEmprestimoId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Emprestimo");

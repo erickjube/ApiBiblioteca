@@ -14,7 +14,7 @@ public class EmprestimoConfiguration : IEntityTypeConfiguration<Emprestimo>
         builder.Property(e => e.Status).IsRequired();
         builder.Property(e => e.MultaTotal).HasColumnType("decimal(18,2)");
         builder.HasOne(e => e.Cliente).WithMany(c => c.Emprestimos).HasForeignKey(e => e.ClienteId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasMany(e => e.Itens).WithOne(i => i.Emprestimo).HasForeignKey(i => i.EmprestimoId).OnDelete(DeleteBehavior.Cascade);
-        builder.HasMany(e => e.Multas).WithOne(m => m.Emprestimo).HasForeignKey(m => m.EmprestimoId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(e => e.Itens).WithOne(i => i.Emprestimo).HasForeignKey(i => i.EmprestimoId).OnDelete(DeleteBehavior.Restrict);
+        builder.HasMany(e => e.Multas).WithOne(m => m.Emprestimo).HasForeignKey(m => m.EmprestimoId).OnDelete(DeleteBehavior.Restrict);
     }
 }

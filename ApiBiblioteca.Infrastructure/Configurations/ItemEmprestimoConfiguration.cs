@@ -11,7 +11,7 @@ public class ItemEmprestimoConfiguration : IEntityTypeConfiguration<ItemEmpresti
         builder.HasKey(i => i.Id);
         builder.Property(i => i.DataDevolucao).HasColumnType("date");
         builder.Property(i => i.Status).HasConversion<string>().HasMaxLength(20).IsRequired();
-        builder.HasOne(i => i.Emprestimo).WithMany(e => e.Itens).HasForeignKey(i => i.EmprestimoId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(i => i.Emprestimo).WithMany(e => e.Itens).HasForeignKey(i => i.EmprestimoId).OnDelete(DeleteBehavior.Restrict);
         builder.HasOne(i => i.Exemplar).WithMany().HasForeignKey(i => i.ExemplarId).OnDelete(DeleteBehavior.Restrict);
     }
 }

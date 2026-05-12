@@ -13,7 +13,7 @@ public class MultaConfiguration : IEntityTypeConfiguration<Multa>
         builder.Property(m => m.Valor).IsRequired().HasColumnType("decimal(18,2)");
         builder.Property(m => m.Descricao).IsRequired().HasMaxLength(255);
         builder.Property(m => m.DataMulta).IsRequired().HasColumnType("date");
-        builder.HasOne<ItemEmprestimo>().WithMany().HasForeignKey(m => m.ItemEmprestimoId).OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Emprestimo>().WithMany().HasForeignKey(m => m.EmprestimoId).OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne(m => m.ItemEmprestimo).WithMany().HasForeignKey(m => m.ItemEmprestimoId).OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne(m => m.Emprestimo).WithMany().HasForeignKey(m => m.EmprestimoId).OnDelete(DeleteBehavior.Restrict);
     }
 }

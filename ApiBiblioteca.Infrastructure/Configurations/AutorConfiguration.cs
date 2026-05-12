@@ -13,6 +13,5 @@ public class AutorConfiguration : IEntityTypeConfiguration<Autor>
         builder.Property(a => a.Nome).IsRequired().HasMaxLength(100);
         builder.Property(a => a.DataNascimento).IsRequired().HasColumnType("date");
         builder.Property(a => a.Nacionalidade).IsRequired().HasMaxLength(50);
-        builder.HasMany(a => a.Livros).WithOne(l => l.Autor).HasForeignKey(l => l.AutorId).OnDelete(DeleteBehavior.Restrict);
     }
 }
