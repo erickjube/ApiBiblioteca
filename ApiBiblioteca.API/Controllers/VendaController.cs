@@ -47,7 +47,7 @@ public class VendaController : ControllerBase
     public async Task<ActionResult<VendaResponseDto>> Create(CreateVendaDto dto)
     {
         var vendaCriada = await _vendaService.Create(dto);
-        return CreatedAtRoute("ObterVenda", new { id = vendaCriada.Id }, vendaCriada);
+        return CreatedAtRoute("ObterVenda", new { vendaId = vendaCriada.Id }, vendaCriada);
     }
 
     [HttpPost("{vendaId}/cancelar")]

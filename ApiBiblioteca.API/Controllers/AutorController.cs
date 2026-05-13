@@ -47,7 +47,7 @@ public class AutorController : ControllerBase
     public async Task<ActionResult<AutorResponseDto>> Create(AutorDto dto)
     {
         var autorCriado = await _autorService.Create(dto);
-        return CreatedAtRoute("ObterAutor", new { id = autorCriado.Id }, autorCriado);
+        return CreatedAtRoute("ObterAutor", new { autorId = autorCriado.Id }, autorCriado);
     }
 
     [HttpPut("{autorId}")]

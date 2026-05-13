@@ -55,7 +55,7 @@ public class EmprestimoController : ControllerBase
     public async Task<ActionResult<EmprestimoResponseDto>> Create(CreateEmprestimoDto dto)
     {
         var emprestimoCriado = await _emprestimoService.CreateEmprestimo(dto);
-        return CreatedAtRoute("ObterEmprestimo", new { id = emprestimoCriado.Id }, emprestimoCriado);
+        return CreatedAtRoute("ObterEmprestimo", new { emprestimoId = emprestimoCriado.Id }, emprestimoCriado);
     }
 
     [HttpPost("{emprestimoId}/item")]

@@ -48,7 +48,7 @@ public class CategoriaController : ControllerBase
     public async Task<ActionResult<CategoriaResponseDto>> Create(CategoriaDto dto)
     {
         var categoriaCriada = await _categoriaService.Create(dto);
-        return CreatedAtRoute("ObterCategoria", new { id = categoriaCriada.Id }, categoriaCriada);
+        return CreatedAtRoute("ObterCategoria", new { categoriaId = categoriaCriada.Id }, categoriaCriada);
     }
 
     [HttpPut("{categoriaId}")]

@@ -56,7 +56,7 @@ public class ClienteController : ControllerBase
     public async Task<ActionResult<ClienteResponseDto>> Create(CreateClienteDto dto)
     {
         var cliente = await _clienteService.Create(dto);
-        return CreatedAtRoute("ObterCliente", new { id = cliente.Id }, cliente);
+        return CreatedAtRoute("ObterCliente", new { clienteId = cliente.Id }, cliente);
     }
 
     [HttpPut]

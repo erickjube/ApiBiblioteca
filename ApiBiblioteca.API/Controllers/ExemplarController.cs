@@ -38,7 +38,7 @@ public class ExemplarController : ControllerBase
     public async Task<ActionResult<ExemplarResponseDto>> Create(CreateExemplarDto dto)
     {
         var exemplarCriado = await _exemplarService.Create(dto);
-        return CreatedAtRoute("ObterExemplar", new { id = exemplarCriado.Id }, exemplarCriado);
+        return CreatedAtRoute("ObterExemplar", new { exemplarId = exemplarCriado.Id }, exemplarCriado);
     }
 
     [HttpPut("{exemplarId}")]

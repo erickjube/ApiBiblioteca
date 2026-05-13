@@ -46,7 +46,7 @@ public class LivroController : ControllerBase
     public async Task<ActionResult<LivroResponseDto>> Create(CreateLivroDto dto)
     {
         var livroCriado = await _livroService.Create(dto);
-        return CreatedAtRoute("ObterLivro", new { id = livroCriado.Id }, livroCriado);
+        return CreatedAtRoute("ObterLivro", new { livroId = livroCriado.Id }, livroCriado);
     }
 
     [HttpPut("{livroId}")]
