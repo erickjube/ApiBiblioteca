@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiBiblioteca.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bdeb4bff4138b18b5071668370e75d47f85b19fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e521d9dfeedf789f75ee205b8c1293b1800283ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiBiblioteca.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiBiblioteca.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
