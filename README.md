@@ -30,22 +30,22 @@ O projeto foi construído com ênfase em organização de código, separação d
 ### Passos
 
 ```bash
-### 1. Clonar o repositório:
+### 1. Clonar o repositório
 git clone https://github.com/erickjube/ApiBiblioteca.git
 
 
-### 2. Entrar na pasta do projeto:
+### 2. Entrar na pasta do projeto
 cd ApiBiblioteca
 
 
-### 3. Restaurar dependências:
+### 3. Restaurar dependências
 dotnet restore
 
 
-### 4. Configurar a Connection String:
+### 4. Configurar a Connection String
 No arquivo:
 
-ApiBliblioteca.API/appsettings.json
+ApiBiblioteca.API/appsettings.json
 
 configure a string de conexão do SQL Server:
 
@@ -55,24 +55,33 @@ json
 }
 
 
-### 5. Aplicar as migrations:
-dotnet ef database update --project ApiBiblioteca.Infrastructure\ApiBiblioteca.Infrastructure.csproj --startup-project ApiBliblioteca.API\ApiBiblioteca.API.csproj
+### 5. Aplicar as migrations
+dotnet ef database update --project ApiBiblioteca.Infrastructure\ApiBiblioteca.Infrastructure.csproj --startup-project ApiBiblioteca.API\ApiBiblioteca.API.csproj
 
 
-### 6. Compilar o projeto:
-dotnet build ApiBliblioteca.API\ApiBiblioteca.API.csproj
+### 6. Compilar o projeto
+dotnet build ApiBiblioteca.API\ApiBiblioteca.API.csproj
 
 
-### 7. Executar a API:
-dotnet run --project ApiBliblioteca.API\ApiBiblioteca.API.csproj
+### 7. Executar a API
+dotnet run --project ApiBiblioteca.API\ApiBiblioteca.API.csproj
 
 
-## Usuário administrador padrão:
+### Observação para usuários do Visual Studio
+
+Caso execute o projeto pelo Visual Studio, defina `ApiBiblioteca.API`
+como projeto de inicialização:
+
+- Clique com botão direito em `ApiBiblioteca.API`
+- Clique em `Definir como Projeto de Inicialização`
+
+
+## Usuário administrador padrão
+
 Ao iniciar a aplicação pela primeira vez, um usuário administrador é criado automaticamente.
 
-Usuário: admin
-Senha: Admin@123
-
+Usuário: `admin`  
+Senha: `Admin@123`
 ```
 
 ## Endpoints principais
